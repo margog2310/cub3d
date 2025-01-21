@@ -6,7 +6,7 @@
 #    By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/21 16:21:20 by mganchev          #+#    #+#              #
-#    Updated: 2025/01/21 16:30:42 by mganchev         ###   ########.fr        #
+#    Updated: 2025/01/21 17:39:35 by mganchev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CFLAGS = -g3 -Wall -Werror -Wextra
 OBJDIR = ./build
 OBJS = $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 
-LIBFTDIR = ./srcs/libft
+LIBFTDIR = ./sources/libft
 LIBFT = $(LIBFTDIR)/libft.a
 
 SRCDIR = sources
