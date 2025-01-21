@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 16:00:24 by mganchev          #+#    #+#             */
-/*   Updated: 2024/08/05 19:16:23 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/01/21 19:19:48 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 # include "ft_printf.h"
 # include "get_next_line.h"
-# include "limits.h"
+# include <limits.h>
+# include <stdbool.h>
 # include <stddef.h>
 # include <stdint.h>
 # include <stdlib.h>
@@ -62,8 +63,10 @@ void				ft_swap(int *a, int *b);
 void				ft_swap_char(char *a, char *b);
 void				ft_bzero(void *s, size_t n);
 void				ft_putendl_fd(char *s, int fd);
+void				free_grid(char **grid, int line_count);
 void				ft_print_grid(char **grid, int rows, int cols);
 void				ft_grid_size(char **grid, int *rows, int *cols);
+void				*skip_set(char *str, char *set);
 void				**ft_allocate_grid(int rows, int cols, size_t size);
 void				*ft_memcpy(void *dest, const void *src, size_t n);
 void				*ft_calloc(size_t nmemb, size_t size);
