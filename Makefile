@@ -6,7 +6,7 @@
 #    By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/21 16:21:20 by mganchev          #+#    #+#              #
-#    Updated: 2025/01/24 05:20:28 by ssottori         ###   ########.fr        #
+#    Updated: 2025/01/24 20:39:06 by ssottori         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,7 @@ SRCS := $(addprefix $(SRC_DIR)/, $(SRCS))
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 
 # =============== BUILD ==================
-all: banner $(LIBFT) $(NAME)
+all: banner $(LIBFT) $(NAME) todo
 
 $(BUILD_DIR):
 	@mkdir -p $(BUILD_DIR)
@@ -64,7 +64,7 @@ $(LIBFT):
 $(NAME): $(BUILD_DIR) $(OBJS) $(LIBFT)
 	@echo "[$(GREEN)CUB3D$(NC)] - Building $(NAME)..."
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(MLX_FLAGS) $(LIBFT)
-	@echo "[$(GREEN)✅ CUB3D READY!$(NC)] - Run with ./$(NAME) map.cub"
+	@echo "[$(GREEN)✅ CUB3D READY!$(NC)] - $(GREEN)Run with ./$(NAME) map.cub$(NC)"
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c | $(BUILD_DIR)
 	@echo "[$(BLUE)CUB3D$(NC)] - Compiling: $<"
@@ -90,5 +90,17 @@ banner:
 	@echo "[$(CYAN)======================================$(NC)]"
 	@echo "[$(CYAN)        🔥 Compiling CUB3D 🔥$(NC)         ]"
 	@echo "[$(CYAN)======================================$(NC)]"
+
+#can delete this eventually and add instructions for how to run cub3d
+todo:
+	@echo "$(CYAN)======================================$(NC)"
+	@echo "$(RED)	   📌TODO LIST:$(NC)"
+	@echo "$(CYAN)======================================$(NC)"
+	@echo "$(RED)📌 Hello, if you've made it this far, that means it compiles. YAY 🎉$(NC)"
+	@echo "$(RED)💀 But I don’t know what errors will pop up once you try to run it...$(NC)"
+	@echo "$(NC)1. Fix mouse click coordinate issue... idk how to yet$(NC)"
+	@echo "$(NC)2. 🔥 Fkin fixxx the leaksss caused by parse map (losing my mind)$(NC)"
+	@echo "$(NC)3. Try to check map validation (pls work)$(NC)"
+	@echo "$(CYAN)======================================$(NC)"
 
 .PHONY: all clean fclean re banner
