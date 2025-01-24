@@ -6,7 +6,7 @@
 #    By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/21 16:21:20 by mganchev          #+#    #+#              #
-#    Updated: 2025/01/24 03:29:23 by ssottori         ###   ########.fr        #
+#    Updated: 2025/01/24 05:20:28 by ssottori         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,10 @@ SRCS = cub3d.c \
 		render.c \
 		background.c \
 		events.c \
+		exit.c \
+		parse_map.c \
+		map_valid.c \
+		utils.c \
 
 SRCS := $(addprefix $(SRC_DIR)/, $(SRCS))
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)

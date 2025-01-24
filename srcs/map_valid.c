@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_valid.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
+/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:34:52 by mganchev          #+#    #+#             */
-/*   Updated: 2025/01/21 19:59:42 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/01/24 05:39:07 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,26 +28,45 @@
 			-> curr char should also always be 1
 */
 
-bool	is_enclosed(char **grid, int line_count)
+bool	is_map_valid(t_map *map)
+{
+	if (!is_enclosed(map->grid))
+	{
+		ft_printf("Error: Map is not enclosed by walls.\n");
+		return (false);
+	}
+	if (!symbols_valid(map))
+	{
+		ft_printf("Error: Invalid symbols in map.\n");
+		return (false);
+	}
+	return (true);
+}
+
+bool	is_enclosed(char **grid)
 {
 	int	i;
 	int	j;
 	int	len;
-	int	cmp_len;
 
 	i = 0;
 	while (grid[i])
 	{
-		j = 0;
 		len = ft_strlen(grid[i]) - 1;
-		while (j < len)
+		if (i == 0 || !grid[i + 1]) // Checking first and last rows bc was broken
 		{
-			if ((grid[i - 1] && (cmp_len = ft_strlen(grid[i - 1]) - 1)
-					&& len > cmp_len && j > cmp_len && grid[i][j] != WALL)
-				|| (grid[i + 1] && (cmp_len = ft_strlen(grid[i + 1]) - 1)
-					&& len > cmp_len && j > cmp_len && grid[i][j] != WALL))
+			j = 0;
+			while (j < len)
+			{
+				if (grid[i][j] != WALL)
+					return (false);
+				j++;
+			}
+		}
+		else // Checking middle rows here
+		{
+			if (grid[i][0] != WALL || grid[i][len - 1] != WALL)
 				return (false);
-			j++;
 		}
 		i++;
 	}
@@ -59,8 +78,10 @@ bool	symbols_valid(t_map *map)
 	int	i;
 	int	j;
 	int	cols;
+	int	player_count;
 
 	i = 0;
+	player_count = 0;
 	while (i < map->rows)
 	{
 		j = 0;
@@ -74,6 +95,11 @@ bool	symbols_valid(t_map *map)
 			j++;
 		}
 		i++;
+	}
+	if (player_count != 1) // checke theres only 1 player starting pos
+	{
+		ft_printf("Error: Map must have exactly one player starting position.\n");
+		return (false);
 	}
 	return (true);
 }

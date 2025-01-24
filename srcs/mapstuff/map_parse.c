@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 18:20:19 by mganchev          #+#    #+#             */
-/*   Updated: 2025/01/23 21:40:25 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/01/24 04:43:38 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int	open_file(char *path)
 
 int	get_longest_row(char **grid, char *key)
 {
-	int i;
-	int len;
-	int index;
+	int	i;
+	int	len;
+	int	index;
 
 	i = 0;
 	len = 0;
@@ -47,8 +47,8 @@ int	get_longest_row(char **grid, char *key)
 // need to read rest of file before map
 char	**read_map(int fd, t_map *map)
 {
-	int line_count;
-	char    *line;
+	int		line_count;
+	char	*line;
 
 	map->grid = NULL;
 	line_count = 0;

@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:16:58 by mganchev          #+#    #+#             */
-/*   Updated: 2025/01/24 03:16:05 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/01/24 05:46:15 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,11 @@
 # define SKY 0x87CEEB
 # define FLOOR 0x57983B
 
+# define TX_W 64
+# define TX_H 64
+# define WIN_W 800
+# define WIN_H 600
+
 /* ========== STRUCTS ========== */
 typedef struct s_vector
 {
@@ -58,6 +63,27 @@ typedef struct s_map
 	int		rows;
 	int		cols;
 }			t_map;
+
+typedef struct t_txts
+{
+	// Texture paths
+	char	*tx_n;
+	char	*tx_s;
+	char	*tx_e;
+	char	*tx_w;
+
+	void	*tx_n_img;
+	void	*tx_s_img;
+	void	*tx_e_img;
+	void	*tx_w_img;
+	
+	int		tx_width;
+	int		tx_height;
+
+	int		floor_color;
+	int		ceiling_color;
+}			t_txts;
+
 
 typedef struct s_mcraft
 {
@@ -73,22 +99,39 @@ typedef struct s_mcraft
 	int		bpp;
 	int		ll; //line length
 	int		end; //endian
+
+	t_txts	txts;
 }			t_mcraft;
 
 /* ========== FUNCTIONS ========== */
 
-/* ----- Initialization ----- */
+/* ----- Initttt ----- */
 void	cub_init(t_mcraft *mcraft);
 void	init_win(t_mcraft *mcraft, int w, int h);
 void	win_bk(t_mcraft *mcraft);
 
-/* ----- Event Handling ----- */
+/* ----- Event Hanling ----- */
 void	keyhooks(t_mcraft *mcraft);
 int		keys(int keycode, t_mcraft *mcraft);
 int		mouse(int click, int x, int y);
 int		exit_win(t_mcraft *mcraft);
 
+/* ----- Rendering ----- */
 void	draw_pixel(t_mcraft *mcraft, int x, int y, int color);
+int		colors(char *str);
+
+/* ----- Map Parsing ----- */
+int		parse_map(t_mcraft *mcraft, char *file);
+void	cleanup_map(t_map *map);
+bool	is_map_valid(t_map *map);
+bool	is_enclosed(char **grid);
+bool	symbols_valid(t_map *map);
+
+void	cleanup_game(t_mcraft *mcraft);
+void	free_array(char **array);
+int		get_longest_row(char **grid, char *key);
+t_map	*create_map(char *file, t_mcraft *mcraft);
+int		get_longest_row(char **grid, char *key);
 
 //Margos
 // t_mcraft	*create_game(char *file_path);
