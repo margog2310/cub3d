@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 04:42:54 by ssottori          #+#    #+#             */
-/*   Updated: 2025/01/24 05:49:39 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/01/24 06:39:07 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,17 @@ static int	parse_map_grid(t_mcraft *mcraft, int fd, char *line)
 		{
 			grid = ft_realloc(grid, line_count, line_count + 1);
 			if (!grid)
+			{
+				ft_printf("Error: Memory allocation failed.\n");
 				return (0);
+			}
 			grid[line_count] = ft_strdup(line);
+			if (!grid[line_count])
+			{
+				ft_printf("Error: Memory allocation failed.\n");
+				free_array(grid);
+				return (0);
+			}
 			line_count++;
 		}
 		free(line);

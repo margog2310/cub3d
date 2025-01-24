@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 04:37:56 by ssottori          #+#    #+#             */
-/*   Updated: 2025/01/24 05:53:48 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/01/24 06:41:36 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,25 @@ int	exit_win(t_mcraft *mcraft)
 
 void	cleanup_game(t_mcraft *mcraft)
 {
-	mlx_destroy_window(mcraft->mlx, mcraft->win);
-	mlx_destroy_image(mcraft->mlx, mcraft->img);
+	if (!mcraft)
+		return;
+
 	if (mcraft->map)
-		cleanup_map(mcraft->map);
+	{
+		free_array(mcraft->map->grid);  // ✅ Free the map grid
+		free(mcraft->map);
+	}
+
+	if (mcraft->img)
+		mlx_destroy_image(mcraft->mlx, mcraft->img);
+	if (mcraft->win)
+		mlx_destroy_window(mcraft->mlx, mcraft->win);
+	if (mcraft->mlx)
+	{
+		mlx_destroy_display(mcraft->mlx);
+		free(mcraft->mlx);
+	}
+
 	free(mcraft);
 }
 
@@ -38,7 +53,10 @@ void	cleanup_map(t_map *map)
 	{
 		i = 0;
 		while (map->grid[i])
-			free(map->grid[i++]);
+		{
+			free(map->grid[i]);
+			i++;
+		}
 		free(map->grid);
 	}
 	free(map);

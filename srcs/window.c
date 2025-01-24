@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:37:35 by ssottori          #+#    #+#             */
-/*   Updated: 2025/01/24 03:11:43 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/01/24 06:35:41 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static void	init_window(t_mcraft *mcraft, int w, int h)
 	if (!mcraft->win)
 	{
 		ft_printf("Error: Window creation failed.\n");
+		mlx_destroy_display(mcraft->mlx);
 		free(mcraft->mlx);
 		exit(EXIT_FAILURE);
 	}
@@ -42,6 +43,7 @@ static void	init_img(t_mcraft *mcraft)
 	{
 		ft_printf("Error: Image creation failed.\n");
 		mlx_destroy_window(mcraft->mlx, mcraft->win);
+		mlx_destroy_display(mcraft->mlx);
 		free(mcraft->mlx);
 		exit(EXIT_FAILURE);
 	}

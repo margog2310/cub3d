@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:16:58 by mganchev          #+#    #+#             */
-/*   Updated: 2025/01/24 05:46:15 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/01/24 06:43:15 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <unistd.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
+# include <stdio.h>
 
 /* ========== CONSTANTS ========== */
 # define IFS " \t\n"

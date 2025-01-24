@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_realloc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
+/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 20:51:11 by mganchev          #+#    #+#             */
-/*   Updated: 2024/07/25 13:46:26 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/01/24 06:34:08 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,3 +35,4 @@ void	*ft_realloc(void *ptr, size_t old_size, size_t new_size)
 	free(ptr);
 	return (new_ptr);
 }
+

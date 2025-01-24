@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 04:52:08 by ssottori          #+#    #+#             */
-/*   Updated: 2025/01/24 05:23:20 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/01/24 06:29:40 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,11 @@ int	get_longest_row(char **grid, char *key)
 	i = 0;
 	len = 0;
 	index = 0;
+	if (!grid)
+		return (-1);
 	while (grid[i])
 	{
-		if (ft_strlen(grid[i]) > len)
+		if (grid[i] && ft_strlen(grid[i]) > len)
 		{
 			len = ft_strlen(grid[i]);
 			index = i;
@@ -47,5 +49,5 @@ int	get_longest_row(char **grid, char *key)
 		return (len);
 	else if (ft_strcmp(key, "INDEX") == 0)
 		return (index);
-	return (-1); // Invalid key
+	return (-1);
 }
