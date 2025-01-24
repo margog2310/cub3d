@@ -6,7 +6,7 @@
 #    By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/21 16:21:20 by mganchev          #+#    #+#              #
-#    Updated: 2025/01/22 17:08:30 by ssottori         ###   ########.fr        #
+#    Updated: 2025/01/24 03:29:23 by ssottori         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,9 +26,9 @@ NAME = cub3d
 
 # ==== Directories
 SRC_DIR = srcs
-BUILD_DIR = build
+BUILD_DIR = obj
 LIBFT_DIR = $(SRC_DIR)/libft
-MLX_DIR = minilibx-linux
+MLX_DIR = $(SRC_DIR)/minilibx-linux
 INC = include
 IFLAGS = -I$(INC) -I$(LIBFT_DIR)/include
 
@@ -37,10 +37,12 @@ MLX_FLAGS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 LIBFT = $(LIBFT_DIR)/libft.a
 
 # =============== SRCS ==================
-SRCS = main.c \
-		cleanup.c \
-		map_parse.c \
-		map_valid.c \
+SRCS = cub3d.c \
+		init.c \
+		window.c \
+		render.c \
+		background.c \
+		events.c \
 
 SRCS := $(addprefix $(SRC_DIR)/, $(SRCS))
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
@@ -73,6 +75,7 @@ clean:
 fclean: clean
 	@echo "[$(RED)CUB3D$(NC)] - Cleaning executable file..."
 	@$(RM) $(NAME)
+	@$(RM) $(BUILD_DIR)
 	@make fclean -C $(LIBFT_DIR)
 
 re: fclean all

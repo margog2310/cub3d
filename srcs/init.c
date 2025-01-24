@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   skip_set.c                                         :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/21 19:02:15 by mganchev          #+#    #+#             */
-/*   Updated: 2025/01/23 21:26:05 by ssottori         ###   ########.fr       */
+/*   Created: 2025/01/23 20:32:20 by ssottori          #+#    #+#             */
+/*   Updated: 2025/01/24 02:37:49 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/libft.h"
+#include "cub3d.h"
 
-void	*skip_set(char *str, char *set)
+/* Things that need to be init:
+- mlx
+- window
+- events
+- player
+- map
+- textures
+- raycasting
+- game loop
+*/
+
+void	cub_init(t_mcraft *mcraft)
 {
-	const char	*s;
-
-	while (*str)
-	{
-		s = set;
-		while (*s)
-		{
-			if (*str == *s)
-				break ;
-			s++;
-		}
-		if (*s == '\0')
-			break ;
-		str++;
-	}
-	return (str);
+	init_win(mcraft, 800, 600);
+	keyhooks(mcraft);
+	win_bk(mcraft);
 }
+

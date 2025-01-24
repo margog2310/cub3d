@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   skip_set.c                                         :+:      :+:    :+:   */
+/*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/21 19:02:15 by mganchev          #+#    #+#             */
-/*   Updated: 2025/01/23 21:26:05 by ssottori         ###   ########.fr       */
+/*   Created: 2025/01/23 21:44:09 by ssottori          #+#    #+#             */
+/*   Updated: 2025/01/23 22:04:44 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./include/libft.h"
+#include "cub3d.h"
 
-void	*skip_set(char *str, char *set)
+int main(void)
 {
-	const char	*s;
+	t_mcraft *mcraft;
+	
+	mcraft = malloc(sizeof(t_mcraft));
 
-	while (*str)
+	if (!mcraft)
 	{
-		s = set;
-		while (*s)
-		{
-			if (*str == *s)
-				break ;
-			s++;
-		}
-		if (*s == '\0')
-			break ;
-		str++;
+		ft_printf("Error: mcraft malloc failed.\n");
+		return (1);
 	}
-	return (str);
+
+	cub_init(mcraft);
+	mlx_loop(mcraft->mlx);
+
+	mlx_destroy_window(mcraft->mlx, mcraft->win);
+	mlx_destroy_image(mcraft->mlx, mcraft->img);
+	free(mcraft);
+	return (0);
+
 }
