@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:16:58 by mganchev          #+#    #+#             */
-/*   Updated: 2025/01/24 06:43:15 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/01/24 18:16:47 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,11 @@ void	free_array(char **array);
 int		get_longest_row(char **grid, char *key);
 t_map	*create_map(char *file, t_mcraft *mcraft);
 int		get_longest_row(char **grid, char *key);
+void	exit_err(char *str);
+
+int	maximize(t_mcraft *mcraft);
+int	minimize(t_mcraft *mcraft);
+
 
 //Margos
 // t_mcraft	*create_game(char *file_path);

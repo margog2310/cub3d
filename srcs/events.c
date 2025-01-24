@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:27:47 by ssottori          #+#    #+#             */
-/*   Updated: 2025/01/24 04:38:19 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/01/24 18:19:27 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	keyhooks(t_mcraft *mcraft)
 	mlx_hook(mcraft->win, KeyPress, KeyPressMask, keys, mcraft);
 	mlx_hook(mcraft->win, ButtonPress, ButtonPressMask, mouse, mcraft);
 	mlx_hook(mcraft->win, DestroyNotify, StructureNotifyMask, exit_win, mcraft);
+	mlx_hook(mcraft->win, FocusOut, FocusChangeMask, minimize, mcraft);
+	mlx_hook(mcraft->win, FocusIn, FocusChangeMask, maximize, mcraft);
 }
 
 int	keys(int keycode, t_mcraft *mcraft)
@@ -45,5 +47,19 @@ int	keys(int keycode, t_mcraft *mcraft)
 int	mouse(int click, int x, int y)
 {
 	ft_printf("Mouse click %d at (%d, %d)\n", click, x, y); //need to fix mouse click x and y coordinates wrong
+	return (0);
+}
+
+int	minimize(t_mcraft *mcraft)
+{
+	(void)mcraft;
+	ft_printf("Window minimized. Pausing rendering...\n");
+	return (0);
+}
+
+int	maximize(t_mcraft *mcraft)
+{
+	ft_printf("Window maximized. Resuming rendering...\n");
+	mlx_put_image_to_window(mcraft->mlx, mcraft->win, mcraft->img, 0, 0);
 	return (0);
 }

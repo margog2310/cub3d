@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:37:35 by ssottori          #+#    #+#             */
-/*   Updated: 2025/01/24 06:35:41 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/01/24 18:08:48 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,7 @@ static void	init_mlx(t_mcraft *mcraft)
 {
 	mcraft->mlx = mlx_init();
 	if (!mcraft->mlx)
-	{
-		ft_printf("Error: MLX init failed.\n");
-		exit(EXIT_FAILURE);
-	}
+		exit_err("MLX init failed.");
 }
 
 static void	init_window(t_mcraft *mcraft, int w, int h)

@@ -6,11 +6,19 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 04:37:56 by ssottori          #+#    #+#             */
-/*   Updated: 2025/01/24 06:41:36 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/01/24 18:11:56 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	exit_err(char *str)
+{
+	ft_putstr_fd("Error: ", 1);
+	ft_putstr_fd(str, 1);
+	ft_putchar_fd('\n', 1);
+	exit(EXIT_FAILURE);
+}
 
 int	exit_win(t_mcraft *mcraft)
 {
@@ -18,7 +26,10 @@ int	exit_win(t_mcraft *mcraft)
 		mlx_destroy_image(mcraft->mlx, mcraft->img);
 	if (mcraft->win)
 		mlx_destroy_window(mcraft->mlx, mcraft->win);
-	exit(0);
+	free(mcraft->mlx);
+	free(mcraft);
+	ft_printf("Window closed. Exiting game...\n");
+	exit(EXIT_SUCCESS);
 }
 
 void	cleanup_game(t_mcraft *mcraft)

@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 04:42:54 by ssottori          #+#    #+#             */
-/*   Updated: 2025/01/24 06:39:07 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/01/24 18:08:13 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,7 @@ static int	parse_map_grid(t_mcraft *mcraft, int fd, char *line)
 		{
 			grid = ft_realloc(grid, line_count, line_count + 1);
 			if (!grid)
-			{
-				ft_printf("Error: Memory allocation failed.\n");
-				return (0);
-			}
+				exit_err("Memory allocation failed.");
 			grid[line_count] = ft_strdup(line);
 			if (!grid[line_count])
 			{
@@ -73,16 +70,12 @@ t_map	*create_map(char *file, t_mcraft *mcraft)
 
 	mcraft->map = malloc(sizeof(t_map));
 	if (!mcraft->map)
-	{
-		ft_printf("Error: Failed to allocate memory for map.\n");
-		return (NULL);
-	}
+		exit_err("Failed to allocate memory for map.");
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 	{
 		free(mcraft->map);
-		ft_printf("Error: Failed to open map file.\n");
-		return (NULL);
+		exit_err("Failed to open map file.");
 	}
 	line = get_next_line(fd);
 	while (line && parse_textures_and_colors(mcraft, line))
@@ -104,9 +97,6 @@ int	parse_map(t_mcraft *mcraft, char *file)
 {
 	mcraft->map = create_map(file, mcraft);
 	if (!mcraft->map)
-	{
-		ft_printf("Error: Invalid map.\n");
-		return (0);
-	}
+		exit_err("Invalid map.\n");
 	return (1);
 }
