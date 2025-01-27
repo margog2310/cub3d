@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/23 20:32:20 by ssottori          #+#    #+#             */
-/*   Updated: 2025/01/26 22:45:20 by ssottori         ###   ########.fr       */
+/*   Created: 2025/01/25 18:05:30 by ssottori          #+#    #+#             */
+/*   Updated: 2025/01/26 22:34:47 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-/* Things that need to be init:
-- mlx
-- window
-- events
-- player
-- map
-- textures
-- raycasting
-- game loop
-*/
-
-void	cub_init(t_mcraft *mcraft)
+void	init_player(t_gamer *gamer)
 {
-	init_player(&mcraft->gamer);
-	init_win(mcraft, WIN_W, WIN_H);
-	keyhooks(mcraft);
-	win_bk(mcraft);
+	gamer->x = WIN_W / 2;
+	gamer->y = WIN_H / 2;
+	gamer->angle = PI / 2;
+	gamer->k_up = false;
+	gamer->k_down = false;
+	gamer->k_right = false;
+	gamer->k_left = false;
+	gamer->rot_l = false;
+	gamer->rot_r = false;
 }
 

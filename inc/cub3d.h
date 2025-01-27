@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:16:58 by mganchev          #+#    #+#             */
-/*   Updated: 2025/01/24 18:16:47 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/01/27 17:29:42 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 
 
 /* ========== INCLUDES ========== */
-# include "../srcs/libft/include/libft.h"
-# include "../srcs/minilibx-linux/mlx.h"
+# include "../libs/libft/include/libft.h"
+# include "../libs/mlx/mlx.h"
 # include <fcntl.h>
 # include <math.h>
 # include <errno.h>
 # include <stdbool.h>
+# include <stdlib.h>
 # include <unistd.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
@@ -38,6 +39,7 @@
 # define RIGHT 65363
 # define UP 111
 # define DOWN 116
+# define M 109
 
 # define EMPTY '0'
 # define WALL '1'
@@ -50,6 +52,9 @@
 # define TX_H 64
 # define WIN_W 800
 # define WIN_H 600
+
+# define PI 3.14159265359
+# define BLOCK 64
 
 /* ========== STRUCTS ========== */
 typedef struct s_vector
@@ -85,6 +90,20 @@ typedef struct t_txts
 	int		ceiling_color;
 }			t_txts;
 
+typedef struct s_gamer
+{
+	float	x;
+	float	y;
+	float	angle;
+
+	bool	k_up; //key_up
+	bool	k_down;
+	bool	k_left;
+	bool	k_right;
+
+	bool	rot_l;
+	bool	rot_r;
+}	t_gamer;
 
 typedef struct s_mcraft
 {
@@ -92,7 +111,7 @@ typedef struct s_mcraft
 	void	*win;
 	int		w;
 	int		h;
-	char    *file_path;
+	char	*file_path;
 	t_map	*map;
 
 	void	*img;
@@ -101,6 +120,7 @@ typedef struct s_mcraft
 	int		ll; //line length
 	int		end; //endian
 
+	t_gamer	gamer;
 	t_txts	txts;
 }			t_mcraft;
 
@@ -135,9 +155,21 @@ t_map	*create_map(char *file, t_mcraft *mcraft);
 int		get_longest_row(char **grid, char *key);
 void	exit_err(char *str);
 
-int	maximize(t_mcraft *mcraft);
-int	minimize(t_mcraft *mcraft);
+int		maximize(t_mcraft *mcraft);
+int		minimize(t_mcraft *mcraft);
 
+/*------- game ---------*/
+
+void	draw_square(int x, int y, int size, int color, t_mcraft *mcraft);
+int		key_release(int keycode, t_gamer *gamer);
+int		key_press(int keycode, t_gamer *gamer);
+void	init_player(t_gamer *gamer);
+
+/* ------ maps --------- */
+
+char	**m1(void);
+char	**m2(void);
+char	**m3(void);
 
 //Margos
 // t_mcraft	*create_game(char *file_path);

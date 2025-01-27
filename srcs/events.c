@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:27:47 by ssottori          #+#    #+#             */
-/*   Updated: 2025/01/24 18:19:27 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/01/27 02:50:38 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ void	keyhooks(t_mcraft *mcraft)
 
 int	keys(int keycode, t_mcraft *mcraft)
 {
+	//t_gamer *gamer = &mcraft->gamer;
+	
 	if (keycode == ESC)
 		exit_win(mcraft);
 	else if (keycode == W)
