@@ -20,21 +20,18 @@ Cub3D is a simple 3D raycasting game inspired by Wolfenstein 3D, developed as pa
 
 ## 🚀 How to Run
 
-1. Extract MiniLibX
+1. Install and Compile MiniLibX-Linux
 
 ```bash
-# Extract the MiniLibX tar file
-tar -xvf minilibx-linux.tgz
+make mlx
 ```
-2. Compile MiniLibX
 
+3. Compile Cub3D 👾
 ```bash
-cd minilibx-linux
 make
-cd ..
 ```
-3. Compile & Run Cub3D 👾
+
+3. Run Cub3D 👾
 ```bash
-make
 ./cub3d map.cub
 ```
