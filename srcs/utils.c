@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 04:52:08 by ssottori          #+#    #+#             */
-/*   Updated: 2025/01/27 18:57:02 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/01/27 21:51:43 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,11 @@ int	get_longest_row(char **grid, char *key)
 		ft_printf("debug: ❌ ERROR: get_longest_row() received NULL grid! 🚨\n");
 		return (-1);
 	}
-	while (grid[i])
+	// 0 : 111
+	// 1 : 101
+	// 2 : 111
+	//while (grid[i])
+	while (i < 3) // you need to put NULL pointer at the end of the grid after the lines
 	{
 		if (!grid[i])
 		{
@@ -54,9 +58,7 @@ int	get_longest_row(char **grid, char *key)
 		// 	ft_printf("debug: 🔍 New longest row: %d (length: %d)\n", index, len);
 		// }
 		if (grid[i][0] == '\0')  // 🔥 NEW: Check if `grid[i]` is an empty string
-		{
 			ft_printf("❌ ERROR: grid[%d] is an empty string! 🚨\n", i);
-		}
 
 		// 🔥 NEW: Instead of `ft_strlen()`, manually check length safely
 		int row_length = 0;
@@ -71,7 +73,8 @@ int	get_longest_row(char **grid, char *key)
 		printf("debug: commented out strlen\n");
 		i++;
 	}
-	ft_printf("debug: ✅ Exiting get_longest_row(): longest length = %d, longest row = %d\n", len, index);
+	printf("OUt of the loop\n");
+	//	ft_printf("debug: ✅ Exiting get_longest_row(): longest length = %d, longest row = %d\n", len, index);
 	if (ft_strcmp(key, "LEN") == 0)
 		return (len);
 	else if (ft_strcmp(key, "INDEX") == 0)

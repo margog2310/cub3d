@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 04:42:54 by ssottori          #+#    #+#             */
-/*   Updated: 2025/01/27 18:54:35 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/01/27 22:07:54 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int	parse_map_grid(t_mcraft *mcraft, int fd, char *line)
 		if (ft_strlen(line) > 1) // skiping empty lines 
 		{
 			//grid = realloc(grid, line_count, line_count + 1);
-			char **new_grid = realloc(grid, (line_count + 1) * sizeof(char *));
+			char **new_grid = realloc(grid, (line_count + 1) * sizeof(char *)); //using builtin realloc
 			if (!new_grid)
 			{
 				ft_printf("❌ ERROR: `realloc()` failed! 🚨\n");
@@ -96,7 +96,10 @@ static int	parse_map_grid(t_mcraft *mcraft, int fd, char *line)
 		if (!grid[i])
 			ft_printf("❌ ERROR: grid[%d] is NULL! 🚨\n", i);
 		else
-			ft_printf("   %d: \"%s\"\n", i, grid[i]);
+		{
+			printf("grid: %d %s\n", i, grid[i]); // diff from ft_printf.
+			// ft_printf("   %d: \"%s\"\n", i, grid[i]); // diff than the printf prints (null) instead of grid data
+		}
 	}
 
 	if (!mcraft->map)

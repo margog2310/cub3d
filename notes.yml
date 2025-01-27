@@ -18,3 +18,5 @@ map_parsing:
 				- check for textures and colors (NO, SO, EA, WE, F, C) ✅
 				- fix Seg fault issue with fet_longest_line ❌
 				- issue with grid[0] corrupted memory or incorrectly being set to NULL
+				- ❌ issue with ft_printf, not printing the same thing as printf??
+				- ❌util.c 46 - 	while (i < 3) // you need to put NULL pointer at the end of the grid after the lines
