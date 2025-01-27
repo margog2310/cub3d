@@ -1,0 +1,20 @@
+
+NOTES:
+	please use "debug:" as a prefix for any debugging print statements throughout code
+	this will make it easier for us to go through and remove them all
+
+map_parsing:
+	starting:
+		- main function runs 
+		- check for 1 arg (map file) ✅
+	parse:
+		- check if the arg has a .cub extension 
+		- check if map can be opened. ✅
+	read_parse:
+		- create_map:
+				- allocate memory for map ✅
+				- open file ✅
+				- use gnl to read lines one by one ✅ (reads map file successfully)
+				- check for textures and colors (NO, SO, EA, WE, F, C) ✅
+				- fix Seg fault issue with fet_longest_line ❌
+				- issue with grid[0] corrupted memory or incorrectly being set to NULL

@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 04:42:54 by ssottori          #+#    #+#             */
-/*   Updated: 2025/01/25 05:13:47 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/01/27 18:54:35 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ static int	parse_textures_and_colors(t_mcraft *mcraft, char *line)
 		mcraft->txts.tx_w = ft_strtrim(line + 3, " \t\n");
 	else if (ft_strncmp(line, "F ", 2) == 0)
 	{
-		ft_printf("debug: 🟠 Floor Color Input: %s \n", line + 2);
+		ft_printf("debug: 🟠 Floor Color Input: %s", line + 2);
 		mcraft->txts.floor_color = colors(line + 2);
 	}
 	else if (ft_strncmp(line, "C ", 2) == 0)
 	{
-		ft_printf("debug: 🔵 Ceiling Color Input: %s \n", line + 2);
+		ft_printf("debug: 🔵 Ceiling Color Input: %s", line + 2);
 		mcraft->txts.ceiling_color = colors(line + 2);
 	}
 	else
@@ -50,16 +50,16 @@ static int	parse_map_grid(t_mcraft *mcraft, int fd, char *line)
 	printf("debug: in map grid\n");
 	while (line)
 	{
-		printf("debug: 📄 🗺️ Reading map line: %s \n", line);
+		printf("debug: 📄 🗺️ Reading map line: %s", line);
 		if (ft_strlen(line) > 1) // skiping empty lines 
 		{
 			//grid = realloc(grid, line_count, line_count + 1);
 			char **new_grid = realloc(grid, (line_count + 1) * sizeof(char *));
 			if (!new_grid)
 			{
-   				 ft_printf("❌ ERROR: `realloc()` failed! 🚨\n");
-   				 free_array(grid);
-    			 return (0);
+				ft_printf("❌ ERROR: `realloc()` failed! 🚨\n");
+				free_array(grid);
+				return (0);
 			}
 			grid = new_grid;
 			if (!grid)
@@ -68,7 +68,7 @@ static int	parse_map_grid(t_mcraft *mcraft, int fd, char *line)
 			char *dup_line = ft_strdup(line);
 			if (!dup_line)
 			{
-				ft_printf("❌ ERROR: `ft_strdup(line)` failed for line %d!\n", line_count);
+				ft_printf("❌ ERROR: `ft_strdup(line)` failed for line %d!", line_count);
 				free_array(grid);
 				return (0);
 			}
@@ -93,10 +93,10 @@ static int	parse_map_grid(t_mcraft *mcraft, int fd, char *line)
 	printf("debug: 🏗️ Map Grid Before get_longest_row():\n");
 	for (int i = 0; i < line_count; i++)
 	{
-    	if (!grid[i])
-    	    ft_printf("❌ ERROR: grid[%d] is NULL! 🚨\n", i);
-    	else
-    	    ft_printf("   %d: \"%s\"\n", i, grid[i]);
+		if (!grid[i])
+			ft_printf("❌ ERROR: grid[%d] is NULL! 🚨\n", i);
+		else
+			ft_printf("   %d: \"%s\"\n", i, grid[i]);
 	}
 
 	if (!mcraft->map)
@@ -140,7 +140,7 @@ t_map	*create_map(char *file, t_mcraft *mcraft)
 	line = get_next_line(fd);
 	while (line && parse_textures_and_colors(mcraft, line))
 	{
-		ft_printf("debug: 📄 Processing Line: %s \n", line);
+		ft_printf("debug: 📄 Processing Line: %s", line);
 		free(line);
 		line = get_next_line(fd);
 	}
