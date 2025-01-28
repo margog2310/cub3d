@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:16:58 by mganchev          #+#    #+#             */
-/*   Updated: 2025/01/27 17:29:42 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/01/28 15:13:08 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,9 @@
 
 # define PI 3.14159265359
 # define BLOCK 64
+
+# define P_SPEED 3 //playerspeed
+# define R_SPEED 0.03 //rot speed
 
 /* ========== STRUCTS ========== */
 typedef struct s_vector
@@ -161,9 +164,9 @@ int		minimize(t_mcraft *mcraft);
 /*------- game ---------*/
 
 void	draw_square(int x, int y, int size, int color, t_mcraft *mcraft);
-int		key_release(int keycode, t_gamer *gamer);
-int		key_press(int keycode, t_gamer *gamer);
+int key_release(int keycode, t_mcraft *mcraft);
 void	init_player(t_gamer *gamer);
+void	move_player(t_mcraft *mcraft);
 
 /* ------ maps --------- */
 
