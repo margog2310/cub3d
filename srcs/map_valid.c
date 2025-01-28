@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_valid.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
+/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:34:52 by mganchev          #+#    #+#             */
-/*   Updated: 2025/01/27 22:05:11 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/01/28 16:20:29 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 
 bool	is_map_valid(t_map *map)
 {
-	if (!is_enclosed(map->grid))
+	if (!is_enclosed(map))
 	{
 		ft_printf("Error: Map is not enclosed by walls.\n");
 		return (false);
@@ -43,29 +43,29 @@ bool	is_map_valid(t_map *map)
 	return (true);
 }
 
-bool	is_enclosed(char **grid)
+bool	is_enclosed(t_map *map)
 {
 	int	i;
 	int	j;
 	int	len;
 
 	i = 0;
-	while (grid[i])
+	while (i < map->rows)
 	{
-		len = ft_strlen(grid[i]) - 1;
-		if (i == 0 || !grid[i + 1]) // Checking first and last rows bc was broken
+		len = ft_strlen(map->grid[i]) - 1;
+		if (i == 0 || i == map->rows - 2) // Checking first and last rows bc was broken
 		{
 			j = 0;
 			while (j < len)
 			{
-				if (grid[i][j] != WALL)
+				if (map->grid[i][j] != WALL)
 					return (false);
 				j++;
 			}
 		}
 		else // Checking middle rows here
 		{
-			if (grid[i][0] != WALL || grid[i][len - 1] != WALL)
+			if (map->grid[i][0] != WALL || map->grid[i][len - 1] != WALL)
 				return (false);
 		}
 		i++;
@@ -89,6 +89,8 @@ bool	symbols_valid(t_map *map)
 		while (j < cols)
 		{
 			skip_set(map->grid[i], IFS);
+			if (map->grid[i][j] == START)
+				player_count++;
 			if (map->grid[i][j] != WALL && map->grid[i][j] != EMPTY
 				&& map->grid[i][j] != START)
 				return (false);

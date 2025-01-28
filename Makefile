@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+         #
+#    By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/21 16:21:20 by mganchev          #+#    #+#              #
-#    Updated: 2025/01/27 17:47:01 by ssottori         ###   ########.fr        #
+#    Updated: 2025/01/28 15:30:52 by mganchev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ YEL=\033[1;33m
 NC=\033[0m
 
 # ============== FLAGS ==================
-CC = gcc
+CC = cc
 CFLAGS = -g3 -Wall -Wextra -Werror -g
 RM = rm -rf
 NAME = cub3d

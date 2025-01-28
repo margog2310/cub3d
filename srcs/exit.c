@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
+/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 04:37:56 by ssottori          #+#    #+#             */
-/*   Updated: 2025/01/24 18:11:56 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/01/28 16:19:14 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	cleanup_game(t_mcraft *mcraft)
 		mlx_destroy_display(mcraft->mlx);
 		free(mcraft->mlx);
 	}
-
 	free(mcraft);
 }
 
@@ -63,7 +62,7 @@ void	cleanup_map(t_map *map)
 	if (map->grid)
 	{
 		i = 0;
-		while (map->grid[i])
+		while (i < map->rows)
 		{
 			free(map->grid[i]);
 			i++;

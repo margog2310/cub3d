@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
+/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 18:20:19 by mganchev          #+#    #+#             */
-/*   Updated: 2025/01/24 04:43:38 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/01/28 15:32:57 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	open_file(char *path)
 	return (fd);
 }
 
-int	get_longest_row(char **grid, char *key)
+int	get_longest_row(t_map *map, char *key)
 {
 	int	i;
 	int	len;

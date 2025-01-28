@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
+/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 04:42:54 by ssottori          #+#    #+#             */
-/*   Updated: 2025/01/27 22:07:54 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/01/28 16:12:26 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,21 +47,11 @@ static int	parse_map_grid(t_mcraft *mcraft, int fd, char *line)
 
 	grid = NULL;
 	line_count = 0;
-	printf("debug: in map grid\n");
 	while (line)
 	{
-		printf("debug: 📄 🗺️ Reading map line: %s", line);
 		if (ft_strlen(line) > 1) // skiping empty lines 
 		{
-			//grid = realloc(grid, line_count, line_count + 1);
-			char **new_grid = realloc(grid, (line_count + 1) * sizeof(char *)); //using builtin realloc
-			if (!new_grid)
-			{
-				ft_printf("❌ ERROR: `realloc()` failed! 🚨\n");
-				free_array(grid);
-				return (0);
-			}
-			grid = new_grid;
+			grid = ft_realloc((void *)grid, line_count * sizeof(char *), (line_count + 1) * sizeof(char *)); //using builtin realloc
 			if (!grid)
 				exit_err("Memory allocation failed.");
 			//grid[line_count] = ft_strdup(line);
@@ -89,7 +79,6 @@ static int	parse_map_grid(t_mcraft *mcraft, int fd, char *line)
 		ft_printf("❌ ERROR: No map was read!\n"); //added for debugging
 		return (0);
 	}
-	printf("debug: finished reading map ✅\n");
 	printf("debug: 🏗️ Map Grid Before get_longest_row():\n");
 	for (int i = 0; i < line_count; i++)
 	{
@@ -112,8 +101,9 @@ static int	parse_map_grid(t_mcraft *mcraft, int fd, char *line)
 		ft_printf("debug: ❌ ERROR: `grid` is NULL before assigning to mcraft->map->grid! 🚨\n");
 		return (0);
 	}
+	mcraft->map->grid = grid;
 	//mcraft->map->cols = get_longest_row(grid, "LEN") - 1;
-	int longest_row = get_longest_row(grid, "LEN");
+	int longest_row = get_longest_row(mcraft->map, "LEN");
 	if (longest_row == -1)
 	{
 		ft_printf("❌ ERROR: get_longest_row() returned -1! 🚨\n");

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
+/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:16:58 by mganchev          #+#    #+#             */
-/*   Updated: 2025/01/28 15:13:08 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/01/28 15:45:56 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,14 +148,14 @@ int		colors(char *str);
 int		parse_map(t_mcraft *mcraft, char *file);
 void	cleanup_map(t_map *map);
 bool	is_map_valid(t_map *map);
-bool	is_enclosed(char **grid);
+bool	is_enclosed(t_map *map);
 bool	symbols_valid(t_map *map);
 
 void	cleanup_game(t_mcraft *mcraft);
 void	free_array(char **array);
-int		get_longest_row(char **grid, char *key);
+int		get_longest_row(t_map *map, char *key);
 t_map	*create_map(char *file, t_mcraft *mcraft);
-int		get_longest_row(char **grid, char *key);
+//int		get_longest_row(char **grid, char *key);
 void	exit_err(char *str);
 
 int		maximize(t_mcraft *mcraft);
