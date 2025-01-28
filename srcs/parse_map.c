@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
+/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 04:42:54 by ssottori          #+#    #+#             */
-/*   Updated: 2025/01/28 16:12:26 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/01/28 16:48:55 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,13 @@ static int	parse_textures_and_colors(t_mcraft *mcraft, char *line)
 	else if (ft_strncmp(line, "WE ", 3) == 0)
 		mcraft->txts.tx_w = ft_strtrim(line + 3, " \t\n");
 	else if (ft_strncmp(line, "F ", 2) == 0)
-	{
-		ft_printf("debug: 🟠 Floor Color Input: %s", line + 2);
 		mcraft->txts.floor_color = colors(line + 2);
-	}
 	else if (ft_strncmp(line, "C ", 2) == 0)
-	{
-		ft_printf("debug: 🔵 Ceiling Color Input: %s", line + 2);
 		mcraft->txts.ceiling_color = colors(line + 2);
-	}
 	else
 	{
-		ft_printf("debug: ⚠️ Not a texture/color line. Stopping texture parsing.\n");
-		return (0); // Not a texture or color line
+		ft_printf("debug: ⚠️ No a texture/color line in map.\n");
+		return (0);
 	}
 	return (1);
 }
@@ -129,30 +123,24 @@ t_map	*create_map(char *file, t_mcraft *mcraft)
 		free(mcraft->map);
 		exit_err("Failed to open map file.");
 	}
-	printf("debug: successfully opened file ✅\n");
 	line = get_next_line(fd);
 	while (line && parse_textures_and_colors(mcraft, line))
 	{
-		ft_printf("debug: 📄 Processing Line: %s", line);
 		free(line);
 		line = get_next_line(fd);
 	}
-	printf("debug: does it move on after it doesnt find texture?\n");
 	if (!parse_map_grid(mcraft, fd, line) || !is_map_valid(mcraft->map))
 	{
-		printf("debug: are we in here?\n");
 		cleanup_map(mcraft->map);
 		close(fd);
 		return (NULL);
 	}
-	printf("debug: end of create map function\n");
 	close(fd);
 	return (mcraft->map);
 }
 
 int	parse_map(t_mcraft *mcraft, char *file)
 {
-	printf("debug: in parse map.\n");
 	mcraft->map = create_map(file, mcraft);
 	if (!mcraft->map)
 		exit_err("Invalid map.\n");

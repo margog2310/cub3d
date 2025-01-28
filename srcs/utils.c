@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
+/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 04:52:08 by ssottori          #+#    #+#             */
-/*   Updated: 2025/01/28 15:48:56 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/01/28 16:49:21 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,8 @@ int	get_longest_row(t_map *map, char *key)
 			index = i;
 			ft_printf("🔍 New longest row: %d (length: %d)\n", index, len);
 		}
-		printf("debug: commented out strlen\n");
 		i++;
 	}
-	printf("OUt of the loop\n");
-	//	ft_printf("debug: ✅ Exiting get_longest_row(): longest length = %d, longest row = %d\n", len, index);
 	if (ft_strcmp(key, "LEN") == 0)
 		return (len);
 	else if (ft_strcmp(key, "INDEX") == 0)
