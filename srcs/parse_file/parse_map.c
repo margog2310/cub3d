@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 04:42:54 by ssottori          #+#    #+#             */
-/*   Updated: 2025/01/29 21:20:28 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/01/29 23:05:11 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	parse_map_grid(t_mcraft *mcraft, int fd, char *line)
 	if (!mcraft->map->grid)
 		exit_err("Error while parsing map.");
 	mcraft->map->rows = line_count;
-	mcraft->map->cols = get_longest_row(mcraft->map, "LEN") - 1;
+	mcraft->map->cols = get_longest_row(mcraft->map, "LEN");
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 19:20:47 by mganchev          #+#    #+#             */
-/*   Updated: 2025/01/29 19:54:49 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/01/29 22:41:43 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ bool	colour_valid(char *line, int bitmask)
 		return (false);
 	while (nbrs[counter])
 	{
+		printf("debug: counter: %d\nnbr: %s\n", counter, nbrs[counter]);		
 		if (ft_atoi(nbrs[counter]) < 0 || ft_atoi(nbrs[counter]) > 255)
 			return (exit_err("Invalid RGB."), false);
 		if (!is_nbrstr(nbrs[counter]))
 			return (exit_err("Invalid RGB."), false);
-		printf("debug: counter: %d\nnbr: %s\n", counter, nbrs[counter]);		
 		counter++;
 	}
 	if (counter != 3)
@@ -47,6 +47,7 @@ bool	texture_valid(char *path, int bitmask)
 	static int	repeat;
 
 	extension = NULL;
+	skip_set(path, IFS);
 	if (path)
 	{
 		extension = ft_strrchr(path, '.');

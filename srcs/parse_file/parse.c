@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 19:04:25 by mganchev          #+#    #+#             */
-/*   Updated: 2025/01/29 20:46:35 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/01/29 23:13:26 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	parse(t_mcraft *mcraft, char *file)
 		return(exit_err("Failed to open file or file non-existent."), 1);
 	row_index = parse_elements(mcraft, fd);
 	if (!row_index)
-		return(exit_err("Error while parsing map elements."), close(fd), 1);
+		return(exit_err("Error while parsing map elements or empty file."), close(fd), 1);
 	mcraft->map = create_map(fd, get_next_line(fd), mcraft);
 	if (!mcraft->map)
 		return (exit_err("Invalid map."), close(fd), 1);
