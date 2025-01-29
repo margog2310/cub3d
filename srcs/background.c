@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:43:42 by ssottori          #+#    #+#             */
-/*   Updated: 2025/01/29 15:34:22 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/01/29 16:01:48 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,4 @@ void	win_bk(t_mcraft *mcraft)
 {
 	draw_sky(mcraft);
 	draw_floor(mcraft);
-	mlx_put_image_to_window(mcraft->mlx, mcraft->win, mcraft->img, 0, 0); //putpixel
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
+/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 20:32:20 by ssottori          #+#    #+#             */
-/*   Updated: 2025/01/28 17:08:27 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/01/29 17:16:02 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@
 
 void	cub_init(t_mcraft *mcraft)
 {
-	init_player(&mcraft->gamer);
 	init_win(mcraft, WIN_W, WIN_H);
+	init_player(&mcraft->gamer);
 	keyhooks(mcraft);
-	win_bk(mcraft);
+	render_img(mcraft);
 }
 

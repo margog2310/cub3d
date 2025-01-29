@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:57:12 by ssottori          #+#    #+#             */
-/*   Updated: 2025/01/26 22:13:20 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/01/29 16:22:37 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,12 @@ int	colors(char *str)
 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
 		return (-1);
 	return (r << 16 | g << 8 | b);
+}
+
+int	render_img(t_mcraft *mcraft)
+{
+	win_bk(mcraft);
+	move_player(mcraft);
+	draw_square(WIN_W / 2, WIN_H / 2, 10, 0x000000, mcraft);
+	return (0);
 }
