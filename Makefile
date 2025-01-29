@@ -6,11 +6,10 @@
 #    By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/21 16:21:20 by mganchev          #+#    #+#              #
-#    Updated: 2025/01/28 15:30:52 by mganchev         ###   ########.fr        #
+#    Updated: 2025/01/28 23:08:32 by mganchev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# ============== COLORS ==================
 MAKEFLAGS += --silent
 RED=\033[1;31m
 GREEN=\033[1;32m
@@ -40,20 +39,24 @@ LIBFT = $(LIBFT_DIR)/libft.a
 
 # =============== SRCS ==================
 SRCS = cub3d.c \
-		init.c \
-		window.c \
-		render.c \
-		background.c \
-		events.c \
-		exit.c \
-		parse_map.c \
-		map_valid.c \
+        init.c \
+        window.c \
+        render.c \
+        background.c \
+        events.c \
+        exit.c \
+		parse_file/parse.c \
+		parse_file/parse_elements.c \
+        parse_file/parse_map.c \
+        parse_file/map_valid.c \
+        parse_file/parse_utils.c \
+        parse_file/file_valid.c \
+        game.c \
+        player.c \
 		utils.c \
-		game.c \
-		player.c \
 
 SRCS := $(addprefix $(SRC_DIR)/, $(SRCS))
-OBJS = $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
+OBJS = $(patsubst $(SRC_DIR)/%.c, $(BUILD_DIR)/%.o, $(SRCS))
 
 # =============== BUILD ==================
 all: banner $(LIBFT) $(NAME) todo
@@ -64,22 +67,23 @@ mlx:
 	@make -C ./libs/mlx > /dev/null 2>&1
 	@echo "[$(GREEN)✅ MLX Ready!$(NC)]"
 
-
-$(BUILD_DIR):
-	@mkdir -p $(BUILD_DIR)
-
 $(LIBFT):
 	@echo "[$(CYAN)LIBFT$(NC)] - Compiling libft..."
 	@make -C $(LIBFT_DIR)
 
-$(NAME): $(BUILD_DIR) $(OBJS) $(LIBFT)
+$(NAME): $(OBJS) $(LIBFT)
 	@echo "[$(GREEN)CUB3D$(NC)] - Building $(NAME)..."
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(MLX_FLAGS) $(LIBFT)
 	@echo "[$(GREEN)✅ CUB3D READY!$(NC)] - $(GREEN)Run with ./$(NAME) map.cub$(NC)"
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c | $(BUILD_DIR)
 	@echo "[$(BLUE)CUB3D$(NC)] - Compiling: $<"
+	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(IFLAGS) -c $< -o $@
+
+# Ensure the build directory exists
+$(BUILD_DIR):
+	@mkdir -p $(BUILD_DIR)
 
 # =============== CLEAN ==================
 clean:

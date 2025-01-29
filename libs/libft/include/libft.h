@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 16:00:24 by mganchev          #+#    #+#             */
-/*   Updated: 2025/01/21 19:19:48 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/01/28 22:32:47 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int					ft_isascii(int c);
 int					ft_isalnum(int c);
 int					ft_isdigit(int c);
 int					ft_isalpha(int c);
+bool				is_nbrstr(char *str);
 long long			ft_atoi(const char *str);
 int					ft_strlen(const char *str);
 int					ft_power(int nb, int power);

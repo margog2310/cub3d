@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 04:37:56 by ssottori          #+#    #+#             */
-/*   Updated: 2025/01/28 16:19:14 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/01/28 19:13:23 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	exit_err(char *str)
 {
+	cleanup_game(get_mcraft(NULL));
 	ft_putstr_fd("Error: ", 1);
 	ft_putstr_fd(str, 1);
 	ft_putchar_fd('\n', 1);
@@ -36,7 +37,6 @@ void	cleanup_game(t_mcraft *mcraft)
 {
 	if (!mcraft)
 		return;
-
 	if (mcraft->map)
 	{
 		free_array(mcraft->map->grid);  // ✅ Free the map grid
