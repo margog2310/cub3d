@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
+/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:16:58 by mganchev          #+#    #+#             */
-/*   Updated: 2025/01/28 23:54:41 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/01/29 15:40:06 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@
 
 # define TX_W 64
 # define TX_H 64
-# define WIN_W 1920
-# define WIN_H 1080
+# define WIN_W 800 //1920
+# define WIN_H 600 //1080
 
 # define PI 3.14159265359
 # define BLOCK 64
@@ -110,7 +110,7 @@ typedef struct s_gamer
 	float	y;
 	float	angle;
 
-	bool k_up; // key_up
+	bool 	k_up; // key_up
 	bool	k_down;
 	bool	k_left;
 	bool	k_right;
@@ -131,8 +131,8 @@ typedef struct s_mcraft
 	void	*img;
 	char	*img_addr;
 	int		bpp;
-	int ll;  // line length
-	int end; // endian
+	int		ll;  // line length
+	int		end; // endian
 
 	t_gamer	gamer;
 	t_txts	txts;
@@ -176,18 +176,12 @@ void		exit_err(char *str);
 int			maximize(t_mcraft *mcraft);
 int			minimize(t_mcraft *mcraft);
 
-/*------- game ---------*/
+/*------- player ---------*/
 
 void		draw_square(int x, int y, int size, int color, t_mcraft *mcraft);
 int			key_release(int keycode, t_mcraft *mcraft);
 void		init_player(t_gamer *gamer);
 void		move_player(t_mcraft *mcraft);
-
-/* ------ maps --------- */
-
-char		**m1(void);
-char		**m2(void);
-char		**m3(void);
 
 /* ------ utils ------- */
 t_mcraft	*get_mcraft(t_mcraft *mcraft);

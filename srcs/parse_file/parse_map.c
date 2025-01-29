@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
+/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 04:42:54 by ssottori          #+#    #+#             */
-/*   Updated: 2025/01/28 23:11:37 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/01/29 15:32:03 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ static int	parse_map_grid(t_mcraft *mcraft, int fd, char *line)
 
 t_map	*create_map(int fd, t_mcraft *mcraft)
 {
-	int	i;
+	//int	i;
 	int	row_index;
 	char	*line;
 
 	mcraft->map = malloc(sizeof(t_map));
 	if (!mcraft->map)
 		exit_err("Failed to allocate memory for map.");
-	i = 0;
+	//i = 0;
 	row_index = 0;
 	line = get_next_line(fd);
 	while (line)

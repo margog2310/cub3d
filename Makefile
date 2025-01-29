@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+         #
+#    By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/21 16:21:20 by mganchev          #+#    #+#              #
-#    Updated: 2025/01/28 23:08:32 by mganchev         ###   ########.fr        #
+#    Updated: 2025/01/29 15:33:03 by ssottori         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,20 +39,20 @@ LIBFT = $(LIBFT_DIR)/libft.a
 
 # =============== SRCS ==================
 SRCS = cub3d.c \
-        init.c \
-        window.c \
-        render.c \
-        background.c \
-        events.c \
-        exit.c \
+		init.c \
+		window.c \
+		render.c \
+		background.c \
+		events.c \
+		exit.c \
 		parse_file/parse.c \
 		parse_file/parse_elements.c \
-        parse_file/parse_map.c \
-        parse_file/map_valid.c \
-        parse_file/parse_utils.c \
-        parse_file/file_valid.c \
-        game.c \
-        player.c \
+		parse_file/parse_map.c \
+		parse_file/map_valid.c \
+		parse_file/parse_utils.c \
+		parse_file/file_valid.c \
+		game.c \
+		player.c \
 		utils.c \
 
 SRCS := $(addprefix $(SRC_DIR)/, $(SRCS))
@@ -116,8 +116,6 @@ todo:
 	@echo "$(YEL)📌 Hello, if you've made it this far, that means it compiles. YAY 🎉$(NC)"
 	@echo "$(YEL)💀 But I don’t know what $(RED)errors$(YEL) will pop up once you try to run it...$(NC)"
 	@echo "$(NC)1. Fix mouse click coordinate issue... idk how to yet$(NC)"
-	@echo "$(NC)2. 🔥 Fkin fixxx the seg fault (losing my mind)$(NC)"
-	@echo "$(NC)3. Try to check map validation (pls work)$(NC)"
 	@echo "$(CYAN)======================================$(NC)"
 
 .PHONY: all clean fclean re banner

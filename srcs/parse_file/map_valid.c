@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_valid.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
+/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:34:52 by mganchev          #+#    #+#             */
-/*   Updated: 2025/01/28 16:57:46 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/01/29 15:35:58 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ bool	is_enclosed(t_map *map)
 	{
 		len = ft_strlen(map->grid[i]) - 1;
 		printf("map rows: %d\n", map->rows);
-		if (i == 0 || i == map->rows) // Checking first and last rows bc was broken
+		if (i == 0 || i == map->rows)
 		{
 			j = 0;
 			while (j < len)
