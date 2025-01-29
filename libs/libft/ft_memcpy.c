@@ -6,11 +6,11 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 22:09:03 by mganchev          #+#    #+#             */
-/*   Updated: 2024/04/23 18:15:23 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/01/29 18:19:44 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "./include/libft.h"
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {

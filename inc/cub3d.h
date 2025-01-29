@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
+/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:16:58 by mganchev          #+#    #+#             */
-/*   Updated: 2025/01/29 15:40:06 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/01/29 20:10:51 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@
 
 # define TX_W 64
 # define TX_H 64
-# define WIN_W 800 //1920
-# define WIN_H 600 //1080
+# define WIN_W 800 // 1920
+# define WIN_H 600 // 1080
 
 # define PI 3.14159265359
 # define BLOCK 64
@@ -70,6 +70,7 @@ typedef struct s_map
 	char	**grid;
 	int		rows;
 	int		cols;
+	int		row_index;
 }			t_map;
 
 enum		ID
@@ -110,7 +111,7 @@ typedef struct s_gamer
 	float	y;
 	float	angle;
 
-	bool 	k_up; // key_up
+	bool k_up; // key_up
 	bool	k_down;
 	bool	k_left;
 	bool	k_right;
@@ -131,8 +132,8 @@ typedef struct s_mcraft
 	void	*img;
 	char	*img_addr;
 	int		bpp;
-	int		ll;  // line length
-	int		end; // endian
+	int ll;  // line length
+	int end; // endian
 
 	t_gamer	gamer;
 	t_txts	txts;
@@ -157,7 +158,7 @@ int			colors(char *str);
 
 /* ----- Map Parsing ----- */
 int			parse(t_mcraft *mcraft, char *file);
-char		**parse_elements(t_mcraft *mcraft, int fd);
+int			parse_elements(t_mcraft *mcraft, int fd);
 void		cleanup_map(t_map *map);
 bool		colour_valid(char *line, int bitmask);
 bool		texture_valid(char *path, int bitmask);
@@ -169,7 +170,7 @@ int			parse_textures_and_colors(t_mcraft *mcraft, char *line);
 void		cleanup_game(t_mcraft *mcraft);
 void		free_array(char **array);
 int			get_longest_row(t_map *map, char *key);
-t_map		*create_map(int fd, t_mcraft *mcraft);
+t_map		*create_map(int fd, char *line, t_mcraft *mcraft);
 // int		get_longest_row(char **grid, char *key);
 void		exit_err(char *str);
 

@@ -6,11 +6,11 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 23:00:42 by mganchev          #+#    #+#             */
-/*   Updated: 2024/05/31 19:02:50 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/01/29 18:17:23 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "./include/libft.h"
 
 char	*ft_substr(const char *s, unsigned int start, size_t len)
 {

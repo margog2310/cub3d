@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   skip_set.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
+/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 19:02:15 by mganchev          #+#    #+#             */
-/*   Updated: 2025/01/23 21:26:05 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/01/29 19:26:36 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -6,11 +6,11 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 21:22:35 by mganchev          #+#    #+#             */
-/*   Updated: 2024/04/23 18:18:50 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/01/29 18:18:45 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "./include/libft.h"
 
 char	*ft_strdup(const char *s)
 {

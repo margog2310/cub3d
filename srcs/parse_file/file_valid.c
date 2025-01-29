@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 19:20:47 by mganchev          #+#    #+#             */
-/*   Updated: 2025/01/29 00:00:48 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/01/29 19:54:49 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ bool	colour_valid(char *line, int bitmask)
 		return (exit_err("Repeating colour."), false);
 	counter = 0;
 	key = ft_strchr(line, ',');
-	nbrs = ft_split(line, ','); // doesn't actually split array properly;
+	nbrs = split_set(line, ",\n");
 	if (!key || !nbrs)
 		return (false);
 	while (nbrs[counter])

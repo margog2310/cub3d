@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_valid.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
+/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:34:52 by mganchev          #+#    #+#             */
-/*   Updated: 2025/01/29 15:35:58 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/01/29 21:24:15 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,27 +49,25 @@ bool	is_enclosed(t_map *map)
 	int	j;
 	int	len;
 
-	i = 0;
-	while (i < map->rows)
+	i = -1;
+	while (i++ < map->rows - 1)
 	{
 		len = ft_strlen(map->grid[i]) - 1;
-		printf("map rows: %d\n", map->rows);
 		if (i == 0 || i == map->rows)
 		{
-			j = 0;
-			while (j < len)
+			j = -1;
+			while (j++ < len - 1)
 			{
 				if (map->grid[i][j] != WALL)
 					return (false);
-				j++;
 			}
 		}
 		else // Checking middle rows here
 		{
+			//printf("%s", map->grid[i]);
 			if (map->grid[i][0] != WALL || map->grid[i][len - 1] != WALL)
 				return (false);
 		}
-		i++;
 	}
 	return (true);
 }
@@ -81,13 +79,13 @@ bool	symbols_valid(t_map *map)
 	int	cols;
 	int	player_count;
 
-	i = 0;
+	i = -1;
 	player_count = 0;
-	while (i < map->rows)
+	while (i++ < map->rows - 1)
 	{
-		j = 0;
+		j = 1;
 		cols = ft_strlen(map->grid[i]) - 1;
-		while (j < cols)
+		while (j++ < cols - 1)
 		{
 			skip_set(map->grid[i], IFS);
 			if (map->grid[i][j] == START)
@@ -95,14 +93,9 @@ bool	symbols_valid(t_map *map)
 			if (map->grid[i][j] != WALL && map->grid[i][j] != EMPTY
 				&& map->grid[i][j] != START)
 				return (false);
-			j++;
 		}
-		i++;
 	}
 	if (player_count != 1) // checke theres only 1 player starting pos
-	{
-		ft_printf("Error: Map must have exactly one player starting position.\n");
-		return (false);
-	}
+		exit_err("Error: Map must have exactly one player starting position.\n");
 	return (true);
 }

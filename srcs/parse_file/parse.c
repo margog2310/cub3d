@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
+/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 19:04:25 by mganchev          #+#    #+#             */
-/*   Updated: 2025/01/29 15:32:08 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/01/29 20:46:35 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,17 @@
 int	parse(t_mcraft *mcraft, char *file)
 {
 	int		fd;
-	char	**elements;
+	int	row_index;
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		exit_err("Failed to open file or file non-existent.");
-	elements = parse_elements(mcraft, fd);
-	if (!elements)
-		exit_err("Error while parsing map elements.");
-	mcraft->map = create_map(fd, mcraft);
+		return(exit_err("Failed to open file or file non-existent."), 1);
+	row_index = parse_elements(mcraft, fd);
+	if (!row_index)
+		return(exit_err("Error while parsing map elements."), close(fd), 1);
+	mcraft->map = create_map(fd, get_next_line(fd), mcraft);
 	if (!mcraft->map)
-		exit_err("Invalid map.");
+		return (exit_err("Invalid map."), close(fd), 1);
+	close(fd);
 	return (0);
 }
