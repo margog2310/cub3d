@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:37:35 by ssottori          #+#    #+#             */
-/*   Updated: 2025/01/29 15:33:43 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/01/29 17:13:44 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static void	init_mlx(t_mcraft *mcraft)
 
 static void	init_window(t_mcraft *mcraft, int w, int h)
 {
+	mcraft->w = w;
+	mcraft->h = h;
 	mcraft->win = mlx_new_window(mcraft->mlx, w, h, "Cub3D Babyyyy");
 	if (!mcraft->win)
 	{
@@ -29,8 +31,6 @@ static void	init_window(t_mcraft *mcraft, int w, int h)
 		free(mcraft->mlx);
 		exit(EXIT_FAILURE);
 	}
-	mcraft->w = w;
-	mcraft->h = h;
 }
 
 static void	init_img(t_mcraft *mcraft)
@@ -46,7 +46,6 @@ static void	init_img(t_mcraft *mcraft)
 	}
 	mcraft->img_addr = mlx_get_data_addr(mcraft->img,
 			&mcraft->bpp, &mcraft->ll, &mcraft->end);
-	mlx_put_image_to_window(mcraft->mlx, mcraft->win, mcraft->img, 0, 0); //putpixel by pixel
 }
 
 void	init_win(t_mcraft *mcraft, int w, int h)

@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:16:58 by mganchev          #+#    #+#             */
-/*   Updated: 2025/01/29 20:10:51 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/01/29 22:16:59 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,12 +149,13 @@ void		win_bk(t_mcraft *mcraft);
 /* ----- Event Hanling ----- */
 void		keyhooks(t_mcraft *mcraft);
 int			keys(int keycode, t_mcraft *mcraft);
-int			mouse(int click, int x, int y);
+int			mouse(t_mcraft *mcraft, int click, int x, int y);
 int			exit_win(t_mcraft *mcraft);
 
 /* ----- Rendering ----- */
 void		draw_pixel(t_mcraft *mcraft, int x, int y, int color);
 int			colors(char *str);
+int		render_img(t_mcraft *mcraft);
 
 /* ----- Map Parsing ----- */
 int			parse(t_mcraft *mcraft, char *file);

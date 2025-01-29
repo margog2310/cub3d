@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:27:47 by ssottori          #+#    #+#             */
-/*   Updated: 2025/01/28 15:10:23 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/01/29 17:19:44 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,8 +86,10 @@ int key_release(int keycode, t_mcraft *mcraft)
 	return (0);
 }
 
-int	mouse(int click, int x, int y)
+int	mouse(t_mcraft *mcraft, int click, int x, int y)
 {
+	(void)mcraft;
+	//int new_y = mcraft->h - y;
 	ft_printf("Mouse click %d at (%d, %d)\n", click, x, y); //need to fix mouse click x and y coordinates wrong
 	return (0);
 }
