@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+         #
+#    By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/21 16:21:20 by mganchev          #+#    #+#              #
-#    Updated: 2025/01/29 22:23:38 by mganchev         ###   ########.fr        #
+#    Updated: 2025/02/03 01:53:10 by ssottori         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,6 @@ SRCS = cub3d.c \
 		parse_file/map_valid.c \
 		parse_file/parse_utils.c \
 		parse_file/file_valid.c \
-		game.c \
 		player.c \
 		utils.c \
 
@@ -110,12 +109,7 @@ banner:
 
 #can delete this eventually and add instructions for how to run cub3d
 todo:
-	@echo "$(CYAN)======================================$(NC)"
-	@echo "$(RED)	   📌TODO LIST:$(NC)"
-	@echo "$(CYAN)======================================$(NC)"
 	@echo "$(YEL)📌 Hello, if you've made it this far, that means it compiles. YAY 🎉$(NC)"
 	@echo "$(YEL)💀 But I don’t know what $(RED)errors$(YEL) will pop up once you try to run it...$(NC)"
-	@echo "$(NC)1. Fix mouse click coordinate issue... idk how to yet$(NC)"
-	@echo "$(CYAN)======================================$(NC)"
 
 .PHONY: all clean fclean re banner

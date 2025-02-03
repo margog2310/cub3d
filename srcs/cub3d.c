@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
+/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 21:44:09 by ssottori          #+#    #+#             */
-/*   Updated: 2025/01/29 20:35:14 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/03 01:56:26 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,8 @@ int	main(int ac, char **av)
 		cleanup_game(mcraft);
 		return (1);
 	}
-	//cub_init(mcraft);
-	//draw_square(WIN_W / 2, WIN_H / 2, 10, 0x000000, mcraft);
-	//mlx_loop(mcraft->mlx);
-	//cleanup_game(mcraft);
+	cub_init(mcraft);
+	mlx_loop(mcraft->mlx);
+	cleanup_game(mcraft);
 	return (0);
 }

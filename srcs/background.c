@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:43:42 by ssottori          #+#    #+#             */
-/*   Updated: 2025/01/29 16:01:48 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/03 01:32:30 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,16 @@ static void	draw_floor(t_mcraft *mcraft)
 {
 	int	x;
 	int	y;
+	int y_off;
 
-	y = mcraft->h / 2;
-	while (y < mcraft->h)
+	y_off = (int)mcraft->gamer.y;
+	y = mcraft->h / 2 + y_off;
+	while (y < mcraft->h + y_off)
 	{
 		x = 0;
 		while (x < mcraft->w)
 		{
-			draw_pixel(mcraft, x, y, FLOOR);
+			draw_pixel(mcraft, x, y - y_off, FLOOR);
 			x++;
 		}
 		y++;

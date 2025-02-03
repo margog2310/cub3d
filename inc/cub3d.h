@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
+/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:16:58 by mganchev          #+#    #+#             */
-/*   Updated: 2025/01/29 22:16:59 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/03 01:46:10 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@
 
 # define SKY 0x87CEEB
 # define FLOOR 0x57983B
+# define BLACK 0x000000
 
 # define TX_W 64
 # define TX_H 64
@@ -55,8 +56,8 @@
 # define PI 3.14159265359
 # define BLOCK 64
 
-# define P_SPEED 3    // playerspeed
-# define R_SPEED 0.03 // rot speed
+# define P_SPEED 5    // playerspeed
+# define R_SPEED 0.05 // rot speed
 
 /* ========== STRUCTS ========== */
 typedef struct s_vector
@@ -155,7 +156,7 @@ int			exit_win(t_mcraft *mcraft);
 /* ----- Rendering ----- */
 void		draw_pixel(t_mcraft *mcraft, int x, int y, int color);
 int			colors(char *str);
-int		render_img(t_mcraft *mcraft);
+int			render_img(t_mcraft *mcraft);
 
 /* ----- Map Parsing ----- */
 int			parse(t_mcraft *mcraft, char *file);
@@ -180,7 +181,7 @@ int			minimize(t_mcraft *mcraft);
 
 /*------- player ---------*/
 
-void		draw_square(int x, int y, int size, int color, t_mcraft *mcraft);
+void		draw_crosshairs(t_mcraft *mcraft, int color);
 int			key_release(int keycode, t_mcraft *mcraft);
 void		init_player(t_gamer *gamer);
 void		move_player(t_mcraft *mcraft);

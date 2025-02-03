@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:57:12 by ssottori          #+#    #+#             */
-/*   Updated: 2025/01/29 16:22:37 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/03 01:52:39 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,39 @@ int	colors(char *str)
 
 int	render_img(t_mcraft *mcraft)
 {
-	win_bk(mcraft);
+	    static int frame_count = 0;
+	ft_bzero(mcraft->img_addr, mcraft->h * mcraft->ll);
 	move_player(mcraft);
-	draw_square(WIN_W / 2, WIN_H / 2, 10, 0x000000, mcraft);
+	if (frame_count % 60 == 0)
+		printf("Player position: x=%d, y=%d\n", (int)mcraft->gamer.x, (int)mcraft->gamer.y);
+	frame_count++;
+	win_bk(mcraft);
+	draw_crosshairs(mcraft, BLACK);
+	mlx_put_image_to_window(mcraft->mlx, mcraft->win, mcraft->img, 0, 0);
 	return (0);
+}
+
+void	draw_crosshairs(t_mcraft *mcraft, int color)
+{
+	int	mid_x;
+	int	mid_y;
+	int	len;
+	int	x;
+	int	y;
+
+	mid_x = WIN_W / 2;
+	mid_y = WIN_H / 2;
+	len = 10;
+	x = mid_x - len;
+	while (x <= mid_x + len)
+	{
+		draw_pixel(mcraft, x, mid_y, color);
+		x++;
+	}
+	y = mid_y - len;
+	while (y <= mid_y + len)
+	{
+		draw_pixel(mcraft, mid_x, y, color);
+		y++;
+	}
 }

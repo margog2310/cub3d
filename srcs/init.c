@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 20:32:20 by ssottori          #+#    #+#             */
-/*   Updated: 2025/01/29 17:16:02 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/03 01:17:21 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,6 @@ void	cub_init(t_mcraft *mcraft)
 	init_player(&mcraft->gamer);
 	keyhooks(mcraft);
 	render_img(mcraft);
+	mlx_loop_hook(mcraft->mlx, render_img, mcraft);
 }
 
