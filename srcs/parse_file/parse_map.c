@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
+/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 04:42:54 by ssottori          #+#    #+#             */
-/*   Updated: 2025/01/29 23:05:11 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/03 22:21:52 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ static int	parse_map_grid(t_mcraft *mcraft, int fd, char *line)
 	line_count = 0;
 	while (line)
 	{
-		if (ft_strlen(line) > 1) // skiping empty lines
+		if (ft_strlen(line) > 1)
 		{
 			printf("%s", line);
 			grid = ft_realloc((void *)grid, line_count * sizeof(char *),
-					(line_count + 1) * sizeof(char *)); // using builtin realloc
+					(line_count + 1) * sizeof(char *));
 			if (!grid)
 				exit_err("Memory allocation failed.");
 			grid[line_count] = line;

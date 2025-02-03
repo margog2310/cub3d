@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_valid.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
+/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:34:52 by mganchev          #+#    #+#             */
-/*   Updated: 2025/01/29 23:08:54 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/03 22:23:00 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ bool	is_enclosed(t_map *map)
 					return (false);
 			}
 		}
-		else // Checking middle rows here
+		else
 		{
 			//printf("%s", map->grid[i]);
 			if (map->grid[i][0] != WALL || map->grid[i][len - 1] != WALL)
@@ -95,7 +95,7 @@ bool	symbols_valid(t_map *map)
 				return (false);
 		}
 	}
-	if (player_count != 1) // checke theres only 1 player starting pos
-		exit_err("Error: Map must have exactly one player starting position.\n");
+	if (player_count != 1)
+		exit_err("Error: Map must have exactly one player starting pos.\n");
 	return (true);
 }

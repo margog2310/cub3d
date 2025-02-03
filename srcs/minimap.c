@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 02:34:42 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/03 18:55:25 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/03 22:25:50 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ void	draw_tile(t_mcraft *mcraft, int start_x, int start_y, int color)
 static void	draw_map_loop(t_mcraft *mcraft)
 {
 	t_map	*map;
-	int	i;
-	int	j;
-	int	color;
+	int		i;
+	int		j;
+	int		color;
 
 	map = mcraft->map;
 	i = 0;
@@ -62,10 +62,5 @@ static void	draw_map_loop(t_mcraft *mcraft)
 
 void	minimap(t_mcraft *mcraft)
 {
-	// int	map_w;
-	// int	map_h;
-
-	// map_h = WIN_H / 5;
-	// map_w = WIN_W / 5;
 	draw_map_loop(mcraft);
 }

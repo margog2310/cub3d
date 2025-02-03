@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_valid.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
+/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 19:20:47 by mganchev          #+#    #+#             */
-/*   Updated: 2025/01/29 22:41:43 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/03 22:20:47 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ bool	colour_valid(char *line, int bitmask)
 		return (false);
 	while (nbrs[counter])
 	{
-		printf("debug: counter: %d\nnbr: %s\n", counter, nbrs[counter]);		
+		printf("debug: counter: %d\nnbr: %s\n", counter, nbrs[counter]);
 		if (ft_atoi(nbrs[counter]) < 0 || ft_atoi(nbrs[counter]) > 255)
 			return (exit_err("Invalid RGB."), false);
 		if (!is_nbrstr(nbrs[counter]))

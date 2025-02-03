@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
+/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 04:37:56 by ssottori          #+#    #+#             */
-/*   Updated: 2025/01/28 19:13:23 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/03 22:31:21 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,12 @@ int	exit_win(t_mcraft *mcraft)
 void	cleanup_game(t_mcraft *mcraft)
 {
 	if (!mcraft)
-		return;
+		return ;
 	if (mcraft->map)
 	{
-		free_array(mcraft->map->grid);  // ✅ Free the map grid
+		free_array(mcraft->map->grid);
 		free(mcraft->map);
 	}
-
 	if (mcraft->img)
 		mlx_destroy_image(mcraft->mlx, mcraft->img);
 	if (mcraft->win)

@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 18:05:30 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/03 01:52:16 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/03 22:30:43 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,8 @@ void	init_player(t_gamer *gamer)
 	gamer->rot_r = false;
 }
 
-void	move_player(t_mcraft *mcraft)
+static void	move_arrows(t_gamer *gamer, float cos_angle, float sin_angle)
 {
-	t_gamer	*gamer = &mcraft->gamer;
-	
-	float	cos_angle = cos(gamer->angle);
-	float	sin_angle = sin(gamer->angle);
-
-	if (gamer->rot_l)
-		gamer->angle -= R_SPEED;
-	if (gamer->rot_r)
-		gamer->angle += R_SPEED;
-	if (gamer->angle > 2 * PI)
-		gamer->angle = 0;
-	if (gamer->angle < 0)
-		gamer->angle = 2 * PI;
-
 	if (gamer->k_up)
 	{
 		gamer->x += cos_angle * P_SPEED;
@@ -61,4 +47,24 @@ void	move_player(t_mcraft *mcraft)
 		gamer->x -= sin_angle * P_SPEED;
 		gamer->y += cos_angle * P_SPEED;
 	}
+}
+
+void	move_player(t_mcraft *mcraft)
+{
+	t_gamer	*gamer;
+	float	cos_angle;
+	float	sin_angle;
+
+	gamer = &mcraft->gamer;
+	cos_angle = cos(gamer->angle);
+	sin_angle = sin(gamer->angle);
+	if (gamer->rot_l)
+		gamer->angle -= R_SPEED;
+	if (gamer->rot_r)
+		gamer->angle += R_SPEED;
+	if (gamer->angle > 2 * PI)
+		gamer->angle = 0;
+	if (gamer->angle < 0)
+		gamer->angle = 2 * PI;
+	move_arrows(gamer, cos_angle, sin_angle);
 }

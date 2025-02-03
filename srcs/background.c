@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:43:42 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/03 01:32:30 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/03 22:31:46 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	draw_floor(t_mcraft *mcraft)
 {
 	int	x;
 	int	y;
-	int y_off;
+	int	y_off;
 
 	y_off = (int)mcraft->gamer.y;
 	y = mcraft->h / 2 + y_off;

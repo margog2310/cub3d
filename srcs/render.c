@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:57:12 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/03 18:49:26 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/03 22:23:40 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,13 @@ int	colors(char *str)
 
 int	render_img(t_mcraft *mcraft)
 {
-	    static int frame_count = 0;
+	static int	frame_count;
+
+	frame_count = 0;
 	ft_bzero(mcraft->img_addr, mcraft->h * mcraft->ll);
 	move_player(mcraft);
 	if (frame_count % 60 == 0)
-		printf("Player position: x=%d, y=%d\n", (int)mcraft->gamer.x, (int)mcraft->gamer.y);
+		printf("Player pos: x=%d, y=%d\n", (int)mcraft->gamer.x, (int)mcraft->gamer.y);
 	frame_count++;
 	win_bk(mcraft);
 	minimap(mcraft);
