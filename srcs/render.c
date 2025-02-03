@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:57:12 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/03 01:52:39 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/03 18:49:26 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	render_img(t_mcraft *mcraft)
 		printf("Player position: x=%d, y=%d\n", (int)mcraft->gamer.x, (int)mcraft->gamer.y);
 	frame_count++;
 	win_bk(mcraft);
+	minimap(mcraft);
 	draw_crosshairs(mcraft, BLACK);
 	mlx_put_image_to_window(mcraft->mlx, mcraft->win, mcraft->img, 0, 0);
 	return (0);

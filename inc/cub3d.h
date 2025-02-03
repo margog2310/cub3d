@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:16:58 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/03 01:46:10 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/03 18:46:05 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,17 @@
 
 # define P_SPEED 5    // playerspeed
 # define R_SPEED 0.05 // rot speed
+
+# define MINI_H
+# define MINI_W
+# define TILE_S 10
+
+# define WALL_COLOR     0xFFFFFF   // White for walls
+# define FLOOR_COLOR    0x000000   // Black for floor/empty space
+# define PLAYER_COLOR   0xFF0000
+# define OFF_X       10    // X offset for where the minimap is drawn
+# define OFF_Y       10
+
 
 /* ========== STRUCTS ========== */
 typedef struct s_vector
@@ -188,6 +199,9 @@ void		move_player(t_mcraft *mcraft);
 
 /* ------ utils ------- */
 t_mcraft	*get_mcraft(t_mcraft *mcraft);
+
+void	draw_tile(t_mcraft *mcraft, int start_x, int start_y, int color);
+void	minimap(t_mcraft *mcraft);
 
 // Margos
 // t_mcraft	*create_game(char *file_path);

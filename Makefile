@@ -6,7 +6,7 @@
 #    By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/21 16:21:20 by mganchev          #+#    #+#              #
-#    Updated: 2025/02/03 01:53:10 by ssottori         ###   ########.fr        #
+#    Updated: 2025/02/03 18:50:05 by ssottori         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,7 @@ SRCS = cub3d.c \
 		parse_file/file_valid.c \
 		player.c \
 		utils.c \
+		minimap.c \
 
 SRCS := $(addprefix $(SRC_DIR)/, $(SRCS))
 OBJS = $(patsubst $(SRC_DIR)/%.c, $(BUILD_DIR)/%.o, $(SRCS))

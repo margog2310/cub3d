@@ -1,0 +1,13 @@
+F 20,       20,20
+C 200,200,200
+
+NO        srcs/assets/textures/north.xpm
+SO srcs/assets/textures/south.xpm
+EA srcs/assets/textures/east.xpm
+WE srcs/assets/textures/west.xpm
+
+1111111
+1000001
+1011101
+100N001
+1111111
