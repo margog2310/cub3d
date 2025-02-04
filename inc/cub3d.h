@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:16:58 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/04 05:02:17 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/04 22:04:46 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@
 # define OFF_Y       10
 
 #define STEP_SIZE 1.0       // How many world units to step each iteration
-#define RAY_COLOR 0x00FF00
+#define RAY_COLOR 0xDDAFFA
 
 
 /* ========== STRUCTS ========== */
@@ -220,6 +220,6 @@ void		minimap(t_mcraft *mcraft);
 bool		is_wall(t_mcraft *mcraft, float px, float py);
 void		player_position(t_mcraft *mcraft); //temp tester function
 void		set_player_starting_pos(t_mcraft *mcraft);
-void		draw_ray_minimap(t_mcraft *mcraft);
+void		draw_ray_minimap(t_mcraft *mcraft, float angle);
 
 #endif

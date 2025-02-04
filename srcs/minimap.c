@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 02:34:42 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/04 05:32:16 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/04 22:02:35 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,23 @@ static void	draw_map_loop(t_mcraft *mcraft)
 	}
 }
 
-void draw_ray_minimap(t_mcraft *mcraft)
+static void	many_rays(t_mcraft *mcraft)
+{
+	float start_angle = mcraft->gamer.angle - (PI / 6);
+	float end_angle = mcraft->gamer.angle + (PI / 6);
+	float angle_increment = (PI / 3) / WIN_W; // Spread rays across the field of view
+
+	for (float angle = start_angle; angle <= end_angle; angle += angle_increment)
+	{
+		draw_ray_minimap(mcraft, angle);
+	}
+}
+
+void draw_ray_minimap(t_mcraft *mcraft, float angle)
 {
 	float	scale = (float)TILE_S / BLOCK; //make it mini
 	float	ray_x, ray_y;
-	float	angle;
+	//float	angle;
 	int		map_index_x;
 	int		map_index_y;
 	int		mini_x;
@@ -92,7 +104,7 @@ void draw_ray_minimap(t_mcraft *mcraft)
 
 	ray_x = mcraft->gamer.x; //players start pos 3d world
 	ray_y = mcraft->gamer.y;
-	angle = mcraft->gamer.angle;
+	//angle = mcraft->gamer.angle;
 	while (1)
 	{
 		map_index_x = (int)(ray_x / BLOCK);
@@ -115,5 +127,6 @@ void	minimap(t_mcraft *mcraft)
 	draw_map_loop(mcraft);
 	draw_player(mcraft);
 	move_player(mcraft);
-	draw_ray_minimap(mcraft);
+	many_rays(mcraft);
+	//draw_ray_minimap(mcraft);
 }
