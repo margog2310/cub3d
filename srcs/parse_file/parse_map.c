@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 04:42:54 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/04 01:01:50 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/04 01:14:52 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_map	*create_map(int fd, char *line, t_mcraft *mcraft)
 	mcraft->map = malloc(sizeof(t_map));
 	if (!mcraft->map)
 		exit_err("Failed to allocate memory for map.");
-	if (!parse_map_grid(mcraft, fd, line) || !is_map_valid(mcraft->map))
+	if (!parse_map_grid(mcraft, fd, line) || !is_map_valid(mcraft, mcraft->map))
 	{
 		cleanup_map(mcraft->map);
 		close(fd);

@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:34:52 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/04 01:01:37 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/04 01:14:46 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,14 +28,14 @@
 			-> curr char should also always be 1
 */
 
-bool	is_map_valid(t_map *map)
+bool	is_map_valid(t_mcraft *mcraft, t_map *map)
 {
 	if (!is_enclosed(map))
 	{
 		ft_printf("Error: Map is not enclosed by walls.\n");
 		return (false);
 	}
-	if (!symbols_valid(map))
+	if (!symbols_valid(mcraft, map))
 	{
 		ft_printf("Error: Invalid symbols in map.\n");
 		return (false);
@@ -83,7 +83,7 @@ static bool	is_player(char c)
 	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
 }
 
-bool	symbols_valid(t_map *map)
+bool	symbols_valid(t_mcraft *mcraft, t_map *map)
 {
 	int	i;
 	int	j;
@@ -103,8 +103,10 @@ bool	symbols_valid(t_map *map)
 				return (false);
 			if (is_player(map->grid[i][j]))
 			{
-				map->player_start_row = i;
-				map->player_start_col = j;
+				// map->player_start_row = i;
+				// map->player_start_col = j;
+				mcraft->gamer.x = j * BLOCK + (BLOCK / 2);
+				mcraft->gamer.y = i * BLOCK + (BLOCK / 2);
 				player_count++;
 			}
 		}

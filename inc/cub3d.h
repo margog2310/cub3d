@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:16:58 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/04 00:53:25 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/04 01:21:22 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,9 @@
 # define PLAYER_COLOR   0xFF0000
 # define OFF_X       10    // X offset for where the minimap is drawn
 # define OFF_Y       10
+
+#define STEP_SIZE 1.0       // How many world units to step each iteration
+#define RAY_COLOR 0x00FF00
 
 
 /* ========== STRUCTS ========== */
@@ -180,9 +183,9 @@ int			parse_elements(t_mcraft *mcraft, int fd);
 void		cleanup_map(t_map *map);
 bool		colour_valid(char *line, int bitmask);
 bool		texture_valid(char *path, int bitmask);
-bool		is_map_valid(t_map *map);
+bool		is_map_valid(t_mcraft *mcraft, t_map *map);
 bool		is_enclosed(t_map *map);
-bool		symbols_valid(t_map *map);
+bool		symbols_valid(t_mcraft *mcraft, t_map *map);
 int			parse_textures_and_colors(t_mcraft *mcraft, char *line);
 
 void		cleanup_game(t_mcraft *mcraft);
@@ -210,6 +213,7 @@ void		minimap(t_mcraft *mcraft);
 bool		ray(t_mcraft *mcraft, float px, float py);
 void		player_position(t_mcraft *mcraft); //temp tester function
 void		set_player_starting_pos(t_mcraft *mcraft);
+void		draw_ray(t_mcraft *mcraft);
 
 
 
