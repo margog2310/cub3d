@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:27:47 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/03 22:32:32 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/04 05:00:13 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,66 @@ void	keyhooks(t_mcraft *mcraft)
 	mlx_hook(mcraft->win, FocusOut, FocusChangeMask, minimize, mcraft);
 	mlx_hook(mcraft->win, FocusIn, FocusChangeMask, maximize, mcraft);
 }
+
+// int	keys(int keycode, t_mcraft *mcraft)
+// {
+// 	t_gamer	*gamer;
+
+// 	gamer = &mcraft->gamer;
+// 	if (keycode == ESC)
+// 		exit_win(mcraft);
+// 	else if (keycode == W)
+// 		gamer->k_up = true;
+// 	else if (keycode == S)
+// 		gamer->k_down = true;
+// 	else if (keycode == A)
+// 		gamer->k_left = true;
+// 	else if (keycode == D)
+// 		gamer->k_right = true;
+// 	else if (keycode == LEFT)
+// 		gamer->rot_l = true;
+// 	else if (keycode == RIGHT)
+// 		gamer->rot_r = true;
+// 	return (0);
+// }
+
+// int	key_release(int keycode, t_mcraft *mcraft)
+// {
+// 	t_gamer	*gamer;
+
+// 	gamer = &mcraft->gamer;
+// 	if (keycode == W)
+// 	{
+// 		gamer->k_up = false;
+// 		ft_printf("W key pressed: Move forward\n");
+// 	}
+// 	else if (keycode == A)
+// 	{
+// 		gamer->k_left = false;
+// 		ft_printf("A key pressed: Strafe left\n");
+// 	}
+// 	else if (keycode == S)
+// 	{
+// 		gamer->k_down = false;
+// 		ft_printf("S key pressed: Move backward\n");
+// 	}
+// 	else if (keycode == D)
+// 	{
+// 		gamer->k_right = false;
+// 		ft_printf("D key pressed: Strafe right\n");
+// 	}
+// 	else if (keycode == LEFT)
+// 	{
+// 		gamer->rot_l = false;
+// 		ft_printf("Left arrow key pressed: Rotate left\n");
+// 	}
+// 	else if (keycode == RIGHT)
+// 	{
+// 		gamer->rot_r = false;
+// 		ft_printf("Right arrow key pressed: Rotate right\n");
+// 	}
+// 	return (0);
+// }
 
 int	keys(int keycode, t_mcraft *mcraft)
 {

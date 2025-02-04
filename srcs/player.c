@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 18:05:30 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/04 04:26:28 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/04 05:43:00 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,12 @@ bool	is_wall(t_mcraft *mcraft, float px, float py) //collision detection
 {
 	int	x;
 	int	y; 
-	
+
 	x = (int)px / BLOCK;
 	y = (int)py / BLOCK;
+	if (x < 0 || x >= mcraft->map->cols || 
+		y < 0 || y >= mcraft->map->rows)
+		return true;
 	if (mcraft->map->grid[y][x] == '1')
 		return (true);
 	return (false);

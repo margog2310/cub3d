@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 04:25:32 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/04 04:42:38 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/04 05:26:02 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	move_up(t_mcraft *mcraft, t_gamer *gamer, float cos_a, float sin_a)
 		if (!is_wall(mcraft, new_x, gamer->y))
 			gamer->x = new_x;
 		// vertical movement.
-		new_y = gamer->y + sin_a * P_SPEED;
+		new_y = gamer->y - sin_a * P_SPEED;
 		if (!is_wall(mcraft, gamer->x, new_y))
 			gamer->y = new_y;
 	}
@@ -40,7 +40,7 @@ void	move_down(t_mcraft *mcraft, t_gamer *gamer, float cos_a, float sin_a)
 		new_x = gamer->x - cos_a * P_SPEED;
 		if (!is_wall(mcraft, new_x, gamer->y))
 			gamer->x = new_x;
-		new_y = gamer->y - sin_a * P_SPEED;
+		new_y = gamer->y + sin_a * P_SPEED;
 		if (!is_wall(mcraft, gamer->x, new_y))
 			gamer->y = new_y;
 	}

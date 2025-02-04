@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:16:58 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/04 04:35:35 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/04 05:02:17 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,16 +221,5 @@ bool		is_wall(t_mcraft *mcraft, float px, float py);
 void		player_position(t_mcraft *mcraft); //temp tester function
 void		set_player_starting_pos(t_mcraft *mcraft);
 void		draw_ray_minimap(t_mcraft *mcraft);
-
-
-
-// Margos
-// t_mcraft	*create_game(char *file_path);
-// int open_file(char *path);
-// int get_longest_row(char **grid, char *key);
-// char	**read_map(int fd, t_map *map);
-// int close(int fd);
-// bool	is_enclosed(char **grid, int line_count);
-// bool	symbols_valid(t_map *map);
 
 #endif

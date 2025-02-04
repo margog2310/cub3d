@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 02:34:42 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/04 04:11:14 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/04 05:32:16 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,16 @@ static void draw_player(t_mcraft *mcraft)
 	int		player_map_y;
 	float	scale;
 	int		marker_size;
+	//int		minimap_h;
 
+	//minimap_h = WIN_H / 5;
 	scale = (float)TILE_S / BLOCK;
 	player_map_x = OFF_X + (int)(mcraft->gamer.x * scale);
 	player_map_y = OFF_Y + (int)(mcraft->gamer.y * scale);
 	marker_size = TILE_S / 2;
-	draw_tile(mcraft, player_map_x, 
-			player_map_y,
+	draw_tile(mcraft, 
+			player_map_x - (marker_size / 2), 
+			player_map_y - (marker_size / 2),
 			marker_size,
 			PLAYER_COLOR);
 }
@@ -79,15 +82,15 @@ static void	draw_map_loop(t_mcraft *mcraft)
 
 void draw_ray_minimap(t_mcraft *mcraft)
 {
-	float	scale = (float)TILE_S / BLOCK; //make it minimap instead of real world
+	float	scale = (float)TILE_S / BLOCK; //make it mini
 	float	ray_x, ray_y;
 	float	angle;
 	int		map_index_x;
 	int		map_index_y;
 	int		mini_x;
 	int		mini_y;
-	
-	ray_x = mcraft->gamer.x; //players start pos
+
+	ray_x = mcraft->gamer.x; //players start pos 3d world
 	ray_y = mcraft->gamer.y;
 	angle = mcraft->gamer.angle;
 	while (1)
@@ -103,7 +106,7 @@ void draw_ray_minimap(t_mcraft *mcraft)
 		mini_y = OFF_Y + (int)(ray_y * scale);
 		draw_pixel(mcraft, mini_x, mini_y, RAY_COLOR);
 		ray_x += cos(angle) * STEP_SIZE;
-		ray_y -= sin(angle) * STEP_SIZE;
+		ray_y += sin(angle) * STEP_SIZE;
 	}
 }
 
