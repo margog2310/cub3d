@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:34:52 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/03 22:23:00 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/04 01:01:37 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,17 @@ bool	is_enclosed(t_map *map)
 	return (true);
 }
 
+static bool	is_valid_symbol(char c)
+{
+	return(c == '1' || c == '0' || c == 'N'
+		|| c == 'S' || c == 'E' || c == 'W');
+}
+
+static bool	is_player(char c)
+{
+	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
+}
+
 bool	symbols_valid(t_map *map)
 {
 	int	i;
@@ -88,11 +99,14 @@ bool	symbols_valid(t_map *map)
 		while (j++ < cols - 1)
 		{
 			skip_set(map->grid[i], IFS);
-			if (map->grid[i][j] == START)
-				player_count++;
-			if (map->grid[i][j] != WALL && map->grid[i][j] != EMPTY
-				&& map->grid[i][j] != START)
+			if (!is_valid_symbol(map->grid[i][j]))
 				return (false);
+			if (is_player(map->grid[i][j]))
+			{
+				map->player_start_row = i;
+				map->player_start_col = j;
+				player_count++;
+			}
 		}
 	}
 	if (player_count != 1)

@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 21:44:09 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/03 01:56:26 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/04 00:57:59 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	main(int ac, char **av)
 		cleanup_game(mcraft);
 		return (1);
 	}
+	set_player_starting_pos(mcraft);
 	cub_init(mcraft);
 	mlx_loop(mcraft->mlx);
 	cleanup_game(mcraft);

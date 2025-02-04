@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 19:08:21 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/03 22:23:13 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/04 00:42:42 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,13 @@ t_mcraft	*get_mcraft(t_mcraft *mcraft)
 		return (ptr);
 	ptr = mcraft;
 	return (mcraft);
+}
+
+void	set_player_starting_pos(t_mcraft *mcraft)
+{
+	t_map	*map;
+
+	map = mcraft->map;
+	mcraft->gamer.x = map->player_start_col * BLOCK + (BLOCK / 2);
+	mcraft->gamer.y = map->player_start_row * BLOCK + (BLOCK / 2);
 }

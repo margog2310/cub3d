@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 18:05:30 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/03 22:30:43 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/03 23:32:45 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,3 +68,12 @@ void	move_player(t_mcraft *mcraft)
 		gamer->angle = 2 * PI;
 	move_arrows(gamer, cos_angle, sin_angle);
 }
+
+// bool	ray(t_mcraft *mcraft, float px, float py)
+// {
+// 	int	x = px / BLOCK;
+// 	int	y = py / BLOCK;
+// 	if (mcraft->map[x][y] == '1')
+// 		return (true);
+// 	return (false);
+// }

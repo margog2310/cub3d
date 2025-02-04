@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:57:12 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/03 22:23:40 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/03 23:47:11 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,27 @@ int	colors(char *str)
 	return (r << 16 | g << 8 | b);
 }
 
-int	render_img(t_mcraft *mcraft)
+void	player_position(t_mcraft *mcraft) //temp tester function
 {
+	t_gamer gamer;
 	static int	frame_count;
 
+	gamer = mcraft->gamer;
 	frame_count = 0;
-	ft_bzero(mcraft->img_addr, mcraft->h * mcraft->ll);
-	move_player(mcraft);
 	if (frame_count % 60 == 0)
-		printf("Player pos: x=%d, y=%d\n", (int)mcraft->gamer.x, (int)mcraft->gamer.y);
+		ft_printf("Player pos: x=%d, y=%d\n", (int)gamer.x, (int)gamer.y);
 	frame_count++;
+
+}
+
+int	render_img(t_mcraft *mcraft)
+{
+	ft_bzero(mcraft->img_addr, mcraft->h * mcraft->ll);
+	//move_player(mcraft);
+	//player_position(mcraft);
 	win_bk(mcraft);
 	minimap(mcraft);
+	//draw_ray(mcraft);
 	draw_crosshairs(mcraft, BLACK);
 	mlx_put_image_to_window(mcraft->mlx, mcraft->win, mcraft->img, 0, 0);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:16:58 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/03 18:46:05 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/04 00:53:25 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@
 
 
 /* ========== STRUCTS ========== */
+typedef struct s_mcraft t_mcraft;
+
 typedef struct s_vector
 {
 	int		x;
@@ -79,10 +81,13 @@ typedef struct s_vector
 
 typedef struct s_map
 {
+	int		player_start_row;
+	int		player_start_col;
 	char	**grid;
 	int		rows;
 	int		cols;
 	int		row_index;
+	t_mcraft	*mcraft;
 }			t_map;
 
 enum		ID
@@ -123,7 +128,7 @@ typedef struct s_gamer
 	float	y;
 	float	angle;
 
-	bool k_up; // key_up
+	bool	k_up; // key_up
 	bool	k_down;
 	bool	k_left;
 	bool	k_right;
@@ -144,8 +149,8 @@ typedef struct s_mcraft
 	void	*img;
 	char	*img_addr;
 	int		bpp;
-	int ll;  // line length
-	int end; // endian
+	int		ll;  // line length
+	int		end; // endian
 
 	t_gamer	gamer;
 	t_txts	txts;
@@ -200,8 +205,13 @@ void		move_player(t_mcraft *mcraft);
 /* ------ utils ------- */
 t_mcraft	*get_mcraft(t_mcraft *mcraft);
 
-void	draw_tile(t_mcraft *mcraft, int start_x, int start_y, int color);
-void	minimap(t_mcraft *mcraft);
+void		draw_tile(t_mcraft *mcraft, int start_x, int start_y, int tile_size, int color);
+void		minimap(t_mcraft *mcraft);
+bool		ray(t_mcraft *mcraft, float px, float py);
+void		player_position(t_mcraft *mcraft); //temp tester function
+void		set_player_starting_pos(t_mcraft *mcraft);
+
+
 
 // Margos
 // t_mcraft	*create_game(char *file_path);
