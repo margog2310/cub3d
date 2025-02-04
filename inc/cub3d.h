@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:16:58 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/04 04:18:26 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/04 04:35:35 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,7 +203,14 @@ int			minimize(t_mcraft *mcraft);
 void		draw_crosshairs(t_mcraft *mcraft, int color);
 int			key_release(int keycode, t_mcraft *mcraft);
 void		init_player(t_gamer *gamer);
+
+/* ------- movement -------- */
 void		move_player(t_mcraft *mcraft);
+void		move_up(t_mcraft *mcraft, t_gamer *gamer, float cos_a, float sin_a);
+void		move_down(t_mcraft *mcraft, t_gamer *gamer, float cos_a, float sin_a);
+void		move_left(t_mcraft *mcraft, t_gamer *gamer, float cos_a, float sin_a);
+void		move_right(t_mcraft *mcraft, t_gamer *gamer, float cos_a, float sin_a);
+
 
 /* ------ utils ------- */
 t_mcraft	*get_mcraft(t_mcraft *mcraft);
