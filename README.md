@@ -35,3 +35,6 @@ make
 ```bash
 ./cub3d map.cub
 ```
+
+
+<p align=center> <sub> Cub3D created with 🫀 and 🧠 by <a href url="https://github.com/pandashaly/"> Shaly</a> and <a href url="https://github.com/margog2310"> Margo</a> &nbsp;&nbsp;&nbsp; ©2025 </sub> </p>
