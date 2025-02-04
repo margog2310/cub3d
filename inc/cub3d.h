@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:16:58 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/04 01:21:22 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/04 04:18:26 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,10 +210,10 @@ t_mcraft	*get_mcraft(t_mcraft *mcraft);
 
 void		draw_tile(t_mcraft *mcraft, int start_x, int start_y, int tile_size, int color);
 void		minimap(t_mcraft *mcraft);
-bool		ray(t_mcraft *mcraft, float px, float py);
+bool		is_wall(t_mcraft *mcraft, float px, float py);
 void		player_position(t_mcraft *mcraft); //temp tester function
 void		set_player_starting_pos(t_mcraft *mcraft);
-void		draw_ray(t_mcraft *mcraft);
+void		draw_ray_minimap(t_mcraft *mcraft);
 
 
 

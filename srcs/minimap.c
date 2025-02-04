@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 02:34:42 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/04 01:32:08 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/04 04:11:14 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ static void draw_player(t_mcraft *mcraft)
 	player_map_x = OFF_X + (int)(mcraft->gamer.x * scale);
 	player_map_y = OFF_Y + (int)(mcraft->gamer.y * scale);
 	marker_size = TILE_S / 2;
-	draw_tile(mcraft, player_map_x - (marker_size / 2), 
-			player_map_y - (marker_size / 2),
+	draw_tile(mcraft, player_map_x, 
+			player_map_y,
 			marker_size,
 			PLAYER_COLOR);
 }
@@ -103,7 +103,7 @@ void draw_ray_minimap(t_mcraft *mcraft)
 		mini_y = OFF_Y + (int)(ray_y * scale);
 		draw_pixel(mcraft, mini_x, mini_y, RAY_COLOR);
 		ray_x += cos(angle) * STEP_SIZE;
-		ray_y += sin(angle) * STEP_SIZE;
+		ray_y -= sin(angle) * STEP_SIZE;
 	}
 }
 
