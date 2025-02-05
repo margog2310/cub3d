@@ -16,3 +16,28 @@ map_parsing:
 				- open file ✅
 				- use gnl to read lines one by one ✅ (reads map file successfully)
 				- check for textures and colors (NO, SO, EA, WE, F, C) ✅
+
+=================================
+
+RAYCASTING AND MOVEMENT:
+TO_FIX:
+	player_spawning:
+		- player spawns in the wrong location...idk why 
+	player_movement:
+		- movement is fkinnn inverted...idk how to fix :(
+		- rotation with arrow keys causes diagonal drift
+		- player offset changes after using arrows, affecting WASD
+		- WASD works fine before using arrows (though still inverted)
+	player_coordinates:
+		- only printing X coordinates
+		- need to fix Y coordinate output
+	mouse_click_coordinates:
+		- only printing X coordinates
+		- need to capture both X and Y coordinates
+	raycasting:
+		- minimap raycasting ✅
+		- need to understand the difference between 2D and 3D raycasting
+		- figure out how to calculate wall height
+	textures:
+		- need to start placing textures
+		- ensure textures align correctly with raycasting calculations

@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:27:47 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/05 01:43:06 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/05 03:07:50 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,5 @@ int	key_release(int keycode, t_mcraft *mcraft)
 		gamer->rot_l = false;
 	else if (keycode == RIGHT)
 		gamer->rot_r = false;
-
 	return (0);
 }
