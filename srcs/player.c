@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 18:05:30 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/05 03:18:42 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/05 17:40:03 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,23 @@ void	init_player(t_gamer *gamer)
 	gamer->rot_r = false;
 }
 
-bool	is_wall(t_mcraft *mcraft, float px, float py) //collision detection
+void	move_player(t_mcraft *mcraft)
 {
-	int	x;
-	int	y; 
+	t_gamer	*gamer;
+	float	cos_a;
+	float	sin_a;
 
-	x = (int)px / BLOCK;
-	y = (int)py / BLOCK;
-	if (x < 0 || x >= mcraft->map->cols
-		|| y < 0 || y >= mcraft->map->rows)
-		return (true);
-	if (mcraft->map->grid[y][x] == '1')
-		return (true);
-	return (false);
+	gamer = &mcraft->gamer;
+	cos_a = cos(gamer->angle);
+	sin_a = sin(gamer->angle);
+	if (gamer->rot_l)
+		gamer->angle -= R_SPEED;
+	if (gamer->rot_r)
+		gamer->angle += R_SPEED;
+	if (gamer->angle > 2 * PI)
+		gamer->angle = 0;
+	if (gamer->angle < 0)
+		gamer->angle = 2 * PI;
+	move_arrows(mcraft, gamer, cos_a, sin_a);
 }
+

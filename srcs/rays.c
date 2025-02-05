@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 00:50:12 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/05 02:45:55 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/05 17:56:30 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,10 @@ t_vector	mr_ray(t_mcraft *mcraft, float angle)
 			|| map_y < 0 || map_y >= mcraft->map->rows) //OOB check
 			break ;
 		if (mcraft->map->grid[map_y][map_x] == '1') //wall check
-			break ;
+			break ; // can we also get the direction of the wall face? East/south/north/west? 
 		ray_x += cos(angle) * STEP_SIZE;
 		ray_y += sin(angle) * STEP_SIZE;
 	}
-
 	bullseye.x = ray_x;
 	bullseye.y = ray_y;
 	return (bullseye);
@@ -49,6 +48,7 @@ t_vector	mr_ray(t_mcraft *mcraft, float angle)
 - find hitpoint with mr ray
 - calculate distance from block and determine  or calculate wall height
 - draw map in 3D
+- make a helper function to check what direction the ray is hitting. so we can set the different textures
 - make sure player start point is correct
 - fisheye?? check how to deal with fisheye*/
 
