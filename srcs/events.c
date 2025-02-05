@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:27:47 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/04 05:00:13 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/05 01:43:06 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,66 +22,6 @@ void	keyhooks(t_mcraft *mcraft)
 	mlx_hook(mcraft->win, FocusIn, FocusChangeMask, maximize, mcraft);
 }
 
-// int	keys(int keycode, t_mcraft *mcraft)
-// {
-// 	t_gamer	*gamer;
-
-// 	gamer = &mcraft->gamer;
-// 	if (keycode == ESC)
-// 		exit_win(mcraft);
-// 	else if (keycode == W)
-// 		gamer->k_up = true;
-// 	else if (keycode == S)
-// 		gamer->k_down = true;
-// 	else if (keycode == A)
-// 		gamer->k_left = true;
-// 	else if (keycode == D)
-// 		gamer->k_right = true;
-// 	else if (keycode == LEFT)
-// 		gamer->rot_l = true;
-// 	else if (keycode == RIGHT)
-// 		gamer->rot_r = true;
-// 	return (0);
-// }
-
-// int	key_release(int keycode, t_mcraft *mcraft)
-// {
-// 	t_gamer	*gamer;
-
-// 	gamer = &mcraft->gamer;
-// 	if (keycode == W)
-// 	{
-// 		gamer->k_up = false;
-// 		ft_printf("W key pressed: Move forward\n");
-// 	}
-// 	else if (keycode == A)
-// 	{
-// 		gamer->k_left = false;
-// 		ft_printf("A key pressed: Strafe left\n");
-// 	}
-// 	else if (keycode == S)
-// 	{
-// 		gamer->k_down = false;
-// 		ft_printf("S key pressed: Move backward\n");
-// 	}
-// 	else if (keycode == D)
-// 	{
-// 		gamer->k_right = false;
-// 		ft_printf("D key pressed: Strafe right\n");
-// 	}
-// 	else if (keycode == LEFT)
-// 	{
-// 		gamer->rot_l = false;
-// 		ft_printf("Left arrow key pressed: Rotate left\n");
-// 	}
-// 	else if (keycode == RIGHT)
-// 	{
-// 		gamer->rot_r = false;
-// 		ft_printf("Right arrow key pressed: Rotate right\n");
-// 	}
-// 	return (0);
-// }
-
 int	keys(int keycode, t_mcraft *mcraft)
 {
 	t_gamer	*gamer;
@@ -89,7 +29,14 @@ int	keys(int keycode, t_mcraft *mcraft)
 	gamer = &mcraft->gamer;
 	if (keycode == ESC)
 		exit_win(mcraft);
-	else if (keycode == W)
+	wads_keys(keycode, gamer);
+	arrow_keys(keycode, gamer);
+	return (0);
+}
+
+int	wads_keys(int keycode, t_gamer *gamer)
+{
+	if (keycode == W)
 	{
 		gamer->k_up = true;
 		ft_printf("W key pressed: Move forward\n");
@@ -109,7 +56,12 @@ int	keys(int keycode, t_mcraft *mcraft)
 		gamer->k_right = true;
 		ft_printf("D key pressed: Strafe right\n");
 	}
-	else if (keycode == LEFT)
+	return (0);
+}
+
+int	arrow_keys(int keycode, t_gamer *gamer)
+{
+	if (keycode == LEFT)
 	{
 		gamer->rot_l = true;
 		ft_printf("Left arrow key pressed: Rotate left\n");
@@ -123,7 +75,6 @@ int	keys(int keycode, t_mcraft *mcraft)
 		ft_printf("Up arrow key pressed: Look up\n");
 	else if (keycode == DOWN)
 		ft_printf("Down arrow key pressed: Look down\n");
-
 	return (0);
 }
 
@@ -145,26 +96,5 @@ int	key_release(int keycode, t_mcraft *mcraft)
 	else if (keycode == RIGHT)
 		gamer->rot_r = false;
 
-	return (0);
-}
-
-int	mouse(t_mcraft *mcraft, int click, int x, int y)
-{
-	(void)mcraft;
-	ft_printf("Mouse click %d at (%d, %d)\n", click, x, y); //need to fix mouse click x and y coordinates wrong
-	return (0);
-}
-
-int	minimize(t_mcraft *mcraft)
-{
-	(void)mcraft;
-	ft_printf("Window minimized. Pausing rendering...\n");
-	return (0);
-}
-
-int	maximize(t_mcraft *mcraft)
-{
-	ft_printf("Window maximized. Resuming rendering...\n");
-	mlx_put_image_to_window(mcraft->mlx, mcraft->win, mcraft->img, 0, 0);
 	return (0);
 }

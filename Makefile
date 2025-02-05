@@ -6,7 +6,7 @@
 #    By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/21 16:21:20 by mganchev          #+#    #+#              #
-#    Updated: 2025/02/04 04:26:40 by ssottori         ###   ########.fr        #
+#    Updated: 2025/02/05 01:43:47 by ssottori         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ SRCS = cub3d.c \
 		render.c \
 		background.c \
 		events.c \
+		events_utils.c \
 		exit.c \
 		parse_file/parse.c \
 		parse_file/parse_elements.c \
@@ -55,6 +56,7 @@ SRCS = cub3d.c \
 		utils.c \
 		minimap.c \
 		movement.c \
+		rays.c \
 
 SRCS := $(addprefix $(SRC_DIR)/, $(SRCS))
 OBJS = $(patsubst $(SRC_DIR)/%.c, $(BUILD_DIR)/%.o, $(SRCS))

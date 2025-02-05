@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   colors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/23 20:32:20 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/05 01:44:49 by ssottori         ###   ########.fr       */
+/*   Created: 2025/02/05 01:10:09 by ssottori          #+#    #+#             */
+/*   Updated: 2025/02/05 01:19:17 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#ifndef COLORS_H
+# define COLORS_H
 
-/* Things that need to be init:
-- mlx [x]
-- window [x]
-- events [x]
-- player [x]
-- map [x]
-- textures
-- raycasting
-- game loop [x]
-*/
+# define SKY 0x87CEEB
+# define FLOOR 0x57983B
+# define BLACK 0x000000
+# define RAY_COLOR 0xDDAFFA
+# define CUBE_E 0xFAA966
+# define WALL_COLOR 0xFFFFFF
+# define FLOOR_COLOR 0x000000
+# define PLAYER_COLOR 0xFF0000
 
-void	cub_init(t_mcraft *mcraft)
-{
-	init_win(mcraft, WIN_W, WIN_H);
-	init_player(&mcraft->gamer);
-	keyhooks(mcraft);
-	render_img(mcraft);
-	mlx_loop_hook(mcraft->mlx, render_img, mcraft);
-}
+#endif

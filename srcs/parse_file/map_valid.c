@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:34:52 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/04 01:14:46 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/05 01:08:58 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ bool	is_enclosed(t_map *map)
 		}
 		else
 		{
-			//printf("%s", map->grid[i]);
+			//ft_printf("%s", map->grid[i]);
 			if (map->grid[i][0] != WALL || map->grid[i][len - 1] != WALL)
 				return (false);
 		}

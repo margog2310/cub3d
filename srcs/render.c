@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:57:12 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/04 05:35:48 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/05 01:45:41 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,24 @@ int	colors(char *str)
 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
 		return (-1);
 	return (r << 16 | g << 8 | b);
+}
+
+void	draw_tile(t_mcraft *mcraft, int start_x, int start_y, int tile_size, int color)
+{
+	int	y;
+	int	x;
+
+	y = start_y;
+	while (y < start_y + tile_size - 1)
+	{
+		x = start_x;
+		while (x < start_x + tile_size - 1)
+		{
+			draw_pixel(mcraft, x, y, color);
+			x++;
+		}
+		y++;
+	}
 }
 
 void	player_position(t_mcraft *mcraft) //temp tester function
