@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:57:12 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/08 19:24:54 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/08 22:34:29 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ int	colors(char *str)
 	return (r << 16 | g << 8 | b);
 }
 
-void	draw_tile(t_mcraft *mcraft, int start_x, int start_y, int tile_size, int color)
+void	draw_tile(t_mcraft *mcraft, int start_x, int start_y, int tile_size,
+		int color)
 {
 	int	y;
 	int	x;
@@ -60,23 +61,22 @@ void	draw_tile(t_mcraft *mcraft, int start_x, int start_y, int tile_size, int co
 	}
 }
 
-void	player_position(t_mcraft *mcraft) //temp tester function
+void	player_position(t_mcraft *mcraft) // temp tester function
 {
 	t_gamer *gamer;
-	static int	frame_count;
+	static int frame_count;
 
 	gamer = mcraft->gamer;
 	frame_count = 0;
 	if (frame_count % 60 == 0)
 		ft_printf("Player pos: x=%d, y=%d\n", (int)gamer->x, (int)gamer->y);
 	frame_count++;
-
 }
 
 int	render_img(t_mcraft *mcraft)
 {
 	ft_bzero(mcraft->img_addr, mcraft->h * mcraft->ll);
-	//player_position(mcraft);
+	// player_position(mcraft);
 	win_bk(mcraft);
 	minimap(mcraft);
 	draw_crosshairs(mcraft, BLACK);

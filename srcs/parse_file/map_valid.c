@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:34:52 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/08 19:54:00 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/08 22:34:15 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ bool	is_enclosed(t_map *map)
 		}
 		else
 		{
-			//ft_printf("%s", map->grid[i]);
+			// ft_printf("%s", map->grid[i]);
 			if (map->grid[i][0] != WALL || map->grid[i][len - 1] != WALL)
 				return (false);
 		}
@@ -74,8 +74,8 @@ bool	is_enclosed(t_map *map)
 
 static bool	is_valid_symbol(char c)
 {
-	return(c == '1' || c == '0' || c == 'N'
-		|| c == 'S' || c == 'E' || c == 'W');
+	return (c == '1' || c == '0' || c == 'N' || c == 'S' || c == 'E'
+		|| c == 'W');
 }
 
 static bool	is_player(char c)
@@ -105,7 +105,8 @@ bool	symbols_valid(t_mcraft *mcraft, t_map *map)
 			{
 				// map->player_start_row = i;
 				// map->player_start_col = j;
-				set_player_direction(&mcraft->gamer->direction, map->grid[i][j]);
+				set_player_direction(&mcraft->gamer->direction,
+					map->grid[i][j]);
 				mcraft->gamer->x = j * BLOCK + (BLOCK / 2);
 				mcraft->gamer->y = i * BLOCK + (BLOCK / 2);
 				player_count++;

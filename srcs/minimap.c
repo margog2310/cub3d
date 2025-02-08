@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 02:34:42 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/08 19:27:35 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/08 22:35:01 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,15 @@ static void	draw_player(t_mcraft *mcraft)
 	int		player_map_y;
 	float	scale;
 	int		marker_size;
-	//int		minimap_h;
 
-	//minimap_h = WIN_H / 5; //was trying to fix fuckin movement inversion
+	// int		minimap_h;
+	// minimap_h = WIN_H / 5; //was trying to fix fuckin movement inversion
 	scale = (float)TILE_S / BLOCK;
 	player_map_x = OFF_X + (int)(mcraft->gamer->x * scale);
 	player_map_y = OFF_Y + (int)(mcraft->gamer->y * scale);
 	marker_size = TILE_S / 2;
-	draw_tile(mcraft, 
-			player_map_x - (marker_size / 2), 
-			player_map_y - (marker_size / 2),
-			marker_size,
-			PLAYER_COLOR);
+	draw_tile(mcraft, player_map_x - (marker_size / 2), player_map_y
+		- (marker_size / 2), marker_size, PLAYER_COLOR);
 }
 
 static void	draw_map_loop(t_mcraft *mcraft)
@@ -50,13 +47,13 @@ static void	draw_map_loop(t_mcraft *mcraft)
 				color = WALL_COLOR;
 			else if (map->grid[i][j] == '0')
 				color = FLOOR_COLOR;
-			else if (map->grid[i][j] == 'N' || map->grid[i][j] == 'S' ||
-					map->grid[i][j] == 'E' || map->grid[i][j] == 'W')
+			else if (map->grid[i][j] == 'N' || map->grid[i][j] == 'S'
+				|| map->grid[i][j] == 'E' || map->grid[i][j] == 'W')
 				color = PLAYER_COLOR;
 			else
 				break ;
-			draw_tile(mcraft, OFF_X + (j * TILE_S),
-				OFF_Y + (i * TILE_S), TILE_S, color);
+			draw_tile(mcraft, OFF_X + (j * TILE_S), OFF_Y + (i * TILE_S),
+				TILE_S, color);
 			j++;
 		}
 		i++;
@@ -69,16 +66,18 @@ void	draw_ray_minimap(t_mcraft *mcraft, float angle)
 	float		ray_x;
 	float		ray_y;
 	t_vector	hit;
+	int			mini_x;
+	int			mini_y;
 
 	hit = mr_ray(mcraft, angle);
 	ray_x = mcraft->gamer->x;
 	ray_y = mcraft->gamer->y;
-	scale = (float)TILE_S / BLOCK; //minimap size it
-	while ((int)(ray_x / BLOCK) != (int)(hit.x / BLOCK) ||
-		(int)(ray_y / BLOCK) != (int)(hit.y / BLOCK))
+	scale = (float)TILE_S / BLOCK; // minimap size it
+	while ((int)(ray_x / BLOCK) != (int)(hit.x / BLOCK) || (int)(ray_y
+			/ BLOCK) != (int)(hit.y / BLOCK))
 	{
-		int mini_x = OFF_X + (int)(ray_x * scale);
-		int mini_y = OFF_Y + (int)(ray_y * scale);
+		mini_x = OFF_X + (int)(ray_x * scale);
+		mini_y = OFF_Y + (int)(ray_y * scale);
 		draw_pixel(mcraft, mini_x, mini_y, RAY_COLOR);
 		ray_x += cos(angle) * STEP_SIZE;
 		ray_y += sin(angle) * STEP_SIZE;

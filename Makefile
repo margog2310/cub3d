@@ -6,7 +6,7 @@
 #    By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/21 16:21:20 by mganchev          #+#    #+#              #
-#    Updated: 2025/02/08 19:22:51 by mganchev         ###   ########.fr        #
+#    Updated: 2025/02/08 23:46:11 by mganchev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,9 @@ SRCS = cub3d.c \
 		parse_file/parse_utils.c \
 		parse_file/file_valid.c \
 		DDA/init_dda.c \
+		DDA/draw.c \
+		DDA/dda_utils.c \
+		DDA/dda.c \
 		player.c \
 		utils.c \
 		minimap.c \
@@ -116,5 +119,5 @@ banner:
 todo:
 	@echo "$(YEL)📌 Hello, if you've made it this far, that means it compiles. YAY 🎉$(NC)"
 	@echo "$(YEL)💀 But I don’t know what $(RED)errors$(YEL) will pop up once you try to run it...$(NC)"
-
+	@echo "$(YEL) TO DO: Need to fix whatever tf is suddenly wrong with split set it was working before lmao $(NC)"
 .PHONY: all clean fclean re banner

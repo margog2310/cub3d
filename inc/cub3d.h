@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:16:58 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/08 21:54:25 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/08 23:30:12 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,7 +185,7 @@ typedef struct s_mcraft
 	double				plane_x;
 	double				plane_y;
 	t_gamer				*gamer;
-	t_txts				txts;
+	t_txts				*txts;
 }						t_mcraft;
 
 /* ========== FUNCTIONS ========== */
@@ -212,8 +212,18 @@ int						colors(char *str);
 int						render_img(t_mcraft *mcraft);
 
 /* ------- DDA ------- */
-t_pos					dda(t_mcraft *mcraft, bool **visited, t_pos dir);
+t_pos					dda(t_mcraft *mcraft, bool **visited, t_pos dir,
+							t_pos end);
 void					dfs(t_mcraft *mcraft);
+void					init_ray(t_ray *ray, t_mcraft *mcraft, t_pos dir,
+							int x);
+void					calculate_step_and_sideDist(t_gamer *gamer, t_ray *ray,
+							t_pos *map_pos, t_pos *step);
+bool					**init_visited(t_map *map);
+bool					is_cell_valid(t_map *map, bool **visited, int row,
+							int col);
+t_pos					set_direction_vector(t_gamer *gamer);
+void    draw_ray(t_mcraft *mcraft, t_ray *ray);
 
 /* ----- Map Parsing ----- */
 int						parse(t_mcraft *mcraft, char *file);

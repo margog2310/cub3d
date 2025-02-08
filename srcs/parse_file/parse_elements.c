@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 18:56:21 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/08 20:04:44 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/08 23:39:13 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,17 @@
 int	parse_textures_and_colors(t_mcraft *mcraft, char *line)
 {
 	if (ft_strncmp(line, "NO", 2) == 0 && texture_valid(line + 2, 1))
-		mcraft->txts.tx_n = ft_strtrim(line + 2, IFS);
+		mcraft->txts->tx_n = ft_strtrim(line + 2, IFS);
 	else if (ft_strncmp(line, "SO", 2) == 0 && texture_valid(line + 2, 2))
-		mcraft->txts.tx_s = ft_strtrim(line + 2, IFS);
+		mcraft->txts->tx_s = ft_strtrim(line + 2, IFS);
 	else if (ft_strncmp(line, "EA", 2) == 0 && texture_valid(line + 2, 4))
-		mcraft->txts.tx_e = ft_strtrim(line + 2, IFS);
+		mcraft->txts->tx_e = ft_strtrim(line + 2, IFS);
 	else if (ft_strncmp(line, "WE", 2) == 0 && texture_valid(line + 2, 8))
-		mcraft->txts.tx_w = ft_strtrim(line + 2, IFS);
+		mcraft->txts->tx_w = ft_strtrim(line + 2, IFS);
 	else if (ft_strncmp(line, "F", 1) == 0 && colour_valid(line + 1, 1))
-		mcraft->txts.floor_color = colors(line + 1);
+		mcraft->txts->floor_color = colors(line + 1);
 	else if (ft_strncmp(line, "C", 1) == 0 && colour_valid(line + 1, 2))
-		mcraft->txts.ceiling_color = colors(line + 1);
+		mcraft->txts->ceiling_color = colors(line + 1);
 	else
 	{
 		printf("%s\n", line);
