@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_elements.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
+/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 18:56:21 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/05 01:28:57 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/08 20:04:44 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

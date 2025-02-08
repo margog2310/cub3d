@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+         #
+#    By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/21 16:21:20 by mganchev          #+#    #+#              #
-#    Updated: 2025/02/05 01:43:47 by ssottori         ###   ########.fr        #
+#    Updated: 2025/02/08 19:22:51 by mganchev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,7 @@ SRCS = cub3d.c \
 		parse_file/map_valid.c \
 		parse_file/parse_utils.c \
 		parse_file/file_valid.c \
+		DDA/init_dda.c \
 		player.c \
 		utils.c \
 		minimap.c \

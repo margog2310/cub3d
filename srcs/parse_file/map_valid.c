@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_valid.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
+/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:34:52 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/05 01:08:58 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/08 19:54:00 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,9 @@ bool	symbols_valid(t_mcraft *mcraft, t_map *map)
 			{
 				// map->player_start_row = i;
 				// map->player_start_col = j;
-				mcraft->gamer.x = j * BLOCK + (BLOCK / 2);
-				mcraft->gamer.y = i * BLOCK + (BLOCK / 2);
+				set_player_direction(&mcraft->gamer->direction, map->grid[i][j]);
+				mcraft->gamer->x = j * BLOCK + (BLOCK / 2);
+				mcraft->gamer->y = i * BLOCK + (BLOCK / 2);
 				player_count++;
 			}
 		}

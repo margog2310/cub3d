@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
+/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 04:42:54 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/05 01:28:49 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/08 20:15:46 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

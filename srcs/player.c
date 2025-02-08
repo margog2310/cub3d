@@ -3,26 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
+/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 18:05:30 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/05 17:40:03 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/08 19:48:35 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	init_player(t_gamer *gamer)
+void	init_player(t_gamer **gamer)
 {
-	gamer->x = WIN_W / 2;
-	gamer->y = WIN_H / 2;
-	gamer->angle = PI / 2;
-	gamer->k_up = false;
-	gamer->k_down = false;
-	gamer->k_right = false;
-	gamer->k_left = false;
-	gamer->rot_l = false;
-	gamer->rot_r = false;
+    *gamer = malloc(sizeof(t_gamer));
+    (*gamer)->x = WIN_W / 2;
+    (*gamer)->y = WIN_H / 2;
+    (*gamer)->angle = PI / 2;
+    (*gamer)->k_up = false;
+    (*gamer)->k_down = false;
+    (*gamer)->k_right = false;
+    (*gamer)->k_left = false;
+    (*gamer)->rot_l = false;
+    (*gamer)->rot_r = false;
+    (*gamer)->direction = 0;
 }
 
 void	move_player(t_mcraft *mcraft)
@@ -31,7 +33,7 @@ void	move_player(t_mcraft *mcraft)
 	float	cos_a;
 	float	sin_a;
 
-	gamer = &mcraft->gamer;
+	gamer = mcraft->gamer;
 	cos_a = cos(gamer->angle);
 	sin_a = sin(gamer->angle);
 	if (gamer->rot_l)

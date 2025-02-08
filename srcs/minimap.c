@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
+/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 02:34:42 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/05 02:44:03 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/08 19:27:35 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ static void	draw_player(t_mcraft *mcraft)
 
 	//minimap_h = WIN_H / 5; //was trying to fix fuckin movement inversion
 	scale = (float)TILE_S / BLOCK;
-	player_map_x = OFF_X + (int)(mcraft->gamer.x * scale);
-	player_map_y = OFF_Y + (int)(mcraft->gamer.y * scale);
+	player_map_x = OFF_X + (int)(mcraft->gamer->x * scale);
+	player_map_y = OFF_Y + (int)(mcraft->gamer->y * scale);
 	marker_size = TILE_S / 2;
 	draw_tile(mcraft, 
 			player_map_x - (marker_size / 2), 
@@ -71,8 +71,8 @@ void	draw_ray_minimap(t_mcraft *mcraft, float angle)
 	t_vector	hit;
 
 	hit = mr_ray(mcraft, angle);
-	ray_x = mcraft->gamer.x;
-	ray_y = mcraft->gamer.y;
+	ray_x = mcraft->gamer->x;
+	ray_y = mcraft->gamer->y;
 	scale = (float)TILE_S / BLOCK; //minimap size it
 	while ((int)(ray_x / BLOCK) != (int)(hit.x / BLOCK) ||
 		(int)(ray_y / BLOCK) != (int)(hit.y / BLOCK))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
+/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:37:35 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/03 22:26:10 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/08 19:37:26 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

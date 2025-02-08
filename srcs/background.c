@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   background.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
+/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:43:42 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/05 01:30:19 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/08 19:25:11 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	draw_floor(t_mcraft *mcraft)
 	int	y;
 	int	y_off;
 
-	y_off = (int)mcraft->gamer.y;
+	y_off = (int)mcraft->gamer->y;
 	y = mcraft->h / 2 + y_off;
 	while (y < mcraft->h + y_off)
 	{

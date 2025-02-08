@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
+/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 00:50:12 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/05 17:56:30 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/08 19:28:13 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ t_vector	mr_ray(t_mcraft *mcraft, float angle)
 	int			map_y;
 	t_vector	bullseye;
 
-	ray_x = mcraft->gamer.x;
-	ray_y = mcraft->gamer.y;
+	ray_x = mcraft->gamer->x;
+	ray_y = mcraft->gamer->y;
 	while (1)
 	{
 		map_x = (int)(ray_x / BLOCK);
@@ -59,8 +59,8 @@ void	cast_rays(t_mcraft *mcraft) //can use this for both minimap and 3D
 	float	i;
 	float	angle;
 
-	start_a = mcraft->gamer.angle - (PI / 6);
-	end_a = mcraft->gamer.angle + (PI / 6);
+	start_a = mcraft->gamer->angle - (PI / 6);
+	end_a = mcraft->gamer->angle + (PI / 6);
 	i = (PI / 3) / WIN_W; // angl increment to spread rays across the FOV
 	angle = start_a;
 	while (angle <= end_a)

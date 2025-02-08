@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
+/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:27:47 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/05 03:07:50 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/08 19:25:43 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	keys(int keycode, t_mcraft *mcraft)
 {
 	t_gamer	*gamer;
 
-	gamer = &mcraft->gamer;
+	gamer = mcraft->gamer;
 	if (keycode == ESC)
 		exit_win(mcraft);
 	wads_keys(keycode, gamer);
@@ -82,7 +82,7 @@ int	key_release(int keycode, t_mcraft *mcraft)
 {
 	t_gamer	*gamer;
 
-	gamer = &mcraft->gamer;
+	gamer = mcraft->gamer;
 	if (keycode == W)
 		gamer->k_up = false;
 	else if (keycode == S)

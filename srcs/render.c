@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
+/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:57:12 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/05 01:45:41 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/08 19:24:54 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,13 @@ void	draw_tile(t_mcraft *mcraft, int start_x, int start_y, int tile_size, int co
 
 void	player_position(t_mcraft *mcraft) //temp tester function
 {
-	t_gamer gamer;
+	t_gamer *gamer;
 	static int	frame_count;
 
 	gamer = mcraft->gamer;
 	frame_count = 0;
 	if (frame_count % 60 == 0)
-		ft_printf("Player pos: x=%d, y=%d\n", (int)gamer.x, (int)gamer.y);
+		ft_printf("Player pos: x=%d, y=%d\n", (int)gamer->x, (int)gamer->y);
 	frame_count++;
 
 }

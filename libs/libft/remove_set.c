@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 22:28:21 by mganchev          #+#    #+#             */
-/*   Updated: 2025/01/29 22:57:22 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/08 20:04:04 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,12 @@ char *remove_set(char *str, char *set)
     {
         str = skip_set(str, set);
         if (*str)
+        {
             *result = *str;
-        result++;
-        str++;
+            result++;
+            str++;
+        }
     }
     *result = '\0';
-    result = temp;
-    return (result);
+    return (temp);
 }
