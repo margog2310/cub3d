@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 18:56:21 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/08 23:39:13 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/10 19:12:29 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,27 @@ int	parse_elements(t_mcraft *mcraft, int fd)
 		line = get_next_line(fd);
 	}
 	return (row_index);
+}
+
+void	create_textures(t_mcraft *mcraft, t_txts *txts)
+{
+	txts->tx_n_img = mlx_xpm_file_to_image(mcraft->mlx, txts->tx_n,
+			&txts->tx_width, &txts->tx_height);
+	txts->tx_s_img = mlx_xpm_file_to_image(mcraft->mlx, txts->tx_s,
+			&txts->tx_width, &txts->tx_height);
+	txts->tx_e_img = mlx_xpm_file_to_image(mcraft->mlx, txts->tx_e,
+			&txts->tx_width, &txts->tx_height);
+	txts->tx_w_img = mlx_xpm_file_to_image(mcraft->mlx, txts->tx_w,
+			&txts->tx_width, &txts->tx_height);
+	if (!txts->tx_n_img || !txts->tx_s_img || !txts->tx_e_img
+		|| !txts->tx_w_img)
+		exit_err("Error with .xpm texture file.");
+	txts->data[0] = mlx_get_data_addr(txts->tx_n_img, &mcraft->bpp, &mcraft->ll,
+			&mcraft->end);
+	txts->data[1] = mlx_get_data_addr(txts->tx_s_img, &mcraft->bpp, &mcraft->ll,
+			&mcraft->end);
+	txts->data[2] = mlx_get_data_addr(txts->tx_e_img, &mcraft->bpp, &mcraft->ll,
+			&mcraft->end);
+	txts->data[3] = mlx_get_data_addr(txts->tx_w_img, &mcraft->bpp, &mcraft->ll,
+			&mcraft->end);
 }

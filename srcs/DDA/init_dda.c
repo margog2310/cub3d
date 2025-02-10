@@ -6,23 +6,23 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 18:00:37 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/08 22:24:43 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/10 20:09:48 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-bool    **init_visited(t_map *map)
+bool	**init_visited(t_map *map)
 {
-    bool **visited;
-    
-    visited = (bool **)ft_allocate_grid(map->rows, map->cols, sizeof(bool));
-    if (!visited)
-    {
-        free(visited);
-        exit_err("Memory allocation failed.");
-    }
-    return (visited);    
+	bool	**visited;
+
+	visited = (bool **)ft_allocate_grid(map->rows, map->cols, sizeof(bool));
+	if (!visited)
+	{
+		free(visited);
+		exit_err("Memory allocation failed.");
+	}
+	return (visited);
 }
 
 void	init_ray(t_ray *ray, t_mcraft *mcraft, t_pos dir, int x)
@@ -35,6 +35,14 @@ void	init_ray(t_ray *ray, t_mcraft *mcraft, t_pos dir, int x)
 	ray->ray_dir_y = dir.y + mcraft->plane_y * mcraft->camera_x;
 	ray->delta_dist_x = fabs(1 / ray->ray_dir_x);
 	ray->delta_dist_y = fabs(1 / ray->ray_dir_y);
+	ray->h = mcraft->camera_h;
+	ray->side_dist_x = 0;
+	ray->side_dist_y = 0;
+	ray->perp_wall_dist = 0;
+	ray->draw_start = 0;
+	ray->draw_end = 0;
+	ray->curr_x = 0;
+	ray->curr_y = 0;
 }
 
 void	calculate_step_and_sideDist(t_gamer *gamer, t_ray *ray, t_pos *map_pos,

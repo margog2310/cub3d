@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:16:58 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/08 23:30:12 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/10 19:55:33 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@
 # define DOWN 116
 # define M 109
 
-# define NORTH 1
-# define SOUTH 2
-# define WEST 3
-# define EAST 4
+# define NORTH 0
+# define SOUTH 1
+# define WEST 2
+# define EAST 3
 
 # define EMPTY '0'
 # define WALL '1'
@@ -99,12 +99,12 @@ typedef struct s_ray
 	double				side_dist_x;
 	double				side_dist_y;
 	double				perp_wall_dist;
+	double				h;
 	int					direction;
 	int					map_x;
 	int					map_y;
 	int					draw_start;
 	int					draw_end;
-	int					h;
 }						t_ray;
 typedef struct s_map
 {
@@ -134,6 +134,7 @@ typedef struct t_txts
 	char				*tx_s;
 	char				*tx_e;
 	char				*tx_w;
+	char				*data[4];
 
 	void				*tx_n_img;
 	void				*tx_s_img;
@@ -181,6 +182,7 @@ typedef struct s_mcraft
 	int ll;  // line length
 	int end; // endian
 
+	double				camera_h;
 	double				camera_x;
 	double				plane_x;
 	double				plane_y;
@@ -222,8 +224,9 @@ void					calculate_step_and_sideDist(t_gamer *gamer, t_ray *ray,
 bool					**init_visited(t_map *map);
 bool					is_cell_valid(t_map *map, bool **visited, int row,
 							int col);
+int						get_tx_index(int direction);
 t_pos					set_direction_vector(t_gamer *gamer);
-void    draw_ray(t_mcraft *mcraft, t_ray *ray);
+void					draw_ray(t_mcraft *mcraft, t_ray *ray);
 
 /* ----- Map Parsing ----- */
 int						parse(t_mcraft *mcraft, char *file);
@@ -236,6 +239,7 @@ bool					is_map_valid(t_mcraft *mcraft, t_map *map);
 bool					is_enclosed(t_map *map);
 bool					symbols_valid(t_mcraft *mcraft, t_map *map);
 int						parse_textures_and_colors(t_mcraft *mcraft, char *line);
+void					create_textures(t_mcraft *mcraft, t_txts *txts);
 
 /* ------ garbage collector ------ */
 void					cleanup_game(t_mcraft *mcraft);

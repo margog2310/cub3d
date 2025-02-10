@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:37:35 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/08 19:37:26 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/10 19:49:52 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,23 @@ static void	init_img(t_mcraft *mcraft)
 			&mcraft->bpp, &mcraft->ll, &mcraft->end);
 }
 
+void	init_textures(t_mcraft *mcraft)
+{
+	mcraft->txts = malloc(sizeof(t_txts));
+	if (!mcraft->txts)
+		exit_err("Memory allocation failed.");
+	mcraft->txts->floor_color = 0;
+	mcraft->txts->ceiling_color = 0;
+	mcraft->txts->tx_width = 0;
+	mcraft->txts->tx_height = 0;
+}
+
 void	init_win(t_mcraft *mcraft, int w, int h)
 {
 	init_mlx(mcraft);
 	init_window(mcraft, w, h);
 	init_img(mcraft);
+	init_textures(mcraft);
+	mcraft->camera_h = 0.5;
+	//printf("debug: camera: %f\n", mcraft->camera_h);
 }

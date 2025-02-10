@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 17:55:46 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/08 23:44:02 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/10 16:53:02 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	is_delimiter(char c, const char *delimiters)
 	while (*delimiters)
 	{
 		if (c == *delimiters)
-			return (printf("delimiter: %c\n", c), 1);
+			return (1);
 		delimiters++;
 	}
 	return (0);

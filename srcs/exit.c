@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
+/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 04:37:56 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/03 22:31:21 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/10 17:30:38 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,24 @@ int	exit_win(t_mcraft *mcraft)
 	exit(EXIT_SUCCESS);
 }
 
+void	cleanup_txts(t_mcraft *mcraft)
+{
+	if (mcraft->txts)
+	{
+		mlx_destroy_image(mcraft->mlx, mcraft->txts->tx_n_img);
+		mlx_destroy_image(mcraft->mlx, mcraft->txts->tx_s_img);
+		mlx_destroy_image(mcraft->mlx, mcraft->txts->tx_e_img);
+		mlx_destroy_image(mcraft->mlx, mcraft->txts->tx_w_img);
+		free(mcraft->txts->tx_n);
+		free(mcraft->txts->tx_s);
+		free(mcraft->txts->tx_e);
+		free(mcraft->txts->tx_w);
+		free(mcraft->txts->floor_id);
+		free(mcraft->txts->ceiling_id);
+		free(mcraft->txts);
+	}
+}
+
 void	cleanup_game(t_mcraft *mcraft)
 {
 	if (!mcraft)
@@ -42,6 +60,8 @@ void	cleanup_game(t_mcraft *mcraft)
 		free_array(mcraft->map->grid);
 		free(mcraft->map);
 	}
+	if (mcraft->txts)
+		cleanup_txts(mcraft);
 	if (mcraft->img)
 		mlx_destroy_image(mcraft->mlx, mcraft->img);
 	if (mcraft->win)
