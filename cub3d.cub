@@ -1,4 +1,4 @@
-F 20,       20,20
+F 0,       0,255
 C 200,200,200
 
 NO        srcs/assets/textures/north.xpm

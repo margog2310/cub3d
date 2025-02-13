@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:16:58 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/10 19:55:33 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/13 22:52:33 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,11 @@ typedef struct t_txts
 	char				*tx_s;
 	char				*tx_e;
 	char				*tx_w;
-	char				*data[4];
+
+	char				*tx_n_data;
+	char				*tx_s_data;
+	char				*tx_e_data;
+	char				*tx_w_data;
 
 	void				*tx_n_img;
 	void				*tx_s_img;
@@ -194,9 +198,10 @@ typedef struct s_mcraft
 
 /* ----- Initttt ----- */
 void					cub_init(t_mcraft *mcraft, char **av);
-void					init_win(t_mcraft *mcraft, int w, int h);
+void					init_win(t_mcraft *mcraft, char **av);
 void					win_bk(t_mcraft *mcraft);
 t_map					*create_map(int fd, char *line, t_mcraft *mcraft);
+void					init_window(t_mcraft *mcraft, int w, int h);
 
 /* ----- Event Hanling ----- */
 void					keyhooks(t_mcraft *mcraft);
@@ -214,17 +219,13 @@ int						colors(char *str);
 int						render_img(t_mcraft *mcraft);
 
 /* ------- DDA ------- */
-t_pos					dda(t_mcraft *mcraft, bool **visited, t_pos dir,
-							t_pos end);
-void					dfs(t_mcraft *mcraft);
-void					init_ray(t_ray *ray, t_mcraft *mcraft, t_pos dir,
-							int x);
+int					dda(t_mcraft *mcraft);
+t_ray					*init_ray(t_mcraft *mcraft, t_pos dir, int x);
 void					calculate_step_and_sideDist(t_gamer *gamer, t_ray *ray,
 							t_pos *map_pos, t_pos *step);
 bool					**init_visited(t_map *map);
-bool					is_cell_valid(t_map *map, bool **visited, int row,
-							int col);
-int						get_tx_index(int direction);
+bool					is_cell_valid(t_map *map, int row, int col);
+char					*get_tx_index(int direction);
 t_pos					set_direction_vector(t_gamer *gamer);
 void					draw_ray(t_mcraft *mcraft, t_ray *ray);
 
@@ -280,6 +281,7 @@ float					distance(float x, float y);
 
 /* ------ utils ------- */
 t_mcraft				*get_mcraft(t_mcraft *mcraft);
+char					*get_tx_data(char *key, t_txts *txts);
 int						get_longest_row(t_map *map, char *key);
 
 #endif

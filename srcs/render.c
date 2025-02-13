@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:57:12 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/10 17:05:11 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/13 23:07:22 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,9 @@ int	render_img(t_mcraft *mcraft)
 {
 	ft_bzero(mcraft->img_addr, mcraft->h * mcraft->ll);
 	// player_position(mcraft);
-	win_bk(mcraft);
-	minimap(mcraft);
-	draw_crosshairs(mcraft, BLACK);
+	//win_bk(mcraft);
+	//minimap(mcraft);
+	//draw_crosshairs(mcraft, BLACK);
 	mlx_put_image_to_window(mcraft->mlx, mcraft->win, mcraft->img, 0, 0);
 	return (0);
 }

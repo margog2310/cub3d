@@ -6,7 +6,7 @@
 #    By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/21 16:21:20 by mganchev          #+#    #+#              #
-#    Updated: 2025/02/08 23:46:11 by mganchev         ###   ########.fr        #
+#    Updated: 2025/02/13 22:53:51 by mganchev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,9 +52,8 @@ SRCS = cub3d.c \
 		parse_file/map_valid.c \
 		parse_file/parse_utils.c \
 		parse_file/file_valid.c \
-		DDA/init_dda.c \
 		DDA/draw.c \
-		DDA/dda_utils.c \
+		DDA/utils.c \
 		DDA/dda.c \
 		player.c \
 		utils.c \

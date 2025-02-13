@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:37:35 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/10 19:49:52 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/13 23:08:56 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	init_mlx(t_mcraft *mcraft)
 		exit_err("MLX init failed.");
 }
 
-static void	init_window(t_mcraft *mcraft, int w, int h)
+void	init_window(t_mcraft *mcraft, int w, int h)
 {
 	mcraft->w = w;
 	mcraft->h = h;
@@ -44,8 +44,8 @@ static void	init_img(t_mcraft *mcraft)
 		free(mcraft->mlx);
 		exit(EXIT_FAILURE);
 	}
-	mcraft->img_addr = mlx_get_data_addr(mcraft->img,
-			&mcraft->bpp, &mcraft->ll, &mcraft->end);
+	mcraft->img_addr = mlx_get_data_addr(mcraft->img, &mcraft->bpp, &mcraft->ll,
+			&mcraft->end);
 }
 
 void	init_textures(t_mcraft *mcraft)
@@ -55,16 +55,23 @@ void	init_textures(t_mcraft *mcraft)
 		exit_err("Memory allocation failed.");
 	mcraft->txts->floor_color = 0;
 	mcraft->txts->ceiling_color = 0;
-	mcraft->txts->tx_width = 0;
-	mcraft->txts->tx_height = 0;
+	mcraft->txts->tx_width = 64;
+	mcraft->txts->tx_height = 64;
 }
 
-void	init_win(t_mcraft *mcraft, int w, int h)
+void	init_win(t_mcraft *mcraft, char *av[1])
 {
 	init_mlx(mcraft);
-	init_window(mcraft, w, h);
-	init_img(mcraft);
 	init_textures(mcraft);
+	init_player(&mcraft->gamer);
+	if (parse(mcraft, av[1]))
+	{
+		free(mcraft);
+		cleanup_game(mcraft);
+		exit_err("Error: Map parsing failed.");
+	}
+	init_window(mcraft, mcraft->map->cols * BLOCK, mcraft->map->rows * BLOCK);
+	init_img(mcraft);
 	mcraft->camera_h = 0.5;
-	//printf("debug: camera: %f\n", mcraft->camera_h);
+	// printf("debug: camera: %f\n", mcraft->camera_h);
 }

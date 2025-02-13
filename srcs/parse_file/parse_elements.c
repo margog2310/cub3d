@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 18:56:21 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/10 19:12:29 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/13 20:41:20 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,15 @@ void	create_textures(t_mcraft *mcraft, t_txts *txts)
 	if (!txts->tx_n_img || !txts->tx_s_img || !txts->tx_e_img
 		|| !txts->tx_w_img)
 		exit_err("Error with .xpm texture file.");
-	txts->data[0] = mlx_get_data_addr(txts->tx_n_img, &mcraft->bpp, &mcraft->ll,
-			&mcraft->end);
-	txts->data[1] = mlx_get_data_addr(txts->tx_s_img, &mcraft->bpp, &mcraft->ll,
-			&mcraft->end);
-	txts->data[2] = mlx_get_data_addr(txts->tx_e_img, &mcraft->bpp, &mcraft->ll,
-			&mcraft->end);
-	txts->data[3] = mlx_get_data_addr(txts->tx_w_img, &mcraft->bpp, &mcraft->ll,
-			&mcraft->end);
+	txts->tx_n_data = mlx_get_data_addr(txts->tx_n_img, &mcraft->bpp,
+			&mcraft->ll, &mcraft->end);
+	txts->tx_s_data = mlx_get_data_addr(txts->tx_s_img, &mcraft->bpp,
+			&mcraft->ll, &mcraft->end);
+	txts->tx_e_data = mlx_get_data_addr(txts->tx_e_img, &mcraft->bpp,
+			&mcraft->ll, &mcraft->end);
+	txts->tx_w_data = mlx_get_data_addr(txts->tx_w_img, &mcraft->bpp,
+			&mcraft->ll, &mcraft->end);
+	if (!txts->tx_n_data || !txts->tx_s_data || txts->tx_e_data
+		|| txts->tx_w_data)
+		exit_err("Failure getting data address.");
 }

@@ -5,22 +5,73 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/08 22:06:28 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/08 23:28:35 by mganchev         ###   ########.fr       */
+/*   Created: 2025/02/13 21:03:48 by mganchev          #+#    #+#             */
+/*   Updated: 2025/02/13 23:30:30 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	find_wall(t_mcraft *mcraft, t_ray *ray, t_pos *map_pos, bool **visited,
-		int *side)
+t_ray	*init_ray(t_mcraft *mcraft, t_pos dir, int x)
+{
+	t_ray	*ray;
+
+	ray = malloc(sizeof(t_ray));
+	if (!ray)
+		exit_err("Memory allocation failed.");
+	ray->direction = mcraft->gamer->direction;
+	mcraft->camera_x = 2 * x / (double)mcraft->w - 1;
+	mcraft->plane_x = -dir.y * 0.66;
+	mcraft->plane_y = dir.x * 0.66;
+	ray->ray_dir_x = dir.x + mcraft->plane_x * mcraft->camera_x;
+	ray->ray_dir_y = dir.y + mcraft->plane_y * mcraft->camera_x;
+	ray->delta_dist_x = fabs(1 / ray->ray_dir_x);
+	ray->delta_dist_y = fabs(1 / ray->ray_dir_y);
+	ray->h = mcraft->camera_h;
+	ray->side_dist_x = 0;
+	ray->side_dist_y = 0;
+	ray->perp_wall_dist = 0;
+	ray->draw_start = 0;
+	ray->draw_end = 0;
+	ray->curr_x = 0;
+	ray->curr_y = 0;
+	return (ray);
+}
+
+void	calculate_step_and_sideDist(t_gamer *gamer, t_ray *ray, t_pos *map_pos,
+		t_pos *step)
+{
+    if (ray->ray_dir_x < 0)
+	{
+		step->x = -1;
+		ray->side_dist_x = (gamer->x - map_pos->x) * ray->delta_dist_x;
+	}
+	else
+	{
+		step->x = 1;
+		ray->side_dist_x = (map_pos->x + 1.0 - gamer->x) * ray->delta_dist_x;
+	}
+	if (ray->ray_dir_y < 0)
+	{
+		step->y = -1;
+		ray->side_dist_y = (gamer->y - map_pos->y) * ray->delta_dist_y;
+	}
+	else
+	{
+		step->y = 1;
+		ray->side_dist_y = (map_pos->y + 1.0 - gamer->y) * ray->delta_dist_y;
+	}
+}
+
+int	find_wall(t_mcraft *mcraft, t_ray *ray, t_pos *map_pos, int *side)
 {
 	t_pos	step;
 
 	calculate_step_and_sideDist(mcraft->gamer, ray, map_pos, &step);
 	while (1)
 	{
-		if (ray->side_dist_x < ray->side_dist_y)
+		
+        if (ray->side_dist_x < ray->side_dist_y)
 		{
 			ray->side_dist_x += ray->delta_dist_x;
 			map_pos->x += step.x;
@@ -32,65 +83,41 @@ int	find_wall(t_mcraft *mcraft, t_ray *ray, t_pos *map_pos, bool **visited,
 			map_pos->y += step.y;
 			*side = 1;
 		}
-		visited[map_pos->y][map_pos->x] = true;
+        if (!is_cell_valid(mcraft->map, map_pos->y, map_pos->x))
+            break ;
 		if (mcraft->map->grid[map_pos->y][map_pos->x] == WALL)
 			return (1);
 	}
 	return (0);
 }
 
-t_pos	dda(t_mcraft *mcraft, bool **visited, t_pos dir, t_pos end)
+int	dda(t_mcraft *mcraft)
 {
-	int		x;
-	int		hit;
-	int		side;
-	t_pos	map_pos;
-	t_ray	ray;
+	int x;
+	int hit;
+	int side;
+	t_pos map_pos;
+	t_pos dir;
+	t_ray *ray;
 
 	x = 0;
-	map_pos.x = (int)mcraft->gamer->x / BLOCK;
-	map_pos.y = (int)mcraft->gamer->y / BLOCK;
-	while (1)
+	dir = set_direction_vector(mcraft->gamer);
+	map_pos.x = (int)mcraft->gamer->x;
+	map_pos.y = (int)mcraft->gamer->y;
+	while (x < mcraft->w)
 	{
-		while (x < mcraft->w)
+		ray = init_ray(mcraft, dir, x);
+		hit = find_wall(mcraft, ray, &map_pos, &side);
+		if (hit)
 		{
-			init_ray(&ray, mcraft, dir, x);
-			hit = find_wall(mcraft, &ray, &map_pos, visited, &side);
-			if (hit)
-			{
-				ray.draw_start = map_pos.y * BLOCK;
-                ray.draw_end = ray.draw_start + BLOCK;
-                end.x = map_pos.x;
-				end.y = map_pos.y;
-				ray.curr_x = end.x;
-				ray.curr_y = end.y;
-				draw_ray(mcraft, &ray);
-				return (end);
-			}
-			if (side == 0)
-				ray.perp_wall_dist = (ray.side_dist_x - ray.delta_dist_x);
-			else
-				ray.perp_wall_dist = (ray.side_dist_y - ray.delta_dist_y);
+			ray->draw_start = map_pos.x * BLOCK;
+			ray->draw_end = ray->draw_start + BLOCK;
+			ray->curr_x = map_pos.x;
+			ray->curr_y = map_pos.y;
+			draw_tile(mcraft, ray->draw_start, ray->draw_end, 64,
+				mcraft->txts->floor_color);
 		}
 		x++;
 	}
-	return (end);
-}
-
-void	dfs(t_mcraft *mcraft)
-{
-	t_pos	start;
-	t_pos	end;
-	t_pos	dir;
-	bool	**visited;
-
-	visited = init_visited(mcraft->map);
-	start.x = (int)mcraft->gamer->x / BLOCK;
-	start.y = (int)mcraft->gamer->y / BLOCK;
-	end.x = 0;
-	end.y = 0;
-	dir = set_direction_vector(mcraft->gamer);
-	end = dda(mcraft, visited, dir, end);
-	printf("end x: %d end y: %d\n", end.x, end.y);
-	// end is currently the coordinates of the nearest wall
+	return (0);
 }
