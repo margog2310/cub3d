@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
+/*   By: margo <margo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:57:12 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/13 23:07:22 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/14 02:48:35 by margo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	player_position(t_mcraft *mcraft) // temp tester function
 int	render_img(t_mcraft *mcraft)
 {
 	ft_bzero(mcraft->img_addr, mcraft->h * mcraft->ll);
+	dda(mcraft);
 	// player_position(mcraft);
 	//win_bk(mcraft);
 	//minimap(mcraft);

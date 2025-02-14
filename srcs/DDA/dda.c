@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
+/*   By: margo <margo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 21:03:48 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/13 23:30:30 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/14 02:47:45 by margo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,9 +114,12 @@ int	dda(t_mcraft *mcraft)
 			ray->draw_end = ray->draw_start + BLOCK;
 			ray->curr_x = map_pos.x;
 			ray->curr_y = map_pos.y;
-			draw_tile(mcraft, ray->draw_start, ray->draw_end, 64,
-				mcraft->txts->floor_color);
+			draw_pixel(mcraft, ray->draw_start, ray->draw_end, mcraft->txts->floor_color);
 		}
+		if (side == 0)
+				ray->perp_wall_dist = (ray->side_dist_x - ray->delta_dist_x);
+			else
+				ray->perp_wall_dist = (ray->side_dist_y - ray->delta_dist_y);
 		x++;
 	}
 	return (0);

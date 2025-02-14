@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_valid.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
+/*   By: margo <margo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 19:20:47 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/08 23:37:31 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/14 02:42:30 by margo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,25 @@ bool	texture_valid(char *path, int bitmask)
 	if (repeat & bitmask)
 		return (exit_err("Repeating texture."), false);
 	repeat |= bitmask;
+	return (true);
+}
+
+bool	file_valid(char *line, int fd, bool map_read)
+{
+	if (map_read)
+	{
+		line = get_next_line(fd);
+		while (line)
+		{
+			if (ft_strlen(line) > 0)
+			{
+				if (ft_strlen(line) == 1 && ft_strncmp(line, "\n", 2))
+					continue ;
+				else
+					return (false);
+			}
+			line = get_next_line(fd);
+		}
+	}
 	return (true);
 }

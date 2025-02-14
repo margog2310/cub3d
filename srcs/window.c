@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
+/*   By: margo <margo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:37:35 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/13 23:08:56 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/14 02:31:07 by margo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	init_textures(t_mcraft *mcraft)
 	mcraft->txts->tx_height = 64;
 }
 
-void	init_win(t_mcraft *mcraft, char *av[1])
+void	init_win(t_mcraft *mcraft, char **av)
 {
 	init_mlx(mcraft);
 	init_textures(mcraft);
@@ -72,6 +72,6 @@ void	init_win(t_mcraft *mcraft, char *av[1])
 	}
 	init_window(mcraft, mcraft->map->cols * BLOCK, mcraft->map->rows * BLOCK);
 	init_img(mcraft);
-	mcraft->camera_h = 0.5;
+	mcraft->camera_h = mcraft->h / 2;
 	// printf("debug: camera: %f\n", mcraft->camera_h);
 }

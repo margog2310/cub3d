@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
+/*   By: margo <margo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:16:58 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/13 22:52:33 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/14 02:38:15 by margo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,7 +219,7 @@ int						colors(char *str);
 int						render_img(t_mcraft *mcraft);
 
 /* ------- DDA ------- */
-int					dda(t_mcraft *mcraft);
+int						dda(t_mcraft *mcraft);
 t_ray					*init_ray(t_mcraft *mcraft, t_pos dir, int x);
 void					calculate_step_and_sideDist(t_gamer *gamer, t_ray *ray,
 							t_pos *map_pos, t_pos *step);
@@ -237,6 +237,7 @@ void					set_player_direction(int *direction, char key);
 bool					colour_valid(char *line, int bitmask);
 bool					texture_valid(char *path, int bitmask);
 bool					is_map_valid(t_mcraft *mcraft, t_map *map);
+bool					file_valid(char *line, int fd, bool map_read);
 bool					is_enclosed(t_map *map);
 bool					symbols_valid(t_mcraft *mcraft, t_map *map);
 int						parse_textures_and_colors(t_mcraft *mcraft, char *line);
