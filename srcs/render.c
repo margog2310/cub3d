@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: margo <margo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:57:12 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/14 02:48:35 by margo            ###   ########.fr       */
+/*   Updated: 2025/02/15 18:06:48 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,10 @@ void	draw_pixel(t_mcraft *mcraft, int x, int y, int color)
 
 	if (x >= 0 && x < mcraft->w && y >= 0 && y < mcraft->h)
 	{
+		
 		dst = mcraft->img_addr + (y * mcraft->ll + x * (mcraft->bpp / 8));
 		*(unsigned int *)dst = color;
+		printf("Drawing pixel at (%d, %d) with color %d\n", x, y, color);
 	}
 }
 
@@ -76,6 +78,7 @@ void	player_position(t_mcraft *mcraft) // temp tester function
 int	render_img(t_mcraft *mcraft)
 {
 	ft_bzero(mcraft->img_addr, mcraft->h * mcraft->ll);
+	//printf("floor color: %d\n", mcraft->txts->floor_color);
 	dda(mcraft);
 	// player_position(mcraft);
 	//win_bk(mcraft);

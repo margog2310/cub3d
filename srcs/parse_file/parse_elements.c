@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 18:56:21 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/13 20:41:20 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/15 17:45:55 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	create_textures(t_mcraft *mcraft, t_txts *txts)
 			&mcraft->ll, &mcraft->end);
 	txts->tx_w_data = mlx_get_data_addr(txts->tx_w_img, &mcraft->bpp,
 			&mcraft->ll, &mcraft->end);
-	if (!txts->tx_n_data || !txts->tx_s_data || txts->tx_e_data
-		|| txts->tx_w_data)
+	if (!txts->tx_n_data || !txts->tx_s_data || !txts->tx_e_data
+		|| !txts->tx_w_data)
 		exit_err("Failure getting data address.");
 }

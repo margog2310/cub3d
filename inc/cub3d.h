@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: margo <margo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:16:58 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/14 02:38:15 by margo            ###   ########.fr       */
+/*   Updated: 2025/02/15 19:17:17 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@
 
 # define STEP_SIZE 1.0
 
+#define FOV 60.0
+
 /* ========== STRUCTS ========== */
 typedef struct s_mcraft	t_mcraft;
 
@@ -80,10 +82,11 @@ typedef struct s_pos
 }						t_pos;
 typedef struct s_vector
 {
-	int x;     // x coord of vector relative to screen
-	int y;     // current pixel index of vector
-	int y0;    // y start index of drawing texture
-	int y1;    // y end index of drawing texture
+	int x;  // x coord of vector relative to screen
+	int y;  // current pixel index of vector
+	int y0; // y start index of drawing texture
+	int y1; // y end index of drawing texture
+	int					h;
 	int tex_x; // x coord of texture to draw
 	int tex_y; // y coord of texture to draw
 }						t_vector;
@@ -99,12 +102,12 @@ typedef struct s_ray
 	double				side_dist_x;
 	double				side_dist_y;
 	double				perp_wall_dist;
-	double				h;
 	int					direction;
 	int					map_x;
 	int					map_y;
 	int					draw_start;
 	int					draw_end;
+	t_pos				step;
 }						t_ray;
 typedef struct s_map
 {
@@ -190,6 +193,7 @@ typedef struct s_mcraft
 	double				camera_x;
 	double				plane_x;
 	double				plane_y;
+	bool				has_changed;
 	t_gamer				*gamer;
 	t_txts				*txts;
 }						t_mcraft;
@@ -226,8 +230,12 @@ void					calculate_step_and_sideDist(t_gamer *gamer, t_ray *ray,
 bool					**init_visited(t_map *map);
 bool					is_cell_valid(t_map *map, int row, int col);
 char					*get_tx_index(int direction);
+int						get_texture_color(t_mcraft *mcraft, t_txts *txts,
+							int tex_x, int tex_y);
 t_pos					set_direction_vector(t_gamer *gamer);
 void					draw_ray(t_mcraft *mcraft, t_ray *ray);
+void					texture_on_img(t_mcraft *mcraft, t_ray *ray,
+							t_vector vector);
 
 /* ----- Map Parsing ----- */
 int						parse(t_mcraft *mcraft, char *file);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: margo <margo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:37:35 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/14 02:31:07 by margo            ###   ########.fr       */
+/*   Updated: 2025/02/15 17:43:45 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,11 @@ void	init_textures(t_mcraft *mcraft)
 	mcraft->txts = malloc(sizeof(t_txts));
 	if (!mcraft->txts)
 		exit_err("Memory allocation failed.");
+	ft_bzero(mcraft->txts, sizeof(t_txts));
 	mcraft->txts->floor_color = 0;
 	mcraft->txts->ceiling_color = 0;
-	mcraft->txts->tx_width = 64;
-	mcraft->txts->tx_height = 64;
+	mcraft->txts->tx_width = 0;
+	mcraft->txts->tx_height = 0;
 }
 
 void	init_win(t_mcraft *mcraft, char **av)
@@ -66,12 +67,12 @@ void	init_win(t_mcraft *mcraft, char **av)
 	init_player(&mcraft->gamer);
 	if (parse(mcraft, av[1]))
 	{
-		free(mcraft);
 		cleanup_game(mcraft);
 		exit_err("Error: Map parsing failed.");
 	}
 	init_window(mcraft, mcraft->map->cols * BLOCK, mcraft->map->rows * BLOCK);
 	init_img(mcraft);
 	mcraft->camera_h = mcraft->h / 2;
+	mcraft->has_changed = false;
 	// printf("debug: camera: %f\n", mcraft->camera_h);
 }
