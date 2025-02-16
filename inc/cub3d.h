@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:16:58 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/15 19:17:17 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/16 00:11:00 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@
 
 # define STEP_SIZE 1.0
 
-#define FOV 60.0
+# define FOV 60.0
 
 /* ========== STRUCTS ========== */
 typedef struct s_mcraft	t_mcraft;
@@ -82,11 +82,11 @@ typedef struct s_pos
 }						t_pos;
 typedef struct s_vector
 {
-	int x;  // x coord of vector relative to screen
-	int y;  // current pixel index of vector
-	int y0; // y start index of drawing texture
-	int y1; // y end index of drawing texture
-	int					h;
+	int x;     // x coord of vector relative to screen
+	int y;     // current pixel index of vector
+	int y0;    // y start index of drawing texture
+	int y1;    // y end index of drawing texture
+	int h;     // ray height
 	int tex_x; // x coord of texture to draw
 	int tex_y; // y coord of texture to draw
 }						t_vector;
@@ -102,11 +102,13 @@ typedef struct s_ray
 	double				side_dist_x;
 	double				side_dist_y;
 	double				perp_wall_dist;
+	int					side;
 	int					direction;
 	int					map_x;
 	int					map_y;
 	int					draw_start;
 	int					draw_end;
+	double				wall_x;
 	t_pos				step;
 }						t_ray;
 typedef struct s_map
@@ -225,6 +227,9 @@ int						render_img(t_mcraft *mcraft);
 /* ------- DDA ------- */
 int						dda(t_mcraft *mcraft);
 t_ray					*init_ray(t_mcraft *mcraft, t_pos dir, int x);
+void					setup_ray(t_mcraft *mcraft, t_ray *ray, t_pos map_pos);
+void					setup_vector(t_mcraft *mcraft, t_ray *ray,
+							t_vector *vector);
 void					calculate_step_and_sideDist(t_gamer *gamer, t_ray *ray,
 							t_pos *map_pos, t_pos *step);
 bool					**init_visited(t_map *map);
@@ -233,15 +238,17 @@ char					*get_tx_index(int direction);
 int						get_texture_color(t_mcraft *mcraft, t_txts *txts,
 							int tex_x, int tex_y);
 t_pos					set_direction_vector(t_gamer *gamer);
-void					draw_ray(t_mcraft *mcraft, t_ray *ray);
-void					texture_on_img(t_mcraft *mcraft, t_ray *ray,
-							t_vector vector);
+void					draw_vector(t_mcraft *mcraft, t_ray *ray,
+							t_pos map_pos);
+void					pixel_on_img(t_mcraft *mcraft, int rgb, int x, int y);
+void					texture_on_img(t_mcraft *mcraft, t_vector vector,
+							char *tx_data);
 
 /* ----- Map Parsing ----- */
 int						parse(t_mcraft *mcraft, char *file);
 int						parse_elements(t_mcraft *mcraft, int fd);
 void					cleanup_map(t_map *map);
-void					set_player_direction(int *direction, char key);
+void					set_player_direction(int *direction, float *angle, char key);
 bool					colour_valid(char *line, int bitmask);
 bool					texture_valid(char *path, int bitmask);
 bool					is_map_valid(t_mcraft *mcraft, t_map *map);

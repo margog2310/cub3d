@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 04:52:08 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/13 18:04:40 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/16 00:11:07 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,26 @@ int	get_longest_row(t_map *map, char *key)
 	return (-1);
 }
 
-void	set_player_direction(int *direction, char key)
+void	set_player_direction(int *direction, float *angle, char key)
 {
 	if (key == 'N')
+	{
 		*direction = NORTH;
+		*angle = 3 * PI / 2;
+	}
 	else if (key == 'S')
+	{
 		*direction = SOUTH;
+		*angle = PI / 2;
+	}
 	else if (key == 'W')
+	{
 		*direction = WEST;
+		*angle = PI;
+	}
 	else if (key == 'E')
+	{
 		*direction = EAST;
+		*angle = 0;	
+	}
 }

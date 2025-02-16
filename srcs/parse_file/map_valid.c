@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:34:52 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/13 23:05:19 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/16 00:10:15 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ bool	symbols_valid(t_mcraft *mcraft, t_map *map)
 	player_count = 0;
 	while (i++ < map->rows - 1)
 	{
-		j = 1;
+		j = -1;
 		cols = ft_strlen(map->grid[i]) - 1;
 		while (j++ < cols - 1)
 		{
@@ -105,8 +105,8 @@ bool	symbols_valid(t_mcraft *mcraft, t_map *map)
 			{
 				// map->player_start_row = i;
 				// map->player_start_col = j;
-				set_player_direction(&mcraft->gamer->direction,
-					map->grid[i][j]);
+				set_player_direction(&mcraft->gamer->direction, &mcraft->gamer->angle,
+					map->grid[i][j]); // assing gamer angle based on this direction as well
 				mcraft->gamer->x = j;
 				mcraft->gamer->y = i;
 				player_count++;

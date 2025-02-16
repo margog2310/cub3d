@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 21:44:09 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/15 16:34:13 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/15 23:29:11 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,10 @@ int	main(int ac, char **av)
 	cub_init(mcraft, av);
 	//set_player_starting_pos(mcraft);
 	//dda(mcraft);
-	render_img(mcraft);
-	mlx_loop(mcraft->mlx);
-	cleanup_game(mcraft);
+	if (mcraft)
+	{	
+		mlx_loop(mcraft->mlx);
+		cleanup_game(mcraft);
+	}
 	return (0);
 }

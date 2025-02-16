@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:57:12 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/15 18:06:48 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/16 00:13:16 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	draw_pixel(t_mcraft *mcraft, int x, int y, int color)
 		
 		dst = mcraft->img_addr + (y * mcraft->ll + x * (mcraft->bpp / 8));
 		*(unsigned int *)dst = color;
-		printf("Drawing pixel at (%d, %d) with color %d\n", x, y, color);
 	}
 }
 
@@ -75,8 +74,18 @@ void	player_position(t_mcraft *mcraft) // temp tester function
 	frame_count++;
 }
 
+void	update_player_angle(t_mcraft *mcraft, double angle)
+{
+	mcraft->gamer->angle += angle;
+	if (mcraft->gamer->angle < 0)
+		mcraft->gamer->angle += 2 * PI;
+	if (mcraft->gamer->angle >=  2 * PI)
+		mcraft->gamer->angle -= 2 * PI;
+}
+
 int	render_img(t_mcraft *mcraft)
 {
+	update_player_angle(mcraft, mcraft->gamer->angle);
 	ft_bzero(mcraft->img_addr, mcraft->h * mcraft->ll);
 	//printf("floor color: %d\n", mcraft->txts->floor_color);
 	dda(mcraft);
