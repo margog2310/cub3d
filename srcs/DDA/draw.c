@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 21:18:57 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/17 01:18:00 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/17 01:56:25 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ void	texture_on_img(t_mcraft *mcraft, t_vector vector, char *tx_data)
     int	color;
 	int	offset;
 
-	vector.tex_y = (vector.y % mcraft->txts->tx_height);
+	vector.tex_x = (vector.x % BLOCK) * ((WIN_W % BLOCK));
+	vector.tex_y = (vector.y % BLOCK) * ((WIN_H % BLOCK));
 	vector.tex_x = (vector.x % mcraft->txts->tx_width);
+	vector.tex_y = (vector.y % mcraft->txts->tx_height);
 	offset = (vector.tex_x * mcraft->txts->tx_height + vector.tex_x) * 4;
 	color = *(unsigned int *)(tx_data + offset);
 	draw_pixel(mcraft, vector.x, vector.y, color);

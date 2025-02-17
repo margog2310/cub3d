@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 23:07:58 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/17 01:16:55 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/17 01:23:15 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,11 @@ void	setup_vector(t_mcraft *mcraft, t_ray *ray, t_vector *vector, int x)
 {
 	vector->h = (int)(mcraft->h / ray->perp_wall_dist);
 	vector->x = x;
-	// vector->tex_x = (int)(ray->wall_x * (double)(mcraft->txts->tx_width));
-	// if (ray->side == 0 && ray->ray_dir_x > 0)
-	// 	vector->tex_x = mcraft->txts->tx_width - vector->tex_x - 1;
-	// if (ray->side == 1 && ray->ray_dir_y < 0)
-	// 	vector->tex_x = mcraft->txts->tx_width - vector->tex_x - 1;
+	vector->tex_x = (int)(ray->wall_x * (double)(mcraft->txts->tx_width));
+	if (ray->side == 0 && ray->ray_dir_x > 0)
+		vector->tex_x = mcraft->txts->tx_width - vector->tex_x - 1;
+	if (ray->side == 1 && ray->ray_dir_y < 0)
+		vector->tex_x = mcraft->txts->tx_width - vector->tex_x - 1;
 	vector->y0 = -vector->h / 2 + mcraft->h / 2;
 	if (vector->y0 < 0)
 		vector->y0 = 0;
