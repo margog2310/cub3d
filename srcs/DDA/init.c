@@ -6,27 +6,23 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 23:07:58 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/15 23:49:19 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/16 23:14:57 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_ray	*init_ray(t_mcraft *mcraft, t_pos dir, int x)
+t_ray	*init_ray(t_mcraft *mcraft, int x)
 {
 	t_ray	*ray;
-	double	plane_dist;
 
 	ray = malloc(sizeof(t_ray));
 	if (!ray)
 		exit_err("Memory allocation failed.");
 	ray->direction = mcraft->gamer->direction;
 	mcraft->camera_x = 2 * x / (double)mcraft->w - 1;
-	plane_dist = tan((FOV / 2.0) * (PI / 180.0));
-	mcraft->plane_x = -dir.y * plane_dist;
-	mcraft->plane_y = dir.x * plane_dist;
-	ray->ray_dir_x = dir.x + mcraft->plane_x * mcraft->camera_x;
-	ray->ray_dir_y = dir.y + mcraft->plane_y * mcraft->camera_x;
+	ray->ray_dir_x = mcraft->gamer->dir_x + mcraft->plane_x * mcraft->camera_x;
+	ray->ray_dir_y = mcraft->gamer->dir_y + mcraft->plane_y * mcraft->camera_x;
 	printf("Ray direction: x=%f, y=%f\n", ray->ray_dir_x, ray->ray_dir_y);
 	if (ray->ray_dir_x == 0)
 		ray->delta_dist_x = 1e30;
@@ -56,23 +52,31 @@ void	setup_ray(t_mcraft *mcraft, t_ray *ray, t_pos map_pos)
 	{
 		ray->perp_wall_dist = (ray->side_dist_y - ray->delta_dist_y);
 		ray->wall_x = mcraft->gamer->x + ray->perp_wall_dist * ray->ray_dir_x;
+		printf("wall x: %f\n", ray->wall_x);
+		printf("wall dist: %f side dist: %f delta dist: %f\n", ray->perp_wall_dist, ray->side_dist_y, ray->delta_dist_y);
 	}
 	ray->wall_x -= floor(ray->wall_x);
+	printf("wall x: %f\n", ray->wall_x);
 }
 
-void    setup_vector(t_mcraft *mcraft, t_ray *ray, t_vector *vector)
+void	setup_vector(t_mcraft *mcraft, t_ray *ray, t_vector *vector, int x)
 {
 	vector->h = (int)(mcraft->h / ray->perp_wall_dist);
-	vector->x = ray->curr_x;
-    vector->tex_x = (int)(ray->wall_x * (double)(mcraft->txts->tx_width));
-    if (ray->side == 0 && ray->ray_dir_x > 0)
-        vector->tex_x = mcraft->txts->tx_width - vector->tex_x - 1;
-    if (ray->side == 1 && ray->ray_dir_y < 0)
-        vector->tex_x = mcraft->txts->tx_width - vector->tex_x - 1;
-    vector->y0 = -vector->h / 2 + mcraft->h / 2;
-    if (vector->y0 < 0)
-        vector->y0 = 0;
-    vector->y1 = vector->h / 2 + mcraft->h / 2;
-    if (vector->y1 >= mcraft->h)
-        vector->y1 = mcraft->h - 1;
+	vector->x = x;
+	printf("h: %d, curr x %d\n", vector->h, vector->x);
+	vector->tex_x = (int)(ray->wall_x * (double)(mcraft->txts->tx_width));
+	printf("tex x: %d tex w: %d\n", vector->tex_x, mcraft->txts->tx_width);
+	if (ray->side == 0 && ray->ray_dir_x > 0)
+		vector->tex_x = mcraft->txts->tx_width - vector->tex_x - 1;
+	if (ray->side == 1 && ray->ray_dir_y < 0)
+		vector->tex_x = mcraft->txts->tx_width - vector->tex_x - 1;
+	printf("tex x: %d\n", vector->tex_x);
+	vector->y0 = -vector->h / 2 + mcraft->h / 2;
+	printf("vector y0: %d\n", vector->y0);
+	if (vector->y0 < 0)
+		vector->y0 = 0;
+	vector->y1 = vector->h / 2 + mcraft->h / 2;
+	printf("vector y1: %d\n", vector->y1);
+	if (vector->y1 >= mcraft->h)
+		vector->y1 = mcraft->h - 1;
 }

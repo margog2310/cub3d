@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 04:52:08 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/16 00:11:07 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/16 18:31:14 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,12 @@ void	set_player_direction(int *direction, float *angle, char key)
 	if (key == 'N')
 	{
 		*direction = NORTH;
-		*angle = 3 * PI / 2;
+		*angle = (float)(3 * PI / 2);
 	}
 	else if (key == 'S')
 	{
 		*direction = SOUTH;
-		*angle = PI / 2;
+		*angle = (float)(PI / 2);
 	}
 	else if (key == 'W')
 	{
@@ -70,6 +70,6 @@ void	set_player_direction(int *direction, float *angle, char key)
 	else if (key == 'E')
 	{
 		*direction = EAST;
-		*angle = 0;	
+		*angle = 0.0;	
 	}
 }

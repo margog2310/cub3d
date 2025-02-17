@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 18:05:30 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/15 23:58:23 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/16 18:58:38 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	init_player(t_gamer **gamer)
 {
 	*gamer = malloc(sizeof(t_gamer));
 	(*gamer)->angle = 0;
+	(*gamer)->dir_x = cos((*gamer)->angle);
+	(*gamer)->dir_y = sin((*gamer)->angle);
 	(*gamer)->k_up = false;
 	(*gamer)->k_down = false;
 	(*gamer)->k_right = false;

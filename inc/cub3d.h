@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:16:58 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/16 00:11:00 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/16 22:15:16 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@
 # define STEP_SIZE 1.0
 
 # define FOV 60.0
+# define PLANE_DIST tan((FOV / 2.0) * (PI / 180.0))
 
 /* ========== STRUCTS ========== */
 typedef struct s_mcraft	t_mcraft;
@@ -153,6 +154,10 @@ typedef struct t_txts
 	int					tx_width;
 	int					tx_height;
 
+	int					ll;
+	int					bpp;
+	int					end;
+
 	char				*floor_id;
 	char				*ceiling_id;
 
@@ -174,6 +179,8 @@ typedef struct s_gamer
 
 	bool				rot_l;
 	bool				rot_r;
+	double				dir_x;
+	double				dir_y;
 }						t_gamer;
 
 typedef struct s_mcraft
@@ -226,10 +233,10 @@ int						render_img(t_mcraft *mcraft);
 
 /* ------- DDA ------- */
 int						dda(t_mcraft *mcraft);
-t_ray					*init_ray(t_mcraft *mcraft, t_pos dir, int x);
+t_ray					*init_ray(t_mcraft *mcraft, int x);
 void					setup_ray(t_mcraft *mcraft, t_ray *ray, t_pos map_pos);
 void					setup_vector(t_mcraft *mcraft, t_ray *ray,
-							t_vector *vector);
+							t_vector *vector, int x);
 void					calculate_step_and_sideDist(t_gamer *gamer, t_ray *ray,
 							t_pos *map_pos, t_pos *step);
 bool					**init_visited(t_map *map);
@@ -238,8 +245,8 @@ char					*get_tx_index(int direction);
 int						get_texture_color(t_mcraft *mcraft, t_txts *txts,
 							int tex_x, int tex_y);
 t_pos					set_direction_vector(t_gamer *gamer);
-void					draw_vector(t_mcraft *mcraft, t_ray *ray,
-							t_pos map_pos);
+void					draw_vector(t_mcraft *mcraft, t_ray *ray, t_pos map_pos,
+							int x);
 void					pixel_on_img(t_mcraft *mcraft, int rgb, int x, int y);
 void					texture_on_img(t_mcraft *mcraft, t_vector vector,
 							char *tx_data);
@@ -248,7 +255,8 @@ void					texture_on_img(t_mcraft *mcraft, t_vector vector,
 int						parse(t_mcraft *mcraft, char *file);
 int						parse_elements(t_mcraft *mcraft, int fd);
 void					cleanup_map(t_map *map);
-void					set_player_direction(int *direction, float *angle, char key);
+void					set_player_direction(int *direction, float *angle,
+							char key);
 bool					colour_valid(char *line, int bitmask);
 bool					texture_valid(char *path, int bitmask);
 bool					is_map_valid(t_mcraft *mcraft, t_map *map);
@@ -256,7 +264,7 @@ bool					file_valid(char *line, int fd, bool map_read);
 bool					is_enclosed(t_map *map);
 bool					symbols_valid(t_mcraft *mcraft, t_map *map);
 int						parse_textures_and_colors(t_mcraft *mcraft, char *line);
-void					create_textures(t_mcraft *mcraft, t_txts *txts);
+int						create_textures(t_mcraft *mcraft, t_txts *txts);
 
 /* ------ garbage collector ------ */
 void					cleanup_game(t_mcraft *mcraft);

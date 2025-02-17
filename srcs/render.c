@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:57:12 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/16 00:13:16 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/16 23:29:20 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	colors(char *str)
 
 	rgb = ft_split(str, ',');
 	if (!rgb || !rgb[0] || !rgb[1] || !rgb[2])
-		return (-1);
+		return (free_array(rgb), -1);
 	r = ft_atoi(rgb[0]);
 	g = ft_atoi(rgb[1]);
 	b = ft_atoi(rgb[2]);
@@ -81,11 +81,17 @@ void	update_player_angle(t_mcraft *mcraft, double angle)
 		mcraft->gamer->angle += 2 * PI;
 	if (mcraft->gamer->angle >=  2 * PI)
 		mcraft->gamer->angle -= 2 * PI;
+	mcraft->gamer->dir_x = cos(mcraft->gamer->angle);
+    mcraft->gamer->dir_y = sin(mcraft->gamer->angle);
+    mcraft->plane_x = -mcraft->gamer->dir_y * PLANE_DIST;
+    mcraft->plane_y = mcraft->gamer->dir_x * PLANE_DIST;
 }
 
 int	render_img(t_mcraft *mcraft)
 {
-	update_player_angle(mcraft, mcraft->gamer->angle);
+	mcraft->plane_x = -mcraft->gamer->dir_y * PLANE_DIST;
+    mcraft->plane_y = mcraft->gamer->dir_x * PLANE_DIST;
+	//update_player_angle(mcraft, mcraft->gamer->angle);
 	ft_bzero(mcraft->img_addr, mcraft->h * mcraft->ll);
 	//printf("floor color: %d\n", mcraft->txts->floor_color);
 	dda(mcraft);

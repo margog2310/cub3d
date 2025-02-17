@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 21:03:48 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/16 00:12:59 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/16 21:55:19 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,9 @@ int	find_wall(t_mcraft *mcraft, t_ray *ray, t_pos *map_pos)
 
 	hit = 0;
 	calculate_step_and_sideDist(mcraft->gamer, ray, map_pos, &ray->step);
+	// printf("map x: %d y: %d\n", map_pos->x, map_pos->y);
+	// printf("step x: %d y: %d\n", ray->step.x, ray->step.y);
+	// sleep(100);
 	while (hit == 0)
 	{
 		if (ray->side_dist_x < ray->side_dist_y)
@@ -57,36 +60,35 @@ int	find_wall(t_mcraft *mcraft, t_ray *ray, t_pos *map_pos)
 			map_pos->y += ray->step.y;
 			ray->side = 1;
 		}
-		printf("debug: map x: %d y: %d\n", map_pos->x, map_pos->y);
+		// printf("debug: map x: %d y: %d\n", map_pos->x, map_pos->y);
 		if (!is_cell_valid(mcraft->map, map_pos->y, map_pos->x))
 			return (0);
 		if (mcraft->map->grid[map_pos->y][map_pos->x] == WALL)
-			hit = 0;
+			return (1);
 	}
-	return (1);
+	return (0);
 }
 
 int	dda(t_mcraft *mcraft)
 {
-	int	x;
-	t_pos map_pos;
-	t_pos dir;
-	t_ray *ray;
+	int		x;
+	t_pos	map_pos;
+	t_ray	*ray;
 
 	x = 0;
-	map_pos.x = (int)mcraft->gamer->x;
-	map_pos.y = (int)mcraft->gamer->y;
 	while (x < mcraft->w)
-	{	
-		dir.x = cos(mcraft->gamer->angle);
-		dir.y = sin(mcraft->gamer->angle);
-		ray = init_ray(mcraft, dir, x);
-		if (find_wall(mcraft, ray, &map_pos))
-		{
-			printf("debug: map x: %d, y %d\n", map_pos.x, map_pos.y);
-			setup_ray(mcraft, ray, map_pos);
-			draw_vector(mcraft, ray, map_pos);
-		}
+	{
+		mcraft->gamer->dir_x = cos(mcraft->gamer->angle);
+		mcraft->gamer->dir_y = sin(mcraft->gamer->angle);
+		map_pos.x = (int)mcraft->gamer->x;
+		map_pos.y = (int)mcraft->gamer->y;
+		// printf("gamer angle x: %f y: %f\n", mcraft->gamer->dir_x,
+		//	mcraft->gamer->dir_y);
+		ray = init_ray(mcraft, x);
+		find_wall(mcraft, ray, &map_pos);
+		printf("debug: map x: %d, y %d\n", map_pos.x, map_pos.y);
+		setup_ray(mcraft, ray, map_pos);
+		draw_vector(mcraft, ray, map_pos, x);
 		x++;
 		free(ray);
 	}

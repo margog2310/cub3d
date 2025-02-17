@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:37:35 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/15 17:43:45 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/16 23:17:55 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	init_win(t_mcraft *mcraft, char **av)
 		cleanup_game(mcraft);
 		exit_err("Error: Map parsing failed.");
 	}
-	init_window(mcraft, mcraft->map->cols * BLOCK, mcraft->map->rows * BLOCK);
+	init_window(mcraft, WIN_W, WIN_H);
 	init_img(mcraft);
 	mcraft->camera_h = mcraft->h / 2;
 	mcraft->has_changed = false;

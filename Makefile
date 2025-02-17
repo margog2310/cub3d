@@ -6,7 +6,7 @@
 #    By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/21 16:21:20 by mganchev          #+#    #+#              #
-#    Updated: 2025/02/15 23:18:25 by mganchev         ###   ########.fr        #
+#    Updated: 2025/02/16 22:04:40 by mganchev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ NC=\033[0m
 
 # ============== FLAGS ==================
 CC = cc
-CFLAGS = -g3 -Wall -Wextra -Werror -g
+CFLAGS = -g3 -Wall -Wextra -Werror
 RM = rm -rf
 NAME = cub3d
 

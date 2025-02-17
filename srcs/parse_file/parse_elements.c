@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 18:56:21 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/15 17:45:55 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/16 22:17:32 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	parse_elements(t_mcraft *mcraft, int fd)
 	return (row_index);
 }
 
-void	create_textures(t_mcraft *mcraft, t_txts *txts)
+int	create_textures(t_mcraft *mcraft, t_txts *txts)
 {
 	txts->tx_n_img = mlx_xpm_file_to_image(mcraft->mlx, txts->tx_n,
 			&txts->tx_width, &txts->tx_height);
@@ -79,16 +79,17 @@ void	create_textures(t_mcraft *mcraft, t_txts *txts)
 			&txts->tx_width, &txts->tx_height);
 	if (!txts->tx_n_img || !txts->tx_s_img || !txts->tx_e_img
 		|| !txts->tx_w_img)
-		exit_err("Error with .xpm texture file.");
-	txts->tx_n_data = mlx_get_data_addr(txts->tx_n_img, &mcraft->bpp,
-			&mcraft->ll, &mcraft->end);
-	txts->tx_s_data = mlx_get_data_addr(txts->tx_s_img, &mcraft->bpp,
-			&mcraft->ll, &mcraft->end);
-	txts->tx_e_data = mlx_get_data_addr(txts->tx_e_img, &mcraft->bpp,
-			&mcraft->ll, &mcraft->end);
-	txts->tx_w_data = mlx_get_data_addr(txts->tx_w_img, &mcraft->bpp,
-			&mcraft->ll, &mcraft->end);
+		return(exit_err("Error with .xpm texture file."), 1);
+	txts->tx_n_data = mlx_get_data_addr(txts->tx_n_img, &txts->bpp,
+			&txts->ll, &txts->end);
+	txts->tx_s_data = mlx_get_data_addr(txts->tx_s_img, &txts->bpp,
+			&txts->ll, &txts->end);
+	txts->tx_e_data = mlx_get_data_addr(txts->tx_e_img, &txts->bpp,
+			&txts->ll, &txts->end);
+	txts->tx_w_data = mlx_get_data_addr(txts->tx_w_img, &txts->bpp,
+			&txts->ll, &txts->end);
 	if (!txts->tx_n_data || !txts->tx_s_data || !txts->tx_e_data
 		|| !txts->tx_w_data)
-		exit_err("Failure getting data address.");
+		return(exit_err("Failure getting data address."), 1);
+	return (0);
 }
