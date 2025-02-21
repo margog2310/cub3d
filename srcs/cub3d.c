@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 21:44:09 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/21 23:35:17 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/21 23:37:55 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,6 @@ int	main(int ac, char **av)
 	if (!mcraft)
 		exit_err("mcraft memory allocation failed");
 	ft_bzero(mcraft, sizeof(t_mcraft));
-	// cub_init(mcraft, av);
-	// set_player_starting_pos(mcraft);
-	// dda(mcraft);
 	get_mcraft(mcraft);
 	init_win(mcraft, av);
 	if (mcraft)
