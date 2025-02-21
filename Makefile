@@ -6,7 +6,7 @@
 #    By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/21 16:21:20 by mganchev          #+#    #+#              #
-#    Updated: 2025/02/16 22:04:40 by mganchev         ###   ########.fr        #
+#    Updated: 2025/02/21 23:35:47 by mganchev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,6 @@ LIBFT = $(LIBFT_DIR)/libft.a
 
 # =============== SRCS ==================
 SRCS = cub3d.c \
-		init.c \
 		window.c \
 		render.c \
 		background.c \

@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 19:08:21 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/08 22:34:24 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/21 23:31:58 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ void	set_player_starting_pos(t_mcraft *mcraft)
 	mcraft->gamer->y = map->player_start_row * BLOCK + (BLOCK / 2);
 }
 
-bool	is_wall(t_mcraft *mcraft, float px, float py) // collision detection
+bool	is_wall(t_mcraft *mcraft, float px, float py)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	x = (int)px / BLOCK;
 	y = (int)py / BLOCK;
@@ -44,4 +44,23 @@ bool	is_wall(t_mcraft *mcraft, float px, float py) // collision detection
 	if (mcraft->map->grid[y][x] == '1')
 		return (true);
 	return (false);
+}
+
+int	colors(char *str)
+{
+	char	**rgb;
+	int		r;
+	int		g;
+	int		b;
+
+	rgb = ft_split(str, ',');
+	if (!rgb || !rgb[0] || !rgb[1] || !rgb[2])
+		return (free_array(rgb), -1);
+	r = ft_atoi(rgb[0]);
+	g = ft_atoi(rgb[1]);
+	b = ft_atoi(rgb[2]);
+	free_array(rgb);
+	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
+		return (-1);
+	return (r << 16 | g << 8 | b);
 }

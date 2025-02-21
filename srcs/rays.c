@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 00:50:12 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/08 22:34:38 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/21 23:33:55 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,10 @@ t_vector	mr_ray(t_mcraft *mcraft, float angle)
 		map_x = (int)(ray_x / BLOCK);
 		map_y = (int)(ray_y / BLOCK);
 		if (map_x < 0 || map_x >= mcraft->map->cols || map_y < 0
-			|| map_y >= mcraft->map->rows) // OOB check
+			|| map_y >= mcraft->map->rows)
 			break ;
-		if (mcraft->map->grid[map_y][map_x] == '1') // wall check
-			break ;                                 
-				// can we also get the direction of the wall face? East/south/north/west?
+		if (mcraft->map->grid[map_y][map_x] == '1')
+			break ;
 		ray_x += cos(angle) * STEP_SIZE;
 		ray_y += sin(angle) * STEP_SIZE;
 	}
@@ -49,25 +48,25 @@ t_vector	mr_ray(t_mcraft *mcraft, float angle)
 - find hitpoint with mr ray
 - calculate distance from block and determine  or calculate wall height
 - draw map in 3D
-- make a helper function to check what direction the ray is hitting. so we can set the different textures
+- make a helper function to check what direction the
+  ray is hitting. so we can set the different textures
 - make sure player start point is correct
 - fisheye?? check how to deal with fisheye*/
 
-void	cast_rays(t_mcraft *mcraft) // can use this for both minimap and 3D
+void	cast_rays(t_mcraft *mcraft)
 {
-	float start_a;
-	float end_a;
-	float i;
-	float angle;
+	float	start_a;
+	float	end_a;
+	float	i;
+	float	angle;
 
 	start_a = mcraft->gamer->angle - (PI / 6);
 	end_a = mcraft->gamer->angle + (PI / 6);
-	i = (PI / 3) / WIN_W; // angl increment to spread rays across the FOV
+	i = (PI / 3) / WIN_W;
 	angle = start_a;
 	while (angle <= end_a)
 	{
 		draw_ray_minimap(mcraft, angle);
-			// remember to comment this out for mandatory
 		angle += i;
 	}
 }

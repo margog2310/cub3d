@@ -6,15 +6,15 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 04:37:56 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/21 21:47:39 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/21 23:34:41 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	exit_err(char *str, t_mcraft *mcraft)
+void	exit_err(char *str)
 {
-	cleanup_game(mcraft);
+	cleanup_game(get_mcraft(NULL));
 	ft_putstr_fd("Error: ", 1);
 	ft_putstr_fd(str, 1);
 	ft_putchar_fd('\n', 1);
@@ -49,7 +49,7 @@ void	cleanup_txts(t_mcraft *mcraft)
 int	cleanup_game(t_mcraft *mcraft)
 {
 	if (mcraft)
-	{	
+	{
 		if (mcraft->img)
 			mlx_destroy_image(mcraft->mlx, mcraft->img);
 		if (mcraft->map)

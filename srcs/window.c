@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:37:35 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/21 20:33:31 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/21 23:31:48 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	init_mlx(t_mcraft *mcraft)
 {
 	mcraft->mlx = mlx_init();
 	if (!mcraft->mlx)
-		exit_err("MLX init failed.", mcraft);
+		exit_err("MLX init failed.");
 }
 
 void	init_window(t_mcraft *mcraft, int w, int h)
@@ -52,7 +52,7 @@ void	init_textures(t_mcraft *mcraft)
 {
 	mcraft->txts = malloc(sizeof(t_txts));
 	if (!mcraft->txts)
-		exit_err("Memory allocation failed.", mcraft);
+		exit_err("Memory allocation failed.");
 	ft_bzero(mcraft->txts, sizeof(t_txts));
 	mcraft->txts->floor_color = 0;
 	mcraft->txts->ceiling_color = 0;
@@ -66,10 +66,9 @@ void	init_win(t_mcraft *mcraft, char **av)
 	init_textures(mcraft);
 	init_player(&mcraft->gamer);
 	if (parse(mcraft, av[1]))
-		exit_err("Error: Map parsing failed.", mcraft);
+		exit_err("Error: Map parsing failed.");
 	init_window(mcraft, WIN_W, WIN_H);
 	init_img(mcraft);
 	mcraft->camera_h = mcraft->h / 2;
 	mcraft->has_changed = false;
-	// printf("debug: camera: %f\n", mcraft->camera_h);
 }

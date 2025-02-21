@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 01:43:17 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/08 22:35:09 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/21 23:35:09 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	mouse(t_mcraft *mcraft, int click, int x, int y)
 {
 	(void)mcraft;
 	ft_printf("Mouse click %d at (%d, %d)\n", click, x, y);
-		// need to fix mouse click x and y coordinates wrong
+	// need to fix mouse click x and y coordinates wrong
 	return (0);
 }
 

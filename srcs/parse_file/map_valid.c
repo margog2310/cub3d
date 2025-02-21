@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:34:52 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/21 20:53:07 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/21 23:18:35 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 /*
 	// 1. check if all symbols are valid
 	// 2. check if map is surrounded by walls
-	3. check that map is last in file > there could be empty lines after map but no other information
+	3. check that map is last in file > there could be 
+	   empty lines after map but no other information
 	//4. check that extension is .cub
 	// 5. check that information (besides map) is separated by one or more space
 	// 6. check identifiers and paths to textures are valid
@@ -32,12 +33,12 @@ bool	is_map_valid(t_mcraft *mcraft, t_map *map)
 {
 	if (!is_enclosed(map))
 	{
-		exit_err("Error: Map is not enclosed by walls.\n", mcraft);
+		exit_err("Error: Map is not enclosed by walls.\n");
 		return (false);
 	}
 	if (!symbols_valid(mcraft, map))
 	{
-		exit_err("Error: Invalid symbols in map.\n", mcraft);
+		exit_err("Error: Invalid symbols in map.\n");
 		return (false);
 	}
 	return (true);
@@ -64,7 +65,6 @@ bool	is_enclosed(t_map *map)
 		}
 		else
 		{
-			// ft_printf("%s", map->grid[i]);
 			if (map->grid[i][0] != WALL || map->grid[i][len - 1] != WALL)
 				return (false);
 		}
@@ -78,9 +78,19 @@ static bool	is_valid_symbol(char c)
 		|| c == 'W');
 }
 
-static bool	is_player(char c)
+static bool	is_player(t_gamer *gamer, char c)
 {
-	return (c == 'N' || c == 'S' || c == 'E' || c == 'W');
+	static int	player_count;
+
+	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+	{
+		player_count++;
+		if (player_count != 1)
+			return (exit_err("Error: Map must have only 1 player."), false);
+		set_player_direction(&gamer->direction, &gamer->angle, c);
+		return (true);
+	}
+	return (false);
 }
 
 bool	symbols_valid(t_mcraft *mcraft, t_map *map)
@@ -88,10 +98,8 @@ bool	symbols_valid(t_mcraft *mcraft, t_map *map)
 	int	i;
 	int	j;
 	int	cols;
-	int	player_count;
 
 	i = -1;
-	player_count = 0;
 	while (i++ < map->rows - 1)
 	{
 		j = -1;
@@ -101,17 +109,12 @@ bool	symbols_valid(t_mcraft *mcraft, t_map *map)
 			skip_set(map->grid[i], IFS);
 			if (!is_valid_symbol(map->grid[i][j]))
 				return (false);
-			if (is_player(map->grid[i][j]))
+			if (is_player(mcraft->gamer, map->grid[i][j]))
 			{
-				set_player_direction(&mcraft->gamer->direction, &mcraft->gamer->angle,
-					map->grid[i][j]); // assing gamer angle based on this direction as well
 				mcraft->gamer->x = j;
 				mcraft->gamer->y = i;
-				player_count++;
 			}
 		}
 	}
-	if (player_count != 1)
-		exit_err("Error: Map must have exactly one player starting pos.", mcraft);
 	return (true);
 }

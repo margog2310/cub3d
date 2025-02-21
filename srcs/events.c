@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:27:47 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/21 21:43:58 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/21 23:00:56 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	keys(int keycode, t_mcraft *mcraft)
 
 	gamer = mcraft->gamer;
 	if (keycode == ESC)
-		exit_err("Thank you for playing.", mcraft);
+		exit_err("Thank you for playing.");
 	wads_keys(keycode, gamer);
 	arrow_keys(keycode, gamer);
 	return (0);

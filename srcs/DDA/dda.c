@@ -6,13 +6,13 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 21:03:48 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/21 17:52:06 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/21 22:54:56 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	calculate_step_and_sideDist(t_gamer *gamer, t_ray *ray, t_pos *map_pos,
+void	calculate_step_and_sidedist(t_gamer *gamer, t_ray *ray, t_pos *map_pos,
 		t_pos *step)
 {
 	if (ray->ray_dir_x < 0)
@@ -42,10 +42,7 @@ int	find_wall(t_mcraft *mcraft, t_ray *ray, t_pos *map_pos)
 	int	hit;
 
 	hit = 0;
-	calculate_step_and_sideDist(mcraft->gamer, ray, map_pos, &ray->step);
-	// printf("map x: %d y: %d\n", map_pos->x, map_pos->y);
-	// printf("step x: %d y: %d\n", ray->step.x, ray->step.y);
-	// sleep(100);
+	calculate_step_and_sidedist(mcraft->gamer, ray, map_pos, &ray->step);
 	while (hit == 0)
 	{
 		if (ray->side_dist_x < ray->side_dist_y)
@@ -60,7 +57,6 @@ int	find_wall(t_mcraft *mcraft, t_ray *ray, t_pos *map_pos)
 			map_pos->y += ray->step.y;
 			ray->side = 1;
 		}
-		// printf("debug: map x: %d y: %d\n", map_pos->x, map_pos->y);
 		if (!is_cell_valid(mcraft->map, map_pos->y, map_pos->x))
 			return (0);
 		if (mcraft->map->grid[map_pos->y][map_pos->x] == WALL)
@@ -82,11 +78,8 @@ int	dda(t_mcraft *mcraft)
 		mcraft->gamer->dir_y = sin(mcraft->gamer->angle);
 		map_pos.x = (int)mcraft->gamer->x;
 		map_pos.y = (int)mcraft->gamer->y;
-		// printf("gamer angle x: %f y: %f\n", mcraft->gamer->dir_x,
-		//	mcraft->gamer->dir_y);
 		ray = init_ray(mcraft, x);
 		find_wall(mcraft, ray, &map_pos);
-		//printf("debug: map x: %d, y %d\n", map_pos.x, map_pos.y);
 		setup_ray(mcraft, ray, map_pos);
 		draw_vector(mcraft, ray, map_pos, x);
 		x++;

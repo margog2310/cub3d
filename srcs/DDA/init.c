@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 23:07:58 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/21 20:33:36 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/21 23:01:23 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_ray	*init_ray(t_mcraft *mcraft, int x)
 
 	ray = malloc(sizeof(t_ray));
 	if (!ray)
-		exit_err("Memory allocation failed.", mcraft);
+		exit_err("Memory allocation failed.");
 	ray->direction = mcraft->gamer->direction;
 	mcraft->camera_x = 2 * x / (double)mcraft->w - 1;
 	ray->ray_dir_x = mcraft->gamer->dir_x + mcraft->plane_x * mcraft->camera_x;
@@ -42,12 +42,12 @@ void	setup_ray(t_mcraft *mcraft, t_ray *ray, t_pos map_pos)
 	ray->wall_x = 0.0;
 	ray->curr_x = map_pos.x;
 	ray->curr_y = map_pos.y;
-	if (ray->side == 0) // hit on x axis
+	if (ray->side == 0)
 	{
 		ray->perp_wall_dist = (ray->side_dist_x - ray->delta_dist_x);
 		ray->wall_x = mcraft->gamer->y + ray->perp_wall_dist * ray->ray_dir_y;
 	}
-	else // hit on y axis;
+	else
 	{
 		ray->perp_wall_dist = (ray->side_dist_y - ray->delta_dist_y);
 		ray->wall_x = mcraft->gamer->x + ray->perp_wall_dist * ray->ray_dir_x;
@@ -61,7 +61,6 @@ void	setup_vector(t_mcraft *mcraft, t_ray *ray, t_vector *vector, int x)
 	vector->h = mcraft->h / ray->perp_wall_dist;
 	vector->x = x;
 	vector->tex_x = (int)(ray->wall_x * (double)(mcraft->txts->tx_width));
-	//printf("debug: tex x: %d\n", vector->tex_x);
 	if (ray->side == 0 && ray->ray_dir_x > 0)
 		vector->tex_x = mcraft->txts->tx_width - vector->tex_x;
 	if (ray->side == 1 && ray->ray_dir_y < 0)

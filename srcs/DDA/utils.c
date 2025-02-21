@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 21:04:33 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/21 18:47:29 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/21 22:55:26 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_pos	set_direction_vector(t_gamer *gamer)
 	return (direction);
 }
 
-char	*get_tx_index(t_ray *ray) 
+char	*get_tx_index(t_ray *ray)
 {
 	if (ray->side == 0)
 	{
@@ -67,14 +67,14 @@ char	*get_tx_index(t_ray *ray)
 
 char	*get_tx_data(char *key, t_txts *txts)
 {
-	static t_txts *ptr;
+	static t_txts	*ptr;
 
 	if (!txts)
 	{
 		if (!ft_strncmp(key, "NO", 2))
-			return(ptr->tx_n_data);
+			return (ptr->tx_n_data);
 		else if (!ft_strncmp(key, "SO", 2))
-			return(ptr->tx_s_data);
+			return (ptr->tx_s_data);
 		else if (!ft_strncmp(key, "WE", 2))
 			return (ptr->tx_w_data);
 		else if (!ft_strncmp(key, "EA", 2))
@@ -84,13 +84,12 @@ char	*get_tx_data(char *key, t_txts *txts)
 	if (!key)
 		return (NULL);
 	if (!ft_strncmp(key, "NO", 2))
-		return(txts->tx_n_data);
+		return (txts->tx_n_data);
 	else if (!ft_strncmp(key, "SO", 2))
-		return(txts->tx_s_data);
+		return (txts->tx_s_data);
 	else if (!ft_strncmp(key, "WE", 2))
 		return (txts->tx_w_data);
 	else if (!ft_strncmp(key, "EA", 2))
 		return (txts->tx_e_data);
-	return (NULL);			
+	return (NULL);
 }
-

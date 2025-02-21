@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 02:34:42 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/08 22:35:01 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/21 23:27:28 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,18 @@
 
 static void	draw_player(t_mcraft *mcraft)
 {
-	int		player_map_x;
-	int		player_map_y;
+	t_pos	player_map;
 	float	scale;
 	int		marker_size;
 
 	// int		minimap_h;
 	// minimap_h = WIN_H / 5; //was trying to fix fuckin movement inversion
 	scale = (float)TILE_S / BLOCK;
-	player_map_x = OFF_X + (int)(mcraft->gamer->x * scale);
-	player_map_y = OFF_Y + (int)(mcraft->gamer->y * scale);
+	player_map.x = OFF_X + (int)(mcraft->gamer->x * scale);
+	player_map.y = OFF_Y + (int)(mcraft->gamer->y * scale);
 	marker_size = TILE_S / 2;
-	draw_tile(mcraft, player_map_x - (marker_size / 2), player_map_y
-		- (marker_size / 2), marker_size, PLAYER_COLOR);
+	draw_tile(mcraft, (t_pos){player_map.x - (marker_size / 2), player_map.y
+		- (marker_size / 2)}, marker_size, PLAYER_COLOR);
 }
 
 static void	draw_map_loop(t_mcraft *mcraft)
@@ -37,11 +36,11 @@ static void	draw_map_loop(t_mcraft *mcraft)
 	int		color;
 
 	map = mcraft->map;
-	i = 0;
-	while (i < map->rows)
+	i = -1;
+	while (++i < map->rows)
 	{
-		j = 0;
-		while (j < map->cols)
+		j = -1;
+		while (++j < map->cols)
 		{
 			if (map->grid[i][j] == '1')
 				color = WALL_COLOR;
@@ -52,11 +51,9 @@ static void	draw_map_loop(t_mcraft *mcraft)
 				color = PLAYER_COLOR;
 			else
 				break ;
-			draw_tile(mcraft, OFF_X + (j * TILE_S), OFF_Y + (i * TILE_S),
+			draw_tile(mcraft, (t_pos){OFF_X + (j * TILE_S), OFF_Y + (i * TILE_S)},
 				TILE_S, color);
-			j++;
 		}
-		i++;
 	}
 }
 
@@ -81,6 +78,31 @@ void	draw_ray_minimap(t_mcraft *mcraft, float angle)
 		draw_pixel(mcraft, mini_x, mini_y, RAY_COLOR);
 		ray_x += cos(angle) * STEP_SIZE;
 		ray_y += sin(angle) * STEP_SIZE;
+	}
+}
+
+void	draw_crosshairs(t_mcraft *mcraft, int color)
+{
+	int	mid_x;
+	int	mid_y;
+	int	len;
+	int	x;
+	int	y;
+
+	mid_x = WIN_W / 2;
+	mid_y = WIN_H / 2;
+	len = 10;
+	x = mid_x - len;
+	while (x <= mid_x + len)
+	{
+		draw_pixel(mcraft, x, mid_y, color);
+		x++;
+	}
+	y = mid_y - len;
+	while (y <= mid_y + len)
+	{
+		draw_pixel(mcraft, mid_x, y, color);
+		y++;
 	}
 }
 

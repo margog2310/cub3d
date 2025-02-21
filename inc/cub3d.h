@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:16:58 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/21 21:05:29 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/21 23:27:10 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,9 @@ typedef struct s_vector
 {
 	int x;     // x coord of vector relative to screen
 	int y;     // current pixel index of vector
-	float y0;    // y start index of drawing texture
-	float y1;    // y end index of drawing texture
-	float h;     // ray height
+	float y0;  // y start index of drawing texture
+	float y1;  // y end index of drawing texture
+	float h;   // ray height
 	int tex_x; // x coord of texture to draw
 	int tex_y; // y coord of texture to draw
 }						t_vector;
@@ -236,7 +236,7 @@ t_ray					*init_ray(t_mcraft *mcraft, int x);
 void					setup_ray(t_mcraft *mcraft, t_ray *ray, t_pos map_pos);
 void					setup_vector(t_mcraft *mcraft, t_ray *ray,
 							t_vector *vector, int x);
-void					calculate_step_and_sideDist(t_gamer *gamer, t_ray *ray,
+void					calculate_step_and_sidedist(t_gamer *gamer, t_ray *ray,
 							t_pos *map_pos, t_pos *step);
 bool					**init_visited(t_map *map);
 bool					is_cell_valid(t_map *map, int row, int col);
@@ -253,8 +253,8 @@ int						parse_elements(t_mcraft *mcraft, int fd);
 void					cleanup_map(t_map *map);
 void					set_player_direction(int *direction, float *angle,
 							char key);
-bool					colour_valid(t_mcraft *mcraft, char *line, int bitmask);
-bool					texture_valid(t_mcraft *mcraft, char *path, int bitmask);
+bool					colour_valid(char *line, int bitmask);
+bool					texture_valid(char *path, int bitmask);
 bool					is_map_valid(t_mcraft *mcraft, t_map *map);
 bool					file_valid(char *line, int fd, bool map_read);
 bool					is_enclosed(t_map *map);
@@ -263,9 +263,9 @@ int						parse_textures_and_colors(t_mcraft *mcraft, char *line);
 int						create_textures(t_mcraft *mcraft, t_txts *txts);
 
 /* ------ garbage collector ------ */
-int					cleanup_game(t_mcraft *mcraft);
+int						cleanup_game(t_mcraft *mcraft);
 void					free_array(char **array);
-void					exit_err(char *str, t_mcraft *mcraft);
+void					exit_err(char *str);
 
 /*------- player ---------*/
 void					draw_crosshairs(t_mcraft *mcraft, int color);
@@ -286,11 +286,11 @@ void					move_arrows(t_mcraft *mcraft, t_gamer *gamer,
 							float cos_a, float sin_a);
 
 /* ------ minimap ------ */
-void					draw_tile(t_mcraft *mcraft, int start_x, int start_y,
-							int tile_size, int color);
+void					draw_tile(t_mcraft *mcraft, t_pos start, int tile_size,
+							int color);
 void					minimap(t_mcraft *mcraft);
 bool					is_wall(t_mcraft *mcraft, float px, float py);
-void	player_position(t_mcraft *mcraft); // temp tester function
+void					player_position(t_mcraft *mcraft);
 void					set_player_starting_pos(t_mcraft *mcraft);
 void					draw_ray_minimap(t_mcraft *mcraft, float angle);
 

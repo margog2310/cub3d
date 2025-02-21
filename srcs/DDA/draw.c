@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 21:18:57 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/21 18:46:29 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/21 22:55:18 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	texture_on_img(t_mcraft *mcraft, t_vector vector, char *tx_data)
 {
-    int	color;
+	int	color;
 	int	offset;
 
 	vector.tex_x = (vector.x % BLOCK) * ((WIN_W % BLOCK));
@@ -84,7 +84,7 @@ void	draw_vector(t_mcraft *mcraft, t_ray *ray, t_pos map_pos, int x)
 {
 	t_vector	vector;
 
-    setup_vector(mcraft, ray, &vector, x);
+	setup_vector(mcraft, ray, &vector, x);
 	if (mcraft->map->grid[map_pos.y][map_pos.x] == WALL)
 		paint_texture_line(mcraft, ray, vector);
 	vector.y0 = 0;
