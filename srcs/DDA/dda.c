@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 21:03:48 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/16 21:55:19 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/21 17:52:06 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	dda(t_mcraft *mcraft)
 		//	mcraft->gamer->dir_y);
 		ray = init_ray(mcraft, x);
 		find_wall(mcraft, ray, &map_pos);
-		printf("debug: map x: %d, y %d\n", map_pos.x, map_pos.y);
+		//printf("debug: map x: %d, y %d\n", map_pos.x, map_pos.y);
 		setup_ray(mcraft, ray, map_pos);
 		draw_vector(mcraft, ray, map_pos, x);
 		x++;

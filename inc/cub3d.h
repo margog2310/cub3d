@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:16:58 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/16 22:15:16 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/21 17:54:22 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,9 @@ typedef struct s_vector
 {
 	int x;     // x coord of vector relative to screen
 	int y;     // current pixel index of vector
-	int y0;    // y start index of drawing texture
-	int y1;    // y end index of drawing texture
-	int h;     // ray height
+	float y0;    // y start index of drawing texture
+	float y1;    // y end index of drawing texture
+	float h;     // ray height
 	int tex_x; // x coord of texture to draw
 	int tex_y; // y coord of texture to draw
 }						t_vector;

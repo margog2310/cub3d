@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 23:07:58 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/17 01:23:15 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/21 17:52:44 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,20 @@ void	setup_ray(t_mcraft *mcraft, t_ray *ray, t_pos map_pos)
 		ray->perp_wall_dist = (ray->side_dist_y - ray->delta_dist_y);
 		ray->wall_x = mcraft->gamer->x + ray->perp_wall_dist * ray->ray_dir_x;
 	}
+	ray->perp_wall_dist += 1e-30;
 	ray->wall_x -= floor(ray->wall_x);
 }
 
 void	setup_vector(t_mcraft *mcraft, t_ray *ray, t_vector *vector, int x)
 {
-	vector->h = (int)(mcraft->h / ray->perp_wall_dist);
+	vector->h = mcraft->h / ray->perp_wall_dist;
 	vector->x = x;
 	vector->tex_x = (int)(ray->wall_x * (double)(mcraft->txts->tx_width));
+	//printf("debug: tex x: %d\n", vector->tex_x);
 	if (ray->side == 0 && ray->ray_dir_x > 0)
-		vector->tex_x = mcraft->txts->tx_width - vector->tex_x - 1;
+		vector->tex_x = mcraft->txts->tx_width - vector->tex_x;
 	if (ray->side == 1 && ray->ray_dir_y < 0)
-		vector->tex_x = mcraft->txts->tx_width - vector->tex_x - 1;
+		vector->tex_x = mcraft->txts->tx_width - vector->tex_x;
 	vector->y0 = -vector->h / 2 + mcraft->h / 2;
 	if (vector->y0 < 0)
 		vector->y0 = 0;
