@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:34:52 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/16 00:10:15 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/21 20:53:07 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ bool	is_map_valid(t_mcraft *mcraft, t_map *map)
 {
 	if (!is_enclosed(map))
 	{
-		ft_printf("Error: Map is not enclosed by walls.\n");
+		exit_err("Error: Map is not enclosed by walls.\n", mcraft);
 		return (false);
 	}
 	if (!symbols_valid(mcraft, map))
 	{
-		ft_printf("Error: Invalid symbols in map.\n");
+		exit_err("Error: Invalid symbols in map.\n", mcraft);
 		return (false);
 	}
 	return (true);
@@ -103,8 +103,6 @@ bool	symbols_valid(t_mcraft *mcraft, t_map *map)
 				return (false);
 			if (is_player(map->grid[i][j]))
 			{
-				// map->player_start_row = i;
-				// map->player_start_col = j;
 				set_player_direction(&mcraft->gamer->direction, &mcraft->gamer->angle,
 					map->grid[i][j]); // assing gamer angle based on this direction as well
 				mcraft->gamer->x = j;
@@ -114,6 +112,6 @@ bool	symbols_valid(t_mcraft *mcraft, t_map *map)
 		}
 	}
 	if (player_count != 1)
-		exit_err("Error: Map must have exactly one player starting pos.\n");
+		exit_err("Error: Map must have exactly one player starting pos.", mcraft);
 	return (true);
 }

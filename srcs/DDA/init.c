@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 23:07:58 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/21 17:52:44 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/21 20:33:36 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_ray	*init_ray(t_mcraft *mcraft, int x)
 
 	ray = malloc(sizeof(t_ray));
 	if (!ray)
-		exit_err("Memory allocation failed.");
+		exit_err("Memory allocation failed.", mcraft);
 	ray->direction = mcraft->gamer->direction;
 	mcraft->camera_x = 2 * x / (double)mcraft->w - 1;
 	ray->ray_dir_x = mcraft->gamer->dir_x + mcraft->plane_x * mcraft->camera_x;

@@ -6,15 +6,15 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 04:37:56 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/10 17:30:38 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/21 21:47:39 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	exit_err(char *str)
+void	exit_err(char *str, t_mcraft *mcraft)
 {
-	cleanup_game(get_mcraft(NULL));
+	cleanup_game(mcraft);
 	ft_putstr_fd("Error: ", 1);
 	ft_putstr_fd(str, 1);
 	ft_putchar_fd('\n', 1);
@@ -23,12 +23,7 @@ void	exit_err(char *str)
 
 int	exit_win(t_mcraft *mcraft)
 {
-	if (mcraft->img)
-		mlx_destroy_image(mcraft->mlx, mcraft->img);
-	if (mcraft->win)
-		mlx_destroy_window(mcraft->mlx, mcraft->win);
-	free(mcraft->mlx);
-	free(mcraft);
+	cleanup_game(mcraft);
 	ft_printf("Window closed. Exiting game...\n");
 	exit(EXIT_SUCCESS);
 }
@@ -51,27 +46,32 @@ void	cleanup_txts(t_mcraft *mcraft)
 	}
 }
 
-void	cleanup_game(t_mcraft *mcraft)
+int	cleanup_game(t_mcraft *mcraft)
 {
-	if (!mcraft)
-		return ;
-	if (mcraft->map)
-	{
-		free_array(mcraft->map->grid);
-		free(mcraft->map);
+	if (mcraft)
+	{	
+		if (mcraft->img)
+			mlx_destroy_image(mcraft->mlx, mcraft->img);
+		if (mcraft->map)
+		{
+			if (mcraft->map->grid)
+				free_grid(mcraft->map->grid, mcraft->map->rows);
+			free(mcraft->map);
+		}
+		if (mcraft->txts)
+			cleanup_txts(mcraft);
+		if (mcraft->gamer)
+			free(mcraft->gamer);
+		if (mcraft->win)
+			mlx_destroy_window(mcraft->mlx, mcraft->win);
+		if (mcraft->mlx)
+		{
+			mlx_destroy_display(mcraft->mlx);
+			free(mcraft->mlx);
+		}
+		free(mcraft);
 	}
-	if (mcraft->txts)
-		cleanup_txts(mcraft);
-	if (mcraft->img)
-		mlx_destroy_image(mcraft->mlx, mcraft->img);
-	if (mcraft->win)
-		mlx_destroy_window(mcraft->mlx, mcraft->win);
-	if (mcraft->mlx)
-	{
-		mlx_destroy_display(mcraft->mlx);
-		free(mcraft->mlx);
-	}
-	free(mcraft);
+	return (0);
 }
 
 void	cleanup_map(t_map *map)

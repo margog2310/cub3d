@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:16:58 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/21 17:54:22 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/21 21:05:29 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,7 +189,6 @@ typedef struct s_mcraft
 	void				*win;
 	int					w;
 	int					h;
-	char				*file_path;
 	t_map				*map;
 
 	void				*img;
@@ -241,13 +240,10 @@ void					calculate_step_and_sideDist(t_gamer *gamer, t_ray *ray,
 							t_pos *map_pos, t_pos *step);
 bool					**init_visited(t_map *map);
 bool					is_cell_valid(t_map *map, int row, int col);
-char					*get_tx_index(int direction);
-int						get_texture_color(t_mcraft *mcraft, t_txts *txts,
-							int tex_x, int tex_y);
+char					*get_tx_index(t_ray *ray);
 t_pos					set_direction_vector(t_gamer *gamer);
 void					draw_vector(t_mcraft *mcraft, t_ray *ray, t_pos map_pos,
 							int x);
-void					pixel_on_img(t_mcraft *mcraft, int rgb, int x, int y);
 void					texture_on_img(t_mcraft *mcraft, t_vector vector,
 							char *tx_data);
 
@@ -257,8 +253,8 @@ int						parse_elements(t_mcraft *mcraft, int fd);
 void					cleanup_map(t_map *map);
 void					set_player_direction(int *direction, float *angle,
 							char key);
-bool					colour_valid(char *line, int bitmask);
-bool					texture_valid(char *path, int bitmask);
+bool					colour_valid(t_mcraft *mcraft, char *line, int bitmask);
+bool					texture_valid(t_mcraft *mcraft, char *path, int bitmask);
 bool					is_map_valid(t_mcraft *mcraft, t_map *map);
 bool					file_valid(char *line, int fd, bool map_read);
 bool					is_enclosed(t_map *map);
@@ -267,9 +263,9 @@ int						parse_textures_and_colors(t_mcraft *mcraft, char *line);
 int						create_textures(t_mcraft *mcraft, t_txts *txts);
 
 /* ------ garbage collector ------ */
-void					cleanup_game(t_mcraft *mcraft);
+int					cleanup_game(t_mcraft *mcraft);
 void					free_array(char **array);
-void					exit_err(char *str);
+void					exit_err(char *str, t_mcraft *mcraft);
 
 /*------- player ---------*/
 void					draw_crosshairs(t_mcraft *mcraft, int color);

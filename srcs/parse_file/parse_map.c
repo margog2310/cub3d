@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: margo <margo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 04:42:54 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/14 02:38:55 by margo            ###   ########.fr       */
+/*   Updated: 2025/02/21 20:38:24 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,17 @@ static int	parse_map_grid(t_mcraft *mcraft, int fd, char *line)
 			grid = ft_realloc((void *)grid, line_count * sizeof(char *),
 					(line_count + 1) * sizeof(char *));
 			if (!grid)
-				exit_err("Memory allocation failed.");
-			grid[line_count] = line;
+				exit_err("Memory allocation failed.", mcraft);
+			grid[line_count] = ft_strdup(line);
 			line_count++;
+			free(line);
 		}
 		line = get_next_line(fd);
 	}
+	free(line);
 	mcraft->map->grid = grid;
 	if (!mcraft->map->grid)
-		exit_err("Error while parsing map.");
+		exit_err("Error while parsing map.", mcraft);
 	mcraft->map->rows = line_count;
 	mcraft->map->cols = get_longest_row(mcraft->map, "LEN");
 	return (1);
@@ -45,11 +47,12 @@ t_map	*create_map(int fd, char *line, t_mcraft *mcraft)
 {
 	mcraft->map = malloc(sizeof(t_map));
 	if (!mcraft->map)
-		exit_err("Failed to allocate memory for map.");
+		exit_err("Failed to allocate memory for map.", mcraft);
 	if (!parse_map_grid(mcraft, fd, line) || !is_map_valid(mcraft, mcraft->map)
 		|| !file_valid(line, fd, true))
 	{
-		cleanup_map(mcraft->map);
+		exit_err("Failure parsing map.", mcraft);
+		free(line);
 		close(fd);
 		return (NULL);
 	}

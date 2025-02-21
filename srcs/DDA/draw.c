@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 21:18:57 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/21 17:40:49 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/21 18:46:29 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	paint_texture_line(t_mcraft *mcraft, t_ray *ray, t_vector vector)
 	int		y_max;
 	char	*tx_data;
 
-	tx_data = get_tx_data(get_tx_index(ray->direction), mcraft->txts);
+	tx_data = get_tx_data(get_tx_index(ray), mcraft->txts);
 	if (vector.y0 < vector.y1)
 	{
 		y = vector.y0;

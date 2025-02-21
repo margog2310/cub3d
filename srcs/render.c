@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:57:12 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/21 17:27:21 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/21 20:26:15 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,12 +93,12 @@ int	render_img(t_mcraft *mcraft)
     mcraft->plane_y = mcraft->gamer->dir_x * PLANE_DIST;
 	//update_player_angle(mcraft, mcraft->gamer->angle);
 	ft_bzero(mcraft->img_addr, mcraft->h * mcraft->ll);
-	//printf("floor color: %d\n", mcraft->txts->floor_color);
+	// need to update texture coordinates based on player movement
+	minimap(mcraft);
 	dda(mcraft);
 	// player_position(mcraft);
 	//win_bk(mcraft);
-	//minimap(mcraft);
-	//draw_crosshairs(mcraft, BLACK);
+	draw_crosshairs(mcraft, BLACK);
 	mlx_put_image_to_window(mcraft->mlx, mcraft->win, mcraft->img, 0, 0);
 	return (0);
 }

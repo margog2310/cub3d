@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 21:04:33 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/15 22:47:52 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/21 18:47:29 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,22 @@ t_pos	set_direction_vector(t_gamer *gamer)
 	return (direction);
 }
 
-char	*get_tx_index(int direction)
+char	*get_tx_index(t_ray *ray) 
 {
-	if (direction == NORTH)
-		return ("NO");
-	else if (direction == SOUTH)
-		return ("SO");
-	else if (direction == EAST)
-		return ("EA");
-	else if (direction == WEST)
-		return ("WE");
+	if (ray->side == 0)
+	{
+		if (ray->ray_dir_x > 0)
+			return ("WE");
+		else
+			return ("EA");
+	}
+	else
+	{
+		if (ray->ray_dir_y > 0)
+			return ("SO");
+		else
+			return ("NO");
+	}
 	return (NULL);
 }
 
@@ -88,14 +94,3 @@ char	*get_tx_data(char *key, t_txts *txts)
 	return (NULL);			
 }
 
-int	get_texture_color(t_mcraft *mcraft, t_txts *txts, int tex_x, int tex_y)
-{
-	int	color;
-
-	if (tex_x < 0 || tex_x >= txts->tx_width || tex_y < 0
-		|| tex_y >= txts->tx_height)
-		return (0);
-	color = *(unsigned int *)(get_tx_data(get_tx_index(mcraft->gamer->direction),
-				txts) + (tex_y * txts->tx_width + tex_x) * (mcraft->bpp / 8));
-	return (color);
-}

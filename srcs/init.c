@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 20:32:20 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/15 23:29:26 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/21 20:48:35 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,4 @@ void	cub_init(t_mcraft *mcraft, char **av)
 {
 	init_win(mcraft, av);
 	keyhooks(mcraft);
-	render_img(mcraft);
-	mlx_loop_hook(mcraft->mlx, &render_img, mcraft);
 }

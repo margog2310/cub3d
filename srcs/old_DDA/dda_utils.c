@@ -6,22 +6,28 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/08 22:01:52 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/13 20:53:57 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/21 18:45:49 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-char	*get_tx_index(int direction)
+char	*get_tx_index(t_ray *ray) 
 {
-	if (direction == NORTH)
-		return ("NO");
-	else if (direction == SOUTH)
-		return ("SO");
-	else if (direction == EAST)
-		return ("EA");
-	else if (direction == WEST)
-		return ("WE");
+	if (ray->side == 0)
+	{
+		if (ray->ray_dir_x > 0)
+			return ("WE");
+		else
+			return ("EA");
+	}
+	else
+	{
+		if (ray->ray_dir_y > 0)
+			return ("SO");
+		else
+			return ("NO");
+	}
 	return (NULL);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 21:44:09 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/15 23:29:11 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/21 21:47:23 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,22 @@ int	main(int ac, char **av)
 
 	(void)av;
 	if (ac != 2)
-		exit_err("Usage: ./cub3D <map_file.cub>");
+		exit_err("Usage: ./cub3D <map_file.cub>", NULL);
 	mcraft = malloc(sizeof(t_mcraft));
 	if (!mcraft)
-		exit_err("mcraft memory allocation failed");
+		exit_err("mcraft memory allocation failed", NULL);
 	ft_bzero(mcraft, sizeof(t_mcraft));
-	cub_init(mcraft, av);
+	//cub_init(mcraft, av);
 	//set_player_starting_pos(mcraft);
 	//dda(mcraft);
+	init_win(mcraft, av);
 	if (mcraft)
 	{	
+		render_img(mcraft);
+		keyhooks(mcraft);
+		mlx_loop_hook(mcraft->mlx, &render_img, mcraft);
 		mlx_loop(mcraft->mlx);
-		cleanup_game(mcraft);
+		exit_win(mcraft);
 	}
 	return (0);
 }
