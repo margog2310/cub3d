@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:16:58 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/22 19:34:57 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/22 20:53:17 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@
 # define PI 3.14159265359
 # define BLOCK 64
 
-# define P_SPEED 5    // playerspeed
+# define P_SPEED 0.05    // playerspeed
 # define R_SPEED 0.05 // rot speed
 
 # define MINI_H
