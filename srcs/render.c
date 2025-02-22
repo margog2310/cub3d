@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
+/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:57:12 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/21 23:31:14 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/22 18:38:01 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,10 @@ int	render_img(t_mcraft *mcraft)
 	ft_bzero(mcraft->img_addr, mcraft->h * mcraft->ll);
 	// need to update texture coordinates based on player movement
 	dda(mcraft);
+	//win_bk(mcraft);
+	//many_rays(mcraft);
 	minimap(mcraft);
-	// player_position(mcraft);
-	// win_bk(mcraft);
-	// draw_crosshairs(mcraft, BLACK);
+	draw_crosshairs(mcraft, BLACK);
 	mlx_put_image_to_window(mcraft->mlx, mcraft->win, mcraft->img, 0, 0);
 	return (0);
 }

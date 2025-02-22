@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   background.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
+/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:43:42 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/08 19:25:11 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/22 18:21:54 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	draw_sky(t_mcraft *mcraft)
 		x = 0;
 		while (x < mcraft->w)
 		{
-			draw_pixel(mcraft, x, y, SKY);
+			draw_pixel(mcraft, x, y, LIGHT_GREY);
 			x++;
 		}
 		y++;
@@ -43,7 +43,7 @@ static void	draw_floor(t_mcraft *mcraft)
 		x = 0;
 		while (x < mcraft->w)
 		{
-			draw_pixel(mcraft, x, y - y_off, FLOOR);
+			draw_pixel(mcraft, x, y - y_off, DARK_GREY);
 			x++;
 		}
 		y++;

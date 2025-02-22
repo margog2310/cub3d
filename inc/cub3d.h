@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
+/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:16:58 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/21 23:27:10 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/22 17:26:26 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -303,5 +303,8 @@ float					distance(float x, float y);
 t_mcraft				*get_mcraft(t_mcraft *mcraft);
 char					*get_tx_data(char *key, t_txts *txts);
 int						get_longest_row(t_map *map, char *key);
+
+void many_rays(t_mcraft *mcraft);
+void mr_3d_raycast(t_mcraft *mcraft, float angle, int screen_x);
 
 #endif

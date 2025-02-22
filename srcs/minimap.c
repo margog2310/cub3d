@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
+/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 02:34:42 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/21 23:27:28 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/22 17:46:18 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,24 @@
 static void	draw_player(t_mcraft *mcraft)
 {
 	t_pos	player_map;
-	float	scale;
+	//float	scale;
 	int		marker_size;
 
 	// int		minimap_h;
 	// minimap_h = WIN_H / 5; //was trying to fix fuckin movement inversion
-	scale = (float)TILE_S / BLOCK;
-	player_map.x = OFF_X + (int)(mcraft->gamer->x * scale);
-	player_map.y = OFF_Y + (int)(mcraft->gamer->y * scale);
-	marker_size = TILE_S / 2;
-	draw_tile(mcraft, (t_pos){player_map.x - (marker_size / 2), player_map.y
-		- (marker_size / 2)}, marker_size, PLAYER_COLOR);
+	// scale = (float)TILE_S / BLOCK;
+	// player_map.x = OFF_X + (int)(mcraft->gamer->x * scale);
+	// player_map.y = OFF_Y + (int)(mcraft->gamer->y * scale);
+	// marker_size = TILE_S / 2;
+	// draw_tile(mcraft, (t_pos){player_map.x - (marker_size / 2), player_map.y
+	// 	- (marker_size / 2)}, marker_size, PLAYER_COLOR);
+	player_map.x = OFF_X + (int)((mcraft->gamer->x / BLOCK) * TILE_S);
+    player_map.y = OFF_Y + (int)((mcraft->gamer->y / BLOCK) * TILE_S);
+
+    marker_size = TILE_S / 2;
+    draw_tile(mcraft, (t_pos){player_map.x - (marker_size / 2), 
+                               player_map.y - (marker_size / 2)}, 
+              marker_size, PLAYER_COLOR);
 }
 
 static void	draw_map_loop(t_mcraft *mcraft)
