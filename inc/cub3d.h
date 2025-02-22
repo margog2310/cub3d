@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
+/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:16:58 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/22 17:26:26 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/22 19:34:57 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,7 +201,7 @@ typedef struct s_mcraft
 	double				camera_x;
 	double				plane_x;
 	double				plane_y;
-	bool				has_changed;
+	bool				has_moved;
 	t_gamer				*gamer;
 	t_txts				*txts;
 }						t_mcraft;
@@ -209,7 +209,6 @@ typedef struct s_mcraft
 /* ========== FUNCTIONS ========== */
 
 /* ----- Initttt ----- */
-void					cub_init(t_mcraft *mcraft, char **av);
 void					init_win(t_mcraft *mcraft, char **av);
 void					win_bk(t_mcraft *mcraft);
 t_map					*create_map(int fd, char *line, t_mcraft *mcraft);
@@ -238,7 +237,6 @@ void					setup_vector(t_mcraft *mcraft, t_ray *ray,
 							t_vector *vector, int x);
 void					calculate_step_and_sidedist(t_gamer *gamer, t_ray *ray,
 							t_pos *map_pos, t_pos *step);
-bool					**init_visited(t_map *map);
 bool					is_cell_valid(t_map *map, int row, int col);
 char					*get_tx_index(t_ray *ray);
 t_pos					set_direction_vector(t_gamer *gamer);

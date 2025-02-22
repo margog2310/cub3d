@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:27:47 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/21 23:00:56 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/22 19:34:39 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	keys(int keycode, t_mcraft *mcraft)
 		exit_err("Thank you for playing.");
 	wads_keys(keycode, gamer);
 	arrow_keys(keycode, gamer);
+	move_player(mcraft);
+	mcraft->has_moved = true;
 	return (0);
 }
 

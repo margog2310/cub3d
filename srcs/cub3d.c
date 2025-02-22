@@ -6,19 +6,17 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 21:44:09 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/21 23:37:55 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/22 19:52:23 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	game_loop(t_mcraft *mcraft)
+int	game_loop(t_mcraft *mcraft)
 {
-	if (mcraft->has_changed)
-	{
-		render_img(mcraft);
-		mcraft->has_changed = false;
-	}
+	render_img(mcraft);
+	mcraft->has_moved = false;
+	return (0);
 }
 
 int	main(int ac, char **av)
@@ -36,9 +34,9 @@ int	main(int ac, char **av)
 	init_win(mcraft, av);
 	if (mcraft)
 	{
-		render_img(mcraft);
 		keyhooks(mcraft);
-		mlx_loop_hook(mcraft->mlx, &render_img, mcraft);
+		render_img(mcraft);
+		mlx_loop_hook(mcraft->mlx, &game_loop, mcraft);
 		mlx_loop(mcraft->mlx);
 		exit_win(mcraft);
 	}

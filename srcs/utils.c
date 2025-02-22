@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 19:08:21 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/21 23:31:58 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/22 20:32:41 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,9 @@ bool	is_wall(t_mcraft *mcraft, float px, float py)
 	int	x;
 	int	y;
 
-	x = (int)px / BLOCK;
-	y = (int)py / BLOCK;
+	x = (int)px;
+	y = (int)py;
+	printf("debug x: %d y: %d\n", x, y);
 	if (x < 0 || x >= mcraft->map->cols || y < 0 || y >= mcraft->map->rows)
 		return (true);
 	if (mcraft->map->grid[y][x] == '1')

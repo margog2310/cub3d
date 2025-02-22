@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 21:03:48 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/21 22:54:56 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/22 19:38:45 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,6 @@ int	dda(t_mcraft *mcraft)
 	x = 0;
 	while (x < mcraft->w)
 	{
-		mcraft->gamer->dir_x = cos(mcraft->gamer->angle);
-		mcraft->gamer->dir_y = sin(mcraft->gamer->angle);
 		map_pos.x = (int)mcraft->gamer->x;
 		map_pos.y = (int)mcraft->gamer->y;
 		ray = init_ray(mcraft, x);

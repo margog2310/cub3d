@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:37:35 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/21 23:31:48 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/22 19:51:06 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,6 @@ void	init_win(t_mcraft *mcraft, char **av)
 	init_window(mcraft, WIN_W, WIN_H);
 	init_img(mcraft);
 	mcraft->camera_h = mcraft->h / 2;
-	mcraft->has_changed = false;
+	mcraft->has_moved = false;
+	render_img(mcraft);
 }

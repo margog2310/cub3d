@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 18:05:30 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/16 18:58:38 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/22 20:09:47 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,10 @@ void	move_player(t_mcraft *mcraft)
 		gamer->angle -= R_SPEED;
 	if (gamer->rot_r)
 		gamer->angle += R_SPEED;
-	if (gamer->angle > 2 * PI)
-		gamer->angle = 0;
+	if (gamer->angle >= 2 * PI)
+		gamer->angle -= 2 * PI;
 	if (gamer->angle < 0)
-		gamer->angle = 2 * PI;
+		gamer->angle += 2 * PI;
 	move_arrows(mcraft, gamer, cos_a, sin_a);
+	printf("Player position: x=%f, y=%f, angle=%f\n", gamer->x, gamer->y, gamer->angle);
 }

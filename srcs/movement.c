@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 04:25:32 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/08 22:34:53 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/22 20:36:28 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ void	move_up(t_mcraft *mcraft, t_gamer *gamer, float cos_a, float sin_a)
 		new_y = gamer->y - sin_a * P_SPEED;    // vertical
 		if (!is_wall(mcraft, gamer->x, new_y)) // zomethin wrong here
 			gamer->y = new_y;
+		gamer->dir_x = cos_a;
+		gamer->dir_y = sin_a;
+		printf("Moved up: x=%f, y=%f\n", gamer->x, gamer->y);
 	}
 }
 
@@ -41,6 +44,8 @@ void	move_down(t_mcraft *mcraft, t_gamer *gamer, float cos_a, float sin_a)
 		new_y = gamer->y + sin_a * P_SPEED;
 		if (!is_wall(mcraft, gamer->x, new_y))
 			gamer->y = new_y;
+		gamer->dir_x = cos_a;
+		gamer->dir_y = sin_a;
 	}
 }
 
@@ -57,6 +62,8 @@ void	move_left(t_mcraft *mcraft, t_gamer *gamer, float cos_a, float sin_a)
 		new_y = gamer->y - cos_a * P_SPEED;
 		if (!is_wall(mcraft, gamer->x, new_y))
 			gamer->y = new_y;
+		gamer->dir_x = cos_a;
+		gamer->dir_y = sin_a;
 	}
 }
 
@@ -73,6 +80,8 @@ void	move_right(t_mcraft *mcraft, t_gamer *gamer, float cos_a, float sin_a)
 		new_y = gamer->y + cos_a * P_SPEED;
 		if (!is_wall(mcraft, gamer->x, new_y))
 			gamer->y = new_y;
+		gamer->dir_x = cos_a;
+		gamer->dir_y = sin_a;
 	}
 }
 

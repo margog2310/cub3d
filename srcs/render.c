@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
+/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:57:12 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/22 18:38:01 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/22 20:13:12 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,8 @@ void	player_position(t_mcraft *mcraft)
 	frame_count++;
 }
 
-void	update_player_angle(t_mcraft *mcraft, double angle)
-{
-	mcraft->gamer->angle += angle;
-	if (mcraft->gamer->angle < 0)
-		mcraft->gamer->angle += 2 * PI;
-	if (mcraft->gamer->angle >= 2 * PI)
-		mcraft->gamer->angle -= 2 * PI;
+void	update_player_angle(t_mcraft *mcraft)
+{	
 	mcraft->gamer->dir_x = cos(mcraft->gamer->angle);
 	mcraft->gamer->dir_y = sin(mcraft->gamer->angle);
 	mcraft->plane_x = -mcraft->gamer->dir_y * PLANE_DIST;
@@ -68,10 +63,8 @@ void	update_player_angle(t_mcraft *mcraft, double angle)
 
 int	render_img(t_mcraft *mcraft)
 {
-	mcraft->plane_x = -mcraft->gamer->dir_y * PLANE_DIST;
-	mcraft->plane_y = mcraft->gamer->dir_x * PLANE_DIST;
-	// update_player_angle(mcraft, mcraft->gamer->angle);
 	ft_bzero(mcraft->img_addr, mcraft->h * mcraft->ll);
+	update_player_angle(mcraft);
 	// need to update texture coordinates based on player movement
 	dda(mcraft);
 	//win_bk(mcraft);
