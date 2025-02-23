@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 01:10:09 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/22 18:33:03 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/23 03:09:35 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@
 # define PURPLE_GRAY 0x8D809D
 # define BLUE_GRAY 0x3B4B4E
 # define MAUVE_GRAY  0x646E80
-# define N_WALL 0xA188A6  // Muted Lavender-Purple
-# define S_WALL 0x7C5F76  // Dusty Plum
-# define E_WALL  0xC7A3C2  // Soft Pastel Lilac
-# define W_WALL  0x96738A  // Muted Mauve
+# define N_WALL 0xA188A
+# define S_WALL 0x7C5F76
+# define E_WALL  0xC7A3C2
+# define W_WALL  0x96738A
 
 #endif

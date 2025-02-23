@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
+/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:57:12 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/22 20:13:12 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/23 03:19:26 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	player_position(t_mcraft *mcraft)
 }
 
 void	update_player_angle(t_mcraft *mcraft)
-{	
+{
 	mcraft->gamer->dir_x = cos(mcraft->gamer->angle);
 	mcraft->gamer->dir_y = sin(mcraft->gamer->angle);
 	mcraft->plane_x = -mcraft->gamer->dir_y * PLANE_DIST;
@@ -68,7 +68,6 @@ int	render_img(t_mcraft *mcraft)
 	// need to update texture coordinates based on player movement
 	dda(mcraft);
 	//win_bk(mcraft);
-	//many_rays(mcraft);
 	minimap(mcraft);
 	draw_crosshairs(mcraft, BLACK);
 	mlx_put_image_to_window(mcraft->mlx, mcraft->win, mcraft->img, 0, 0);

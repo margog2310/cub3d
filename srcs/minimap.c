@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
+/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 02:34:42 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/22 19:41:49 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/23 03:23:51 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,14 @@
 static void	draw_player(t_mcraft *mcraft)
 {
 	t_pos	player_map;
-	//float	scale;
 	int		marker_size;
 
-	// int		minimap_h;
-	// minimap_h = WIN_H / 5; //was trying to fix fuckin movement inversion
-	// scale = (float)TILE_S / BLOCK;
-	// player_map.x = OFF_X + (int)(mcraft->gamer->x * scale);
-	// player_map.y = OFF_Y + (int)(mcraft->gamer->y * scale);
-	// marker_size = TILE_S / 2;
-	// draw_tile(mcraft, (t_pos){player_map.x - (marker_size / 2), player_map.y
-	// 	- (marker_size / 2)}, marker_size, PLAYER_COLOR);
 	player_map.x = OFF_X + (int)((mcraft->gamer->x / BLOCK) * TILE_S);
-    player_map.y = OFF_Y + (int)((mcraft->gamer->y / BLOCK) * TILE_S);
-
-    marker_size = TILE_S / 2;
-    draw_tile(mcraft, (t_pos){player_map.x - (marker_size / 2), 
-                               player_map.y - (marker_size / 2)}, 
-              marker_size, PLAYER_COLOR);
+	player_map.y = OFF_Y + (int)((mcraft->gamer->y / BLOCK) * TILE_S);
+	marker_size = TILE_S / 2;
+	draw_tile(mcraft, (t_pos){player_map.x - (marker_size / 2),
+		player_map.y - (marker_size / 2)},
+		marker_size, PLAYER_COLOR);
 }
 
 static void	draw_map_loop(t_mcraft *mcraft)
@@ -58,15 +48,14 @@ static void	draw_map_loop(t_mcraft *mcraft)
 				color = PLAYER_COLOR;
 			else
 				break ;
-			draw_tile(mcraft, (t_pos){OFF_X + (j * TILE_S), OFF_Y + (i * TILE_S)},
-				TILE_S, color);
+			draw_tile(mcraft, (t_pos){OFF_X + (j * TILE_S),
+				OFF_Y + (i * TILE_S)}, TILE_S, color);
 		}
 	}
 }
 
-void	draw_ray_minimap(t_mcraft *mcraft, float angle)
+void	draw_ray_minimap(t_mcraft *mcraft, float angle, float scale)
 {
-	float		scale;
 	float		ray_x;
 	float		ray_y;
 	t_vector	hit;
@@ -76,7 +65,6 @@ void	draw_ray_minimap(t_mcraft *mcraft, float angle)
 	hit = mr_ray(mcraft, angle);
 	ray_x = mcraft->gamer->x;
 	ray_y = mcraft->gamer->y;
-	scale = (float)TILE_S / BLOCK; // minimap size it
 	while ((int)(ray_x / BLOCK) != (int)(hit.x / BLOCK) || (int)(ray_y
 			/ BLOCK) != (int)(hit.y / BLOCK))
 	{
@@ -117,6 +105,6 @@ void	minimap(t_mcraft *mcraft)
 {
 	draw_map_loop(mcraft);
 	draw_player(mcraft);
-	//move_player(mcraft);
+	move_player(mcraft);
 	cast_rays(mcraft);
 }

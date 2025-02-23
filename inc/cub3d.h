@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
+/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:16:58 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/22 20:53:17 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/23 03:24:59 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,13 @@ typedef struct s_pos
 }						t_pos;
 typedef struct s_vector
 {
-	int x;     // x coord of vector relative to screen
-	int y;     // current pixel index of vector
-	float y0;  // y start index of drawing texture
-	float y1;  // y end index of drawing texture
-	float h;   // ray height
-	int tex_x; // x coord of texture to draw
-	int tex_y; // y coord of texture to draw
+	int					x;
+	int					y;
+	float				y0;
+	float				y1;
+	float				h;
+	int					tex_x;
+	int					tex_y;
 }						t_vector;
 
 typedef struct s_ray
@@ -123,7 +123,7 @@ typedef struct s_map
 	t_mcraft			*mcraft;
 }						t_map;
 
-enum					ID
+enum					e_ID
 {
 	NO,
 	SO,
@@ -194,8 +194,8 @@ typedef struct s_mcraft
 	void				*img;
 	char				*img_addr;
 	int					bpp;
-	int ll;  // line length
-	int end; // endian
+	int					ll;
+	int					end;
 
 	double				camera_h;
 	double				camera_x;
@@ -290,7 +290,7 @@ void					minimap(t_mcraft *mcraft);
 bool					is_wall(t_mcraft *mcraft, float px, float py);
 void					player_position(t_mcraft *mcraft);
 void					set_player_starting_pos(t_mcraft *mcraft);
-void					draw_ray_minimap(t_mcraft *mcraft, float angle);
+void					draw_ray_minimap(t_mcraft *mcraft, float angle, float scale);
 
 /* ------ raycasting babyyy ------ */
 t_vector				mr_ray(t_mcraft *mcraft, float angle);
@@ -301,8 +301,5 @@ float					distance(float x, float y);
 t_mcraft				*get_mcraft(t_mcraft *mcraft);
 char					*get_tx_data(char *key, t_txts *txts);
 int						get_longest_row(t_map *map, char *key);
-
-void many_rays(t_mcraft *mcraft);
-void mr_3d_raycast(t_mcraft *mcraft, float angle, int screen_x);
 
 #endif
