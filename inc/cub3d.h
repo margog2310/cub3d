@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:16:58 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/23 03:24:59 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/23 03:39:35 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,8 @@ typedef struct s_gamer
 {
 	float				x;
 	float				y;
+	float		grid_y;
+	float		grid_x;
 	float				angle;
 	int					direction;
 

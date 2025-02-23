@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
+/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 18:05:30 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/22 20:09:47 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/23 04:10:54 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,7 @@ void	move_player(t_mcraft *mcraft)
 	if (gamer->angle < 0)
 		gamer->angle += 2 * PI;
 	move_arrows(mcraft, gamer, cos_a, sin_a);
-	printf("Player position: x=%f, y=%f, angle=%f\n", gamer->x, gamer->y, gamer->angle);
+	gamer->grid_x = (gamer->x * TILE_S) + (TILE_S / 2);
+	gamer->grid_y = (gamer->y * TILE_S) + (TILE_S / 2);
+	//printf("Player position: x=%f, y=%f, angle=%f\n", gamer->x, gamer->y, gamer->angle);
 }

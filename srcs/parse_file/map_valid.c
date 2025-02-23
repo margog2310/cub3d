@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:34:52 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/23 03:10:08 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/23 04:09:43 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,8 @@ bool	symbols_valid(t_mcraft *mcraft, t_map *map)
 			{
 				mcraft->gamer->x = (j);
 				mcraft->gamer->y = (i);
+				mcraft->gamer->grid_x = (j * TILE_S) + (TILE_S / 2);
+				mcraft->gamer->grid_y = (i * TILE_S) + (TILE_S / 2);
 			}
 		}
 	}
