@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
+/*   By: margo <margo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 21:44:09 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/22 19:52:23 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/24 06:42:05 by margo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	main(int ac, char **av)
 	if (mcraft)
 	{
 		keyhooks(mcraft);
-		render_img(mcraft);
+		//render_img(mcraft);
 		mlx_loop_hook(mcraft->mlx, &game_loop, mcraft);
 		mlx_loop(mcraft->mlx);
 		exit_win(mcraft);

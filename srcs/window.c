@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
+/*   By: margo <margo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:37:35 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/22 19:51:06 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/24 06:42:15 by margo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,4 @@ void	init_win(t_mcraft *mcraft, char **av)
 	init_img(mcraft);
 	mcraft->camera_h = mcraft->h / 2;
 	mcraft->has_moved = false;
-	render_img(mcraft);
 }

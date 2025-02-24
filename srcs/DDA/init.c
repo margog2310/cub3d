@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
+/*   By: margo <margo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 23:07:58 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/21 23:01:23 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/24 06:38:59 by margo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ t_ray	*init_ray(t_mcraft *mcraft, int x)
 	ray->side_dist_x = 0;
 	ray->side_dist_y = 0;
 	ray->perp_wall_dist = 0;
+	ray->side = -1;
 	return (ray);
 }
 
@@ -44,15 +45,16 @@ void	setup_ray(t_mcraft *mcraft, t_ray *ray, t_pos map_pos)
 	ray->curr_y = map_pos.y;
 	if (ray->side == 0)
 	{
-		ray->perp_wall_dist = (ray->side_dist_x - ray->delta_dist_x);
+		ray->perp_wall_dist = (map_pos.x - mcraft->gamer->x + (1 - ray->step.x) / 2) / ray->ray_dir_x;
 		ray->wall_x = mcraft->gamer->y + ray->perp_wall_dist * ray->ray_dir_y;
 	}
 	else
 	{
-		ray->perp_wall_dist = (ray->side_dist_y - ray->delta_dist_y);
+		ray->perp_wall_dist = (map_pos.y - mcraft->gamer->y + (1 - ray->step.y) / 2) / ray->ray_dir_y;
 		ray->wall_x = mcraft->gamer->x + ray->perp_wall_dist * ray->ray_dir_x;
 	}
-	ray->perp_wall_dist += 1e-30;
+	if (ray->perp_wall_dist < 1e-6)
+		ray->perp_wall_dist = 1e-6;
 	ray->wall_x -= floor(ray->wall_x);
 }
 
@@ -62,9 +64,9 @@ void	setup_vector(t_mcraft *mcraft, t_ray *ray, t_vector *vector, int x)
 	vector->x = x;
 	vector->tex_x = (int)(ray->wall_x * (double)(mcraft->txts->tx_width));
 	if (ray->side == 0 && ray->ray_dir_x > 0)
-		vector->tex_x = mcraft->txts->tx_width - vector->tex_x;
+		vector->tex_x = mcraft->txts->tx_width - vector->tex_x - 1;
 	if (ray->side == 1 && ray->ray_dir_y < 0)
-		vector->tex_x = mcraft->txts->tx_width - vector->tex_x;
+		vector->tex_x = mcraft->txts->tx_width - vector->tex_x - 1;
 	vector->y0 = -vector->h / 2 + mcraft->h / 2;
 	if (vector->y0 < 0)
 		vector->y0 = 0;

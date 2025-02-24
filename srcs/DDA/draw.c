@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
+/*   By: margo <margo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 21:18:57 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/22 21:00:20 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/24 06:23:33 by margo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,22 @@ void	texture_on_img(t_mcraft *mcraft, t_vector vector, char *tx_data)
 	int	color;
 	int	offset;
 
-	vector.tex_x = (vector.x % BLOCK) * ((WIN_W % BLOCK));
-	vector.tex_y = (vector.y % BLOCK) * ((WIN_H % BLOCK));
-	vector.tex_x = (vector.tex_x % mcraft->txts->tx_width);
-	vector.tex_y = (vector.tex_y % mcraft->txts->tx_height);
-	offset = (vector.tex_y * mcraft->txts->tx_height + vector.tex_x) * 4;
+	//vector.tex_x = (vector.x % BLOCK) * ((WIN_W % BLOCK));
+	//vector.tex_y = (vector.y % BLOCK) * ((WIN_H % BLOCK));
+	//vector.tex_x = (vector.tex_x % mcraft->txts->tx_width);
+	//vector.tex_y = (vector.tex_y % mcraft->txts->tx_height);
+	if (vector.tex_x < 0)
+		vector.tex_x = 0;
+	if (vector.tex_x >= mcraft->txts->tx_width)
+		vector.tex_x = mcraft->txts->tx_width - 1;
+	vector.tex_y = (int)(((vector.y * 2 - mcraft->h + vector.h) * mcraft->txts->tx_height) / vector.h / 2);
+	if (vector.tex_y < 0)
+		vector.tex_x = 0;
+	if (vector.tex_y >= mcraft->txts->tx_height)
+		vector.tex_y = mcraft->txts->tx_height - 1;
+	offset = (vector.tex_y * mcraft->txts->tx_width + vector.tex_x) * 4;
+	if (offset < 0 || offset >= mcraft->txts->tx_width * mcraft->txts->tx_height * 4)
+        return;
 	color = *(unsigned int *)(tx_data + offset);
 	draw_pixel(mcraft, vector.x, vector.y, color);
 }
