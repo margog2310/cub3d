@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
+/*   By: margo <margo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 02:34:42 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/23 04:10:17 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/24 07:17:20 by margo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	draw_map_loop(t_mcraft *mcraft)
 		{
 			if (map->grid[i][j] == '1')
 				color = WALL_COLOR;
-			else if (map->grid[i][j] == '0')
+			else if (map->grid[i][j] == '0' || map->grid[i][j] == ' ')
 				color = FLOOR_COLOR;
 			else if (map->grid[i][j] == 'N' || map->grid[i][j] == 'S'
 				|| map->grid[i][j] == 'E' || map->grid[i][j] == 'W')

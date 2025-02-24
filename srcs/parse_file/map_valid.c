@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_valid.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
+/*   By: margo <margo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:34:52 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/23 04:09:43 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/24 08:44:05 by margo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*
 	// 1. check if all symbols are valid
 	// 2. check if map is surrounded by walls
-	3. check that map is last in file > there could be 
+	3. check that map is last in file > there could be
 		empty lines after map but no other information
 	//4. check that extension is .cub
 	// 5. check that information (besides map) is separated by one or more space
@@ -44,6 +44,34 @@ bool	is_map_valid(t_mcraft *mcraft, t_map *map)
 	return (true);
 }
 
+bool	is_space_enclosed(t_map *map, int len_current, int i, int j)
+{
+	int	len_above;
+	int	len_below;
+
+	len_above = 0;
+	len_below = 0;
+	if (i > 0)
+		len_above = ft_strlen(map->grid[i - 1]) - 1;
+	if (i < map->rows - 1)
+		len_below = ft_strlen(map->grid[i + 1]) - 1;
+	if (j > 0 && (map->grid[i][j - 1] != WALL && map->grid[i][j - 1] != ' '))
+		return (false);
+	if (j < len_current - 1 && (map->grid[i][j + 1] != WALL && map->grid[i][j + 1] != ' '))
+		return (false);
+	if (i > 0 && (map->grid[i - 1][j] != WALL && map->grid[i - 1][j] != ' '))
+	{
+		if (j < len_above - 1)
+			return (false);
+	}
+	if (i < map->rows - 1 && (map->grid[i + 1][j] != WALL && map->grid[i + 1][j] != ' '))
+	{
+		if (j < len_below - 1)
+			return (false);
+	}
+	return (true);
+}
+
 bool	is_enclosed(t_map *map)
 {
 	int	i;
@@ -54,19 +82,20 @@ bool	is_enclosed(t_map *map)
 	while (i++ < map->rows - 1)
 	{
 		len = ft_strlen(map->grid[i]) - 1;
-		if (i == 0 || i == map->rows)
+		j = -1;
+		while (j++ < len - 1)
 		{
-			j = -1;
-			while (j++ < len - 1)
+			if (map->grid[i][j] == ' ')
+			{
+				if (!is_space_enclosed(map, len, i, j))
+					return (false);
+				continue ;
+			}
+			else if (i == 0 || i == map->rows - 1)
 			{
 				if (map->grid[i][j] != WALL)
 					return (false);
 			}
-		}
-		else
-		{
-			if (map->grid[i][0] != WALL || map->grid[i][len - 1] != WALL)
-				return (false);
 		}
 	}
 	return (true);
@@ -74,8 +103,8 @@ bool	is_enclosed(t_map *map)
 
 static bool	is_valid_symbol(char c)
 {
-	return (c == '1' || c == '0' || c == 'N' || c == 'S' || c == 'E'
-		|| c == 'W');
+	return (c == '1' || c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W'
+		|| c == ' ');
 }
 
 static bool	is_player(t_gamer *gamer, char c)
