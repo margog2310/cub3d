@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
+/*   By: margo <margo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 04:37:56 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/21 23:34:41 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/24 09:15:18 by margo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,14 @@ void	cleanup_txts(t_mcraft *mcraft)
 {
 	if (mcraft->txts)
 	{
-		mlx_destroy_image(mcraft->mlx, mcraft->txts->tx_n_img);
-		mlx_destroy_image(mcraft->mlx, mcraft->txts->tx_s_img);
-		mlx_destroy_image(mcraft->mlx, mcraft->txts->tx_e_img);
-		mlx_destroy_image(mcraft->mlx, mcraft->txts->tx_w_img);
+		if (mcraft->txts->tx_n_img)
+			mlx_destroy_image(mcraft->mlx, mcraft->txts->tx_n_img);
+		if (mcraft->txts->tx_s_img)
+			mlx_destroy_image(mcraft->mlx, mcraft->txts->tx_s_img);
+		if (mcraft->txts->tx_e_img)
+			mlx_destroy_image(mcraft->mlx, mcraft->txts->tx_e_img);
+		if (mcraft->txts->tx_w_img)
+			mlx_destroy_image(mcraft->mlx, mcraft->txts->tx_w_img);
 		free(mcraft->txts->tx_n);
 		free(mcraft->txts->tx_s);
 		free(mcraft->txts->tx_e);

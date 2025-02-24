@@ -6,7 +6,7 @@
 /*   By: margo <margo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:34:52 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/24 08:44:05 by margo            ###   ########.fr       */
+/*   Updated: 2025/02/24 10:32:43 by margo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,57 +46,81 @@ bool	is_map_valid(t_mcraft *mcraft, t_map *map)
 
 bool	is_space_enclosed(t_map *map, int len_current, int i, int j)
 {
-	int	len_above;
-	int	len_below;
-
-	len_above = 0;
-	len_below = 0;
-	if (i > 0)
-		len_above = ft_strlen(map->grid[i - 1]) - 1;
-	if (i < map->rows - 1)
-		len_below = ft_strlen(map->grid[i + 1]) - 1;
 	if (j > 0 && (map->grid[i][j - 1] != WALL && map->grid[i][j - 1] != ' '))
 		return (false);
 	if (j < len_current - 1 && (map->grid[i][j + 1] != WALL && map->grid[i][j + 1] != ' '))
 		return (false);
 	if (i > 0 && (map->grid[i - 1][j] != WALL && map->grid[i - 1][j] != ' '))
-	{
-		if (j < len_above - 1)
 			return (false);
-	}
 	if (i < map->rows - 1 && (map->grid[i + 1][j] != WALL && map->grid[i + 1][j] != ' '))
+		return (false);
+	return (true);
+}
+bool	check_top_and_bottom(t_map *map, char *line, int len, int i)
+{
+	int j;
+
+	j = 0;
+	while(j < len)
 	{
-		if (j < len_below - 1)
+		if (line[j] == ' ')
+		{
+			if (!is_space_enclosed(map, len, i, j))
+				return (false);
+		}
+		else if (line[j] != WALL)
 			return (false);
+		j++;
 	}
+	return (true);
+}
+
+bool	check_middle(t_map *map, char *line, int len, int i)
+{
+	int	j;
+	int	end;
+
+	j = 0;
+	while (j < len && line[j] == ' ')
+	{
+		if (!is_space_enclosed(map, len, i, j))
+			return (false);
+		j++;	
+	}
+	if (line[j] != WALL)
+		return (false);
+	end = len - 1;
+	while (end > j && line[end] == ' ')
+	{
+		if (!is_space_enclosed(map, len, i, j))
+			return (false);
+		end--;
+	}
+	if (line[end] != WALL)
+		return(false);
 	return (true);
 }
 
 bool	is_enclosed(t_map *map)
 {
 	int	i;
-	int	j;
 	int	len;
 
-	i = -1;
-	while (i++ < map->rows - 1)
+	i = 0;
+	while (i < map->rows)
 	{
 		len = ft_strlen(map->grid[i]) - 1;
-		j = -1;
-		while (j++ < len - 1)
+		if (i == 0 || i == map->rows - 1)
 		{
-			if (map->grid[i][j] == ' ')
-			{
-				if (!is_space_enclosed(map, len, i, j))
-					return (false);
-				continue ;
-			}
-			else if (i == 0 || i == map->rows - 1)
-			{
-				if (map->grid[i][j] != WALL)
-					return (false);
-			}
+			if (!check_top_and_bottom(map, map->grid[i], len, i))
+				return (false);
 		}
+		else
+		{
+			if(!check_middle(map, map->grid[i], len, i))
+				return (false);
+		}
+		i++;
 	}
 	return (true);
 }
