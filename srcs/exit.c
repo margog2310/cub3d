@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: margo <margo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 04:37:56 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/24 09:15:18 by margo            ###   ########.fr       */
+/*   Updated: 2025/02/25 15:24:50 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,10 @@ void	cleanup_txts(t_mcraft *mcraft)
 		free(mcraft->txts->tx_w->path);
 		free(mcraft->txts->floor_id);
 		free(mcraft->txts->ceiling_id);
+		free(mcraft->txts->tx_n);
+		free(mcraft->txts->tx_s);
+		free(mcraft->txts->tx_w);
+		free(mcraft->txts->tx_e);
 		free(mcraft->txts);
 	}
 }

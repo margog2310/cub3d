@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
+/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 21:18:57 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/25 14:19:59 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/25 15:30:03 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	draw_vector(t_mcraft *mcraft, t_ray *ray, t_pos map_pos, int x)
 	paint_line(mcraft, vector, mcraft->txts->ceiling_color);
 	vector.y0 = mcraft->h;
 	vector.y1 = vector.h / 2 + mcraft->h / 2;
-	if (vector.y1 >= mcraft->h)
-		vector.y1 = mcraft->h - 1;
+	if (vector.y1 > mcraft->h)
+		vector.y1 = mcraft->h;
 	paint_line(mcraft, vector, mcraft->txts->floor_color);
 }

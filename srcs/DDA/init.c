@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
+/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 23:07:58 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/25 14:17:36 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/25 15:29:21 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,7 @@ void	setup_ray(t_mcraft *mcraft, t_ray *ray, t_pos map_pos)
 				+ (1 - ray->step.y) / 2) / ray->ray_dir_y;
 		ray->wall_x = mcraft->gamer->x + ray->perp_wall_dist * ray->ray_dir_x;
 	}
-	if (ray->perp_wall_dist < 1e-6)
-		ray->perp_wall_dist = 1e-6;
+	ray->perp_wall_dist += 1e-30;
 	ray->wall_x -= floor(ray->wall_x);
 }
 
@@ -69,13 +68,13 @@ void	setup_vector(t_mcraft *mcraft, t_ray *ray, t_vector *vector, int x)
 	vector->x = x;
 	vector->tex_x = (int)(ray->wall_x * (double)(tx_data->w));
 	if (ray->side == 0 && ray->ray_dir_x > 0)
-		vector->tex_x = tx_data->w - vector->tex_x - 1;
+		vector->tex_x = tx_data->w - vector->tex_x;
 	if (ray->side == 1 && ray->ray_dir_y < 0)
-		vector->tex_x = tx_data->w - vector->tex_x - 1;
+		vector->tex_x = tx_data->w - vector->tex_x;
 	vector->y0 = -vector->h / 2 + mcraft->h / 2;
 	if (vector->y0 < 0)
 		vector->y0 = 0;
 	vector->y1 = vector->h / 2 + mcraft->h / 2;
-	if (vector->y1 >= mcraft->h)
-		vector->y1 = mcraft->h - 1;
+	if (vector->y1 > mcraft->h)
+		vector->y1 = mcraft->h;
 }
