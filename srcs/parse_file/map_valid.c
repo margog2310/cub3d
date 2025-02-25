@@ -29,6 +29,23 @@
 			-> curr char should also always be 1
 */
 
+char	*pad_row(char *line, int len, int max_len)
+{
+	int	i;
+
+	line = ft_realloc(line, len, max_len + 1);
+	if (!line)
+		exit_err("Memory allocation failed.");
+	i = len;
+	while (i < max_len)
+	{
+		line[i] = ' ';
+		i++;
+	}
+	line[i] = '\n';
+	return (line);
+}
+
 bool	is_space_enclosed(t_map *map, int len_current, int i, int j)
 {
 	if (j > 0 && (map->grid[i][j - 1] != WALL && map->grid[i][j - 1] != ' '))
@@ -39,7 +56,7 @@ bool	is_space_enclosed(t_map *map, int len_current, int i, int j)
 			return (false);
 	if (i < map->rows - 1 && (map->grid[i + 1][j] != WALL && map->grid[i + 1][j] != ' '))
 		return (false);
-	return (printf("space enclosed"), true);
+	return (true);
 }
 
 bool	check_top_and_bottom(t_map *map, char *line, int len, int i)
@@ -92,11 +109,15 @@ bool	is_enclosed(t_map *map)
 	int	i;
 	int	len;
 
-	i = 0;
-	while (i < map->rows)
+	i = -1;
+	while (i++ < map->rows)
 	{
-		printf("rows: %d\n", i);
 		len = ft_strlen(map->grid[i]) - 1;
+		if (len < map->cols)
+		{
+			map->grid[i] = pad_row(map->grid[i], len, map->cols);
+			len = map->cols;
+		}
 		if (i == 0 || i == map->rows - 1)
 		{
 			if (!check_top_and_bottom(map, map->grid[i], len, i))
@@ -107,9 +128,7 @@ bool	is_enclosed(t_map *map)
 			if(!check_middle(map, map->grid[i], len, i))
 				return (false);
 		}
-		i++;
 	}
-	printf("map parsed");
 	return (true);
 }
 
