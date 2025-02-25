@@ -29,21 +29,6 @@
 			-> curr char should also always be 1
 */
 
-bool	is_map_valid(t_mcraft *mcraft, t_map *map)
-{
-	if (!is_enclosed(map))
-	{
-		exit_err("Error: Map is not enclosed by walls.\n");
-		return (false);
-	}
-	if (!symbols_valid(mcraft, map))
-	{
-		exit_err("Error: Invalid symbols in map.\n");
-		return (false);
-	}
-	return (true);
-}
-
 bool	is_space_enclosed(t_map *map, int len_current, int i, int j)
 {
 	if (j > 0 && (map->grid[i][j - 1] != WALL && map->grid[i][j - 1] != ' '))
@@ -54,19 +39,20 @@ bool	is_space_enclosed(t_map *map, int len_current, int i, int j)
 			return (false);
 	if (i < map->rows - 1 && (map->grid[i + 1][j] != WALL && map->grid[i + 1][j] != ' '))
 		return (false);
-	return (true);
+	return (printf("space enclosed"), true);
 }
+
 bool	check_top_and_bottom(t_map *map, char *line, int len, int i)
 {
 	int j;
-
+	
 	j = 0;
 	while(j < len)
 	{
 		if (line[j] == ' ')
 		{
 			if (!is_space_enclosed(map, len, i, j))
-				return (false);
+			return (false);
 		}
 		else if (line[j] != WALL)
 			return (false);
@@ -79,20 +65,20 @@ bool	check_middle(t_map *map, char *line, int len, int i)
 {
 	int	j;
 	int	end;
-
+	
 	j = 0;
 	while (j < len && line[j] == ' ')
 	{
 		if (!is_space_enclosed(map, len, i, j))
-			return (false);
-		j++;	
+		return (false);
+	j++;	
 	}
 	if (line[j] != WALL)
 		return (false);
 	end = len - 1;
 	while (end > j && line[end] == ' ')
 	{
-		if (!is_space_enclosed(map, len, i, j))
+		if (!is_space_enclosed(map, len, i, end))
 			return (false);
 		end--;
 	}
@@ -109,6 +95,7 @@ bool	is_enclosed(t_map *map)
 	i = 0;
 	while (i < map->rows)
 	{
+		printf("rows: %d\n", i);
 		len = ft_strlen(map->grid[i]) - 1;
 		if (i == 0 || i == map->rows - 1)
 		{
@@ -122,13 +109,8 @@ bool	is_enclosed(t_map *map)
 		}
 		i++;
 	}
+	printf("map parsed");
 	return (true);
-}
-
-static bool	is_valid_symbol(char c)
-{
-	return (c == '1' || c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W'
-		|| c == ' ');
 }
 
 static bool	is_player(t_gamer *gamer, char c)

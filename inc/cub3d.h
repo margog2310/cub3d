@@ -133,31 +133,26 @@ enum					e_ID
 	CE
 };
 
+typedef	struct	s_img
+{
+	char	*path;
+	char	*data;
+	void	*img;
+	int	w;
+	int	h;
+	int	ll;
+	int	bpp;
+	int end;
+}	t_img;
+
 typedef struct t_txts
 {
 	// Texture paths
-	char				*tx_n;
-	char				*tx_s;
-	char				*tx_e;
-	char				*tx_w;
-
-	char				*tx_n_data;
-	char				*tx_s_data;
-	char				*tx_e_data;
-	char				*tx_w_data;
-
-	void				*tx_n_img;
-	void				*tx_s_img;
-	void				*tx_e_img;
-	void				*tx_w_img;
-
-	int					tx_width;
-	int					tx_height;
-
-	int					ll;
-	int					bpp;
-	int					end;
-
+	t_img				*tx_n;
+	t_img				*tx_s;
+	t_img				*tx_e;
+	t_img				*tx_w;
+	
 	char				*floor_id;
 	char				*ceiling_id;
 
@@ -245,7 +240,7 @@ t_pos					set_direction_vector(t_gamer *gamer);
 void					draw_vector(t_mcraft *mcraft, t_ray *ray, t_pos map_pos,
 							int x);
 void					texture_on_img(t_mcraft *mcraft, t_vector vector,
-							char *tx_data);
+							t_img *tx_data);
 
 /* ----- Map Parsing ----- */
 int						parse(t_mcraft *mcraft, char *file);
@@ -258,6 +253,7 @@ bool					texture_valid(char *path, int bitmask);
 bool					is_map_valid(t_mcraft *mcraft, t_map *map);
 bool					file_valid(char *line, int fd, bool map_read);
 bool					is_enclosed(t_map *map);
+bool	is_valid_symbol(char c);
 bool					symbols_valid(t_mcraft *mcraft, t_map *map);
 int						parse_textures_and_colors(t_mcraft *mcraft, char *line);
 int						create_textures(t_mcraft *mcraft, t_txts *txts);
@@ -301,7 +297,7 @@ float					distance(float x, float y);
 
 /* ------ utils ------- */
 t_mcraft				*get_mcraft(t_mcraft *mcraft);
-char					*get_tx_data(char *key, t_txts *txts);
+t_img					*get_tx_data(char *key, t_txts *txts);
 int						get_longest_row(t_map *map, char *key);
 
 #endif

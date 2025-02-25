@@ -60,6 +60,21 @@ bool	texture_valid(char *path, int bitmask)
 	return (true);
 }
 
+bool	is_map_valid(t_mcraft *mcraft, t_map *map)
+{
+	if (!is_enclosed(map))
+	{
+		exit_err("Error: Map is not enclosed by walls.\n");
+		return (false);
+	}
+	if (!symbols_valid(mcraft, map))
+	{
+		exit_err("Error: Invalid symbols in map.\n");
+		return (false);
+	}
+	return (true);
+}
+
 bool	file_valid(char *line, int fd, bool map_read)
 {
 	if (map_read)

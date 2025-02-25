@@ -60,13 +60,16 @@ void	setup_ray(t_mcraft *mcraft, t_ray *ray, t_pos map_pos)
 
 void	setup_vector(t_mcraft *mcraft, t_ray *ray, t_vector *vector, int x)
 {
+	t_img	*tx_data;
+
+	tx_data = get_tx_data(get_tx_index(ray), mcraft->txts);
 	vector->h = mcraft->h / ray->perp_wall_dist;
 	vector->x = x;
-	vector->tex_x = (int)(ray->wall_x * (double)(mcraft->txts->tx_width));
+	vector->tex_x = (int)(ray->wall_x * (double)(tx_data->w));
 	if (ray->side == 0 && ray->ray_dir_x > 0)
-		vector->tex_x = mcraft->txts->tx_width - vector->tex_x - 1;
+		vector->tex_x = tx_data->w - vector->tex_x - 1;
 	if (ray->side == 1 && ray->ray_dir_y < 0)
-		vector->tex_x = mcraft->txts->tx_width - vector->tex_x - 1;
+		vector->tex_x = tx_data->w - vector->tex_x - 1;
 	vector->y0 = -vector->h / 2 + mcraft->h / 2;
 	if (vector->y0 < 0)
 		vector->y0 = 0;

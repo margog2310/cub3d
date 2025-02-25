@@ -54,10 +54,18 @@ void	init_textures(t_mcraft *mcraft)
 	if (!mcraft->txts)
 		exit_err("Memory allocation failed.");
 	ft_bzero(mcraft->txts, sizeof(t_txts));
+	mcraft->txts->tx_n = malloc(sizeof(t_img));
+	mcraft->txts->tx_s = malloc(sizeof(t_img));
+	mcraft->txts->tx_w = malloc(sizeof(t_img));
+	mcraft->txts->tx_e = malloc(sizeof(t_img));
+	if (!mcraft->txts->tx_n || !mcraft->txts->tx_s || !mcraft->txts->tx_e || !mcraft->txts->tx_w)
+		exit_err("Memory allocation failed.");
+	ft_bzero(mcraft->txts->tx_n, sizeof(t_img));
+	ft_bzero(mcraft->txts->tx_s, sizeof(t_img));
+	ft_bzero(mcraft->txts->tx_w, sizeof(t_img));
+	ft_bzero(mcraft->txts->tx_e, sizeof(t_img));
 	mcraft->txts->floor_color = 0;
 	mcraft->txts->ceiling_color = 0;
-	mcraft->txts->tx_width = 0;
-	mcraft->txts->tx_height = 0;
 }
 
 void	init_win(t_mcraft *mcraft, char **av)

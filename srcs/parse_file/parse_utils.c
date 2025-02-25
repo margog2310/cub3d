@@ -12,6 +12,12 @@
 
 #include "cub3d.h"
 
+bool	is_valid_symbol(char c)
+{
+	return (c == '1' || c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W'
+		|| c == ' ');
+}
+
 void	free_array(char **array)
 {
 	int	i;

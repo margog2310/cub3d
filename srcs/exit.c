@@ -32,18 +32,18 @@ void	cleanup_txts(t_mcraft *mcraft)
 {
 	if (mcraft->txts)
 	{
-		if (mcraft->txts->tx_n_img)
-			mlx_destroy_image(mcraft->mlx, mcraft->txts->tx_n_img);
-		if (mcraft->txts->tx_s_img)
-			mlx_destroy_image(mcraft->mlx, mcraft->txts->tx_s_img);
-		if (mcraft->txts->tx_e_img)
-			mlx_destroy_image(mcraft->mlx, mcraft->txts->tx_e_img);
-		if (mcraft->txts->tx_w_img)
-			mlx_destroy_image(mcraft->mlx, mcraft->txts->tx_w_img);
-		free(mcraft->txts->tx_n);
-		free(mcraft->txts->tx_s);
-		free(mcraft->txts->tx_e);
-		free(mcraft->txts->tx_w);
+		if (mcraft->txts->tx_n)
+			mlx_destroy_image(mcraft->mlx, mcraft->txts->tx_n->img);
+		if (mcraft->txts->tx_s)
+			mlx_destroy_image(mcraft->mlx, mcraft->txts->tx_s->img);
+		if (mcraft->txts->tx_e)
+			mlx_destroy_image(mcraft->mlx, mcraft->txts->tx_e->img);
+		if (mcraft->txts->tx_w)
+			mlx_destroy_image(mcraft->mlx, mcraft->txts->tx_w->img);
+		free(mcraft->txts->tx_n->path);
+		free(mcraft->txts->tx_s->path);
+		free(mcraft->txts->tx_e->path);
+		free(mcraft->txts->tx_w->path);
 		free(mcraft->txts->floor_id);
 		free(mcraft->txts->ceiling_id);
 		free(mcraft->txts);

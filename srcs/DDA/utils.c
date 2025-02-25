@@ -65,31 +65,31 @@ char	*get_tx_index(t_ray *ray)
 	return (NULL);
 }
 
-char	*get_tx_data(char *key, t_txts *txts)
+t_img	*get_tx_data(char *key, t_txts *txts)
 {
 	static t_txts	*ptr;
 
 	if (!txts)
 	{
 		if (!ft_strncmp(key, "NO", 2))
-			return (ptr->tx_n_data);
+			return (ptr->tx_n);
 		else if (!ft_strncmp(key, "SO", 2))
-			return (ptr->tx_s_data);
+			return (ptr->tx_s);
 		else if (!ft_strncmp(key, "WE", 2))
-			return (ptr->tx_w_data);
+			return (ptr->tx_w);
 		else if (!ft_strncmp(key, "EA", 2))
-			return (ptr->tx_e_data);
+			return (ptr->tx_e);
 	}
 	ptr = txts;
 	if (!key)
 		return (NULL);
 	if (!ft_strncmp(key, "NO", 2))
-		return (txts->tx_n_data);
+		return (txts->tx_n);
 	else if (!ft_strncmp(key, "SO", 2))
-		return (txts->tx_s_data);
+		return (txts->tx_s);
 	else if (!ft_strncmp(key, "WE", 2))
-		return (txts->tx_w_data);
+		return (txts->tx_w);
 	else if (!ft_strncmp(key, "EA", 2))
-		return (txts->tx_e_data);
+		return (txts->tx_e);
 	return (NULL);
 }
