@@ -3,23 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
+/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 19:08:21 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/25 16:06:04 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/25 17:36:42 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-bool	cub_extension(const char *filename)
+bool	extension(const char *filename, const char *extension)
 {
+	int	fd;
 	size_t	len;
 
+	fd = open(filename, O_RDONLY);
+	if (fd < 0)
+		exit_err("File doesn't exist.");
+	close(fd);
 	len = ft_strlen(filename);
 	if (len < 4)
 		return (false);
-	return (ft_strcmp(filename + len - 4, ".cub") == 0);
+	return (ft_strcmp(filename + len - 4, extension) == 0);
 }
 
 t_mcraft	*get_mcraft(t_mcraft *mcraft)

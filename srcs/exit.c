@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
+/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 04:37:56 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/25 16:37:01 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/25 17:42:00 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,28 +28,29 @@ int	exit_win(t_mcraft *mcraft)
 	exit(EXIT_SUCCESS);
 }
 
+void	free_tx(t_mcraft *mcraft, t_img *tx)
+{
+	if (tx->img)
+		mlx_destroy_image(mcraft->mlx, tx->img);
+	if (tx->path)
+		free(tx->path);
+	free(tx);
+}
+
 void	cleanup_txts(t_mcraft *mcraft)
 {
 	if (mcraft->txts)
 	{
 		if (mcraft->txts->tx_n)
-			mlx_destroy_image(mcraft->mlx, mcraft->txts->tx_n->img);
+			free_tx(mcraft, mcraft->txts->tx_n);
 		if (mcraft->txts->tx_s)
-			mlx_destroy_image(mcraft->mlx, mcraft->txts->tx_s->img);
+			free_tx(mcraft, mcraft->txts->tx_s);
 		if (mcraft->txts->tx_e)
-			mlx_destroy_image(mcraft->mlx, mcraft->txts->tx_e->img);
+			free_tx(mcraft, mcraft->txts->tx_e);
 		if (mcraft->txts->tx_w)
-			mlx_destroy_image(mcraft->mlx, mcraft->txts->tx_w->img);
-		free(mcraft->txts->tx_n->path);
-		free(mcraft->txts->tx_s->path);
-		free(mcraft->txts->tx_e->path);
-		free(mcraft->txts->tx_w->path);
+			free_tx(mcraft, mcraft->txts->tx_w);
 		free(mcraft->txts->floor_id);
 		free(mcraft->txts->ceiling_id);
-		free(mcraft->txts->tx_n);
-		free(mcraft->txts->tx_s);
-		free(mcraft->txts->tx_w);
-		free(mcraft->txts->tx_e);
 		free(mcraft->txts);
 	}
 }
@@ -80,21 +81,4 @@ int	cleanup_game(t_mcraft *mcraft)
 		free(mcraft);
 	}
 	return (0);
-}
-
-void	cleanup_map(t_map *map)
-{
-	int	i;
-
-	if (map->grid)
-	{
-		i = 0;
-		while (i < map->rows)
-		{
-			free(map->grid[i]);
-			i++;
-		}
-		free(map->grid);
-	}
-	free(map);
 }

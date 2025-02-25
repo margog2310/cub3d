@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 04:52:08 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/25 17:19:40 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/25 17:24:53 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 bool	is_valid_symbol(char c)
 {
-	if (!chrsetcmp(c, WHITESPACE))
-		return (false);
-	return (c == '1' || c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W');
+	return (c == '1' || c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W'
+		|| c == ' ' || c == '\t' || c == '\r' || c == '\f' || c == '\v');
 }
 
 void	free_array(char **array)

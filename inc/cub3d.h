@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:16:58 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/25 17:21:38 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/25 17:42:43 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@
 # define PI 3.14159265359
 # define BLOCK 64
 
-# define P_SPEED 0.05    // playerspeed
+# define P_SPEED 0.05 // playerspeed
 # define R_SPEED 0.05 // rot speed
 
 # define MINI_H
@@ -134,17 +134,17 @@ enum					e_ID
 	CE
 };
 
-typedef	struct	s_img
+typedef struct s_img
 {
-	char	*path;
-	char	*data;
-	void	*img;
-	int	w;
-	int	h;
-	int	ll;
-	int	bpp;
-	int end;
-}	t_img;
+	char				*path;
+	char				*data;
+	void				*img;
+	int					w;
+	int					h;
+	int					ll;
+	int					bpp;
+	int					end;
+}						t_img;
 
 typedef struct t_txts
 {
@@ -153,7 +153,7 @@ typedef struct t_txts
 	t_img				*tx_s;
 	t_img				*tx_e;
 	t_img				*tx_w;
-	
+
 	char				*floor_id;
 	char				*ceiling_id;
 
@@ -165,8 +165,8 @@ typedef struct s_gamer
 {
 	float				x;
 	float				y;
-	float		grid_y;
-	float		grid_x;
+	float				grid_y;
+	float				grid_x;
 	float				angle;
 	int					direction;
 
@@ -246,7 +246,6 @@ void					texture_on_img(t_mcraft *mcraft, t_vector vector,
 /* ----- Map Parsing ----- */
 int						parse(t_mcraft *mcraft, char *file);
 int						parse_elements(t_mcraft *mcraft, int fd);
-void					cleanup_map(t_map *map);
 void					set_player_direction(int *direction, float *angle,
 							char key);
 bool					colour_valid(char *line, int bitmask);
@@ -254,11 +253,11 @@ bool					texture_valid(char *path, int bitmask);
 bool					is_map_valid(t_mcraft *mcraft, t_map *map);
 bool					file_valid(char *line, int fd, bool map_read);
 bool					is_enclosed(t_map *map);
-bool	is_valid_symbol(char c);
+bool					is_valid_symbol(char c);
 bool					symbols_valid(t_mcraft *mcraft, t_map *map);
 int						parse_textures_and_colors(t_mcraft *mcraft, char *line);
 int						create_textures(t_mcraft *mcraft, t_txts *txts);
-bool					cub_extension(const char *filename);
+bool					extension(const char *filename, const char *extension);
 
 /* ------ garbage collector ------ */
 int						cleanup_game(t_mcraft *mcraft);
@@ -290,7 +289,8 @@ void					minimap(t_mcraft *mcraft);
 bool					is_wall(t_mcraft *mcraft, float px, float py);
 void					player_position(t_mcraft *mcraft);
 void					set_player_starting_pos(t_mcraft *mcraft);
-void					draw_ray_minimap(t_mcraft *mcraft, float angle, float scale);
+void					draw_ray_minimap(t_mcraft *mcraft, float angle,
+							float scale);
 
 /* ------ raycasting babyyy ------ */
 t_vector				mr_ray(t_mcraft *mcraft, float angle);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_elements.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
+/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 18:56:21 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/25 14:22:03 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/25 17:35:40 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,19 @@
 		7. multiple players > could be different letters
 		//8. duplicate textures
 */
+
+bool	textures_valid(t_txts *txts)
+{
+	if (!extension(txts->tx_n->path, ".xpm"))
+		return (false);
+	if (!extension(txts->tx_s->path, ".xpm"))
+		return (false);
+	if (!extension(txts->tx_e->path, ".xpm"))
+		return (false);
+	if (!extension(txts->tx_w->path, ".xpm"))
+		return (false);
+	return (true);
+}
 
 int	parse_textures_and_colors(t_mcraft *mcraft, char *line)
 {
@@ -73,6 +86,7 @@ int	parse_elements(t_mcraft *mcraft, int fd)
 
 int	create_textures(t_mcraft *mcraft, t_txts *txts)
 {
+	textures_valid(txts);
 	txts->tx_n->img = mlx_xpm_file_to_image(mcraft->mlx, txts->tx_n->path,
 			&txts->tx_n->w, &txts->tx_n->h);
 	txts->tx_s->img = mlx_xpm_file_to_image(mcraft->mlx, txts->tx_s->path,
