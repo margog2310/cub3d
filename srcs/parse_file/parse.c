@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
+/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 19:04:25 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/25 14:54:56 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/25 18:36:07 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,32 @@ int	parse(t_mcraft *mcraft, char *file)
 	return (0);
 }
 
-static bool	is_player(t_gamer *gamer, char c)
+static bool	player_valid(t_mcraft *mcraft, t_map *map)
 {
-	static int	player_count;
+	int	i;
+	int	j;
+	int	len;
+	int	player_count;
 
-	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
+	i = 0;
+	player_count = 0;
+	while (i < map->rows)
 	{
-		player_count++;
-		if (player_count != 1)
-			return (exit_err("Error: Map must have only 1 player."), false);
-		set_player_direction(&gamer->direction, &gamer->angle, c);
-		return (true);
+		j = 0;
+		len = ft_strlen(map->grid[i]) - 1;
+		while (j < len)
+		{
+			if (map->grid[i][j] == 'N' || map->grid[i][j] == 'S'
+				|| map->grid[i][j] == 'E' || map->grid[i][j] == 'W')
+				player_count++;
+			j++;
+		}
+		i++;
 	}
-	return (false);
+	if (player_count != 1)
+		exit_err("Map must have only 1 player.");
+	set_player_direction(&mcraft->gamer->direction, &mcraft->gamer->angle, map->grid[i][j]);
+	return (true);
 }
 
 bool	symbols_valid(t_mcraft *mcraft, t_map *map)
@@ -63,14 +76,8 @@ bool	symbols_valid(t_mcraft *mcraft, t_map *map)
 			skip_set(map->grid[i], IFS);
 			if (!is_valid_symbol(map->grid[i][j]))
 				return (false);
-			if (is_player(mcraft->gamer, map->grid[i][j]))
-			{
-				mcraft->gamer->x = (j);
-				mcraft->gamer->y = (i);
-				mcraft->gamer->grid_x = (j * TILE_S) + (TILE_S / 2);
-				mcraft->gamer->grid_y = (i * TILE_S) + (TILE_S / 2);
-			}
 		}
 	}
+	player_valid(mcraft, map);
 	return (true);
 }
