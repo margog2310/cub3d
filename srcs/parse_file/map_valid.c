@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_valid.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
+/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:34:52 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/25 15:22:30 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/25 15:34:26 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ t_map	*pad_map(t_map *map)
 {
 	int	i;
 	int	len;
-	int	max_len;
-	
+	//int	max_len;
+
 	i = 0;
-	max_len = map->cols;
+	//max_len = map->cols;
 	while (i < map->rows)
 	{
 		len = ft_strlen(map->grid[i]) - 1;	

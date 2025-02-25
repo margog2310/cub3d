@@ -3,16 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
+/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 19:08:21 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/22 20:32:41 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/25 16:06:04 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// return a pointer to the main struct
+bool	cub_extension(const char *filename)
+{
+	size_t	len;
+
+	len = ft_strlen(filename);
+	if (len < 4)
+		return (false);
+	return (ft_strcmp(filename + len - 4, ".cub") == 0);
+}
+
 t_mcraft	*get_mcraft(t_mcraft *mcraft)
 {
 	static t_mcraft	*ptr;
