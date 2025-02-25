@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
+/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 04:37:56 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/25 15:24:50 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/25 16:37:01 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	exit_err(char *str)
 int	exit_win(t_mcraft *mcraft)
 {
 	cleanup_game(mcraft);
-	ft_printf("Window closed. Exiting game...\n");
+	ft_printf("Window closed. Exiting game... THANKS FOR PLAYING!\n");
 	exit(EXIT_SUCCESS);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 02:34:42 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/25 17:16:02 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/25 17:21:48 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,5 @@ void	minimap(t_mcraft *mcraft)
 	draw_map_loop(mcraft);
 	draw_player(mcraft);
 	move_player(mcraft);
-	cast_rays(mcraft);
+	//cast_rays(mcraft);
 }

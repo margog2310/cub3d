@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:16:58 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/25 17:09:23 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/25 17:21:38 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -258,6 +258,7 @@ bool	is_valid_symbol(char c);
 bool					symbols_valid(t_mcraft *mcraft, t_map *map);
 int						parse_textures_and_colors(t_mcraft *mcraft, char *line);
 int						create_textures(t_mcraft *mcraft, t_txts *txts);
+bool					cub_extension(const char *filename);
 
 /* ------ garbage collector ------ */
 int						cleanup_game(t_mcraft *mcraft);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: margo <margo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 21:44:09 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/24 06:42:05 by margo            ###   ########.fr       */
+/*   Updated: 2025/02/25 16:21:01 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@ int	main(int ac, char **av)
 	(void)av;
 	if (ac != 2)
 		exit_err("Usage: ./cub3D <map_file.cub>");
+	if (!cub_extension(av[1]))
+	{
+		ft_printf("Error: must be a '.cub' file");
+		exit(EXIT_FAILURE);
+	}
 	mcraft = malloc(sizeof(t_mcraft));
 	if (!mcraft)
 		exit_err("mcraft memory allocation failed");
