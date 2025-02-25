@@ -6,7 +6,7 @@
 #    By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/13 00:20:17 by mganchev          #+#    #+#              #
-#    Updated: 2025/01/29 22:39:43 by mganchev         ###   ########.fr        #
+#    Updated: 2025/02/25 17:14:22 by mganchev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ $(SRCDIR)/ft_print_ptr.c $(SRCDIR)/ft_puthexnbr.c $(SRCDIR)/ft_putunbr_fd.c $(SR
 $(SRCDIR)/ft_swap_char.c $(SRCDIR)/ft_allocate_grid.c $(SRCDIR)/ft_grid_size.c $(SRCDIR)/ft_list_remove_if.c \
 $(SRCDIR)/ft_print_grid.c $(SRCDIR)/ft_realloc.c $(SRCDIR)/ft_printf.c $(SRCDIR)/get_next_line.c \
 $(SRCDIR)/ft_strcmp.c $(SRCDIR)/free_grid.c $(SRCDIR)/skip_set.c $(SRCDIR)/is_nbrstr.c $(SRCDIR)/split_set.c \
-$(SRCDIR)/remove_set.c
+$(SRCDIR)/remove_set.c $(SRCDIR)/chrsetcmp.c
 
 BONUS_SRCS = $(SRCDIR)/ft_lstadd_back.c $(SRCDIR)/ft_lstadd_front.c $(SRCDIR)/ft_lstclear.c \
 $(SRCDIR)/ft_lstdelone.c $(SRCDIR)/ft_lstiter.c $(SRCDIR)/ft_lstlast.c \
