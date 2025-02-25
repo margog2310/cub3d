@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: margo <margo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 02:34:42 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/24 07:17:20 by margo            ###   ########.fr       */
+/*   Updated: 2025/02/25 16:46:00 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,5 @@ void	minimap(t_mcraft *mcraft)
 	draw_map_loop(mcraft);
 	draw_player(mcraft);
 	move_player(mcraft);
-	cast_rays(mcraft);
+	//cast_rays(mcraft);
 }
