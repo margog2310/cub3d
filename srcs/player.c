@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
+/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/25 18:05:30 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/23 04:10:54 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/25 18:53:21 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 void	init_player(t_gamer **gamer)
 {
 	*gamer = malloc(sizeof(t_gamer));
+	if (!(*gamer))
+		exit_err("Memory allocation failed.");
 	(*gamer)->angle = 0;
 	(*gamer)->dir_x = cos((*gamer)->angle);
 	(*gamer)->dir_y = sin((*gamer)->angle);
@@ -44,8 +46,7 @@ void	move_player(t_mcraft *mcraft)
 		gamer->angle -= 2 * PI;
 	if (gamer->angle < 0)
 		gamer->angle += 2 * PI;
-	move_arrows(mcraft, gamer, cos_a, sin_a);
 	gamer->grid_x = (gamer->x * TILE_S) + (TILE_S / 2);
 	gamer->grid_y = (gamer->y * TILE_S) + (TILE_S / 2);
-	//printf("Player position: x=%f, y=%f, angle=%f\n", gamer->x, gamer->y, gamer->angle);
+	move_arrows(mcraft, gamer, cos_a, sin_a);
 }

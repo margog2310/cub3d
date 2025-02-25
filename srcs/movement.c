@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
+/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 04:25:32 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/23 03:16:34 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/25 18:54:24 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	move_up(t_mcraft *mcraft, t_gamer *gamer, float cos_a, float sin_a)
 			gamer->y = new_y;
 		gamer->dir_x = cos_a;
 		gamer->dir_y = sin_a;
-		printf("Moved up: x=%f, y=%f\n", gamer->x, gamer->y);
 	}
 }
 
