@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:16:58 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/25 18:57:24 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/25 19:23:45 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 
 /* ========== CONSTANTS ========== */
 # define IFS " \t\n"
-# define WHITESPACE " \t\r\v\f"
+# define WS " \t\r\v\f"
 
 # define W 119
 # define A 97
@@ -72,7 +72,6 @@
 # define STEP_SIZE 1.0
 
 # define FOV 60.0
-# define PLANE_DIST tan((FOV / 2.0) * (PI / 180.0))
 
 /* ========== STRUCTS ========== */
 typedef struct s_mcraft	t_mcraft;
@@ -199,7 +198,7 @@ typedef struct s_mcraft
 	double				camera_x;
 	double				plane_x;
 	double				plane_y;
-	bool				has_moved;
+	double				plane_dist;
 	t_gamer				*gamer;
 	t_txts				*txts;
 }						t_mcraft;
@@ -252,6 +251,8 @@ bool					colour_valid(char *line, int bitmask);
 bool					texture_valid(char *path, int bitmask);
 bool					is_map_valid(t_mcraft *mcraft, t_map *map);
 bool					file_valid(char *line, int fd, bool map_read);
+bool					is_space_enclosed(t_map *map, int len_current, int i,
+							int j);
 bool					is_enclosed(t_map *map);
 bool					is_valid_symbol(char c);
 bool					symbols_valid(t_mcraft *mcraft, t_map *map);

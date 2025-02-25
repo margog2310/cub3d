@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 21:18:57 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/25 15:30:03 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/25 19:08:07 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,6 @@ void	texture_on_img(t_mcraft *mcraft, t_vector vector, t_img *tx_data)
 	int	color;
 	int	offset;
 
-	//vector.tex_x = (vector.x % BLOCK) * ((WIN_W % BLOCK));
-	//vector.tex_y = (vector.y % BLOCK) * ((WIN_H % BLOCK));
-	//vector.tex_x = (vector.tex_x % mcraft->txts->tx_width);
-	//vector.tex_y = (vector.tex_y % mcraft->txts->tx_height);
 	if (vector.tex_x < 0)
 		vector.tex_x = 0;
 	if (vector.tex_x >= tx_data->w)

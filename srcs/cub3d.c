@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 21:44:09 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/25 17:29:34 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/25 19:15:27 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	game_loop(t_mcraft *mcraft)
 {
 	render_img(mcraft);
-	mcraft->has_moved = false;
 	return (0);
 }
 
@@ -37,7 +36,6 @@ int	main(int ac, char **av)
 	if (mcraft)
 	{
 		keyhooks(mcraft);
-		//render_img(mcraft);
 		mlx_loop_hook(mcraft->mlx, &game_loop, mcraft);
 		mlx_loop(mcraft->mlx);
 		exit_win(mcraft);

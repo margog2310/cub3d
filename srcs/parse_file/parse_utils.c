@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 04:52:08 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/25 17:24:53 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/25 19:11:47 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,23 @@ bool	is_valid_symbol(char c)
 {
 	return (c == '1' || c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W'
 		|| c == ' ' || c == '\t' || c == '\r' || c == '\f' || c == '\v');
+}
+
+bool	is_space_enclosed(t_map *map, int len_current, int i, int j)
+{
+	if (j > 0 && (map->grid[i][j - 1] != WALL && !chrsetcmp(map->grid[i][j - 1],
+		WS)))
+		return (false);
+	if (j < len_current - 1 && (map->grid[i][j + 1] != WALL
+		&& !chrsetcmp(map->grid[i][j + 1], WS)))
+		return (false);
+	if (i > 0 && (map->grid[i - 1][j] != WALL && !chrsetcmp(map->grid[i - 1][j],
+		WS)))
+		return (false);
+	if (i < map->rows - 1 && (map->grid[i + 1][j] != WALL
+		&& !chrsetcmp(map->grid[i + 1][j], WS)))
+		return (false);
+	return (true);
 }
 
 void	free_array(char **array)

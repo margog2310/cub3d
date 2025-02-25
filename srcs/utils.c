@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 19:08:21 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/25 18:54:20 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/25 19:10:11 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool	extension(const char *filename, const char *extension)
 {
-	int	fd;
+	int		fd;
 	size_t	len;
 
 	fd = open(filename, O_RDONLY);

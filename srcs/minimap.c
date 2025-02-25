@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 02:34:42 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/25 17:21:48 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/25 19:15:03 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,8 @@ static void	draw_player(t_mcraft *mcraft)
 	player_map.x = OFF_X + (int)(mcraft->gamer->grid_x);
 	player_map.y = OFF_Y + (int)(mcraft->gamer->grid_y);
 	marker_size = TILE_S / 2;
-	draw_tile(mcraft, (t_pos){player_map.x - (marker_size),
-		player_map.y - (marker_size)},
-		marker_size, PLAYER_COLOR);
+	draw_tile(mcraft, (t_pos){player_map.x - (marker_size), player_map.y
+		- (marker_size)}, marker_size, PLAYER_COLOR);
 }
 
 static void	draw_map_loop(t_mcraft *mcraft)
@@ -41,15 +40,15 @@ static void	draw_map_loop(t_mcraft *mcraft)
 		{
 			if (map->grid[i][j] == '1')
 				color = WALL_COLOR;
-			else if (map->grid[i][j] == '0' || chrsetcmp(map->grid[i][j], WHITESPACE))
+			else if (map->grid[i][j] == '0' || chrsetcmp(map->grid[i][j], WS))
 				color = FLOOR_COLOR;
 			else if (map->grid[i][j] == 'N' || map->grid[i][j] == 'S'
 				|| map->grid[i][j] == 'E' || map->grid[i][j] == 'W')
 				color = PURPLE_GRAY;
 			else
 				break ;
-			draw_tile(mcraft, (t_pos){OFF_X + (j * TILE_S),
-				OFF_Y + (i * TILE_S)}, TILE_S, color);
+			draw_tile(mcraft, (t_pos){OFF_X + (j * TILE_S), OFF_Y + (i
+					* TILE_S)}, TILE_S, color);
 		}
 	}
 }
@@ -72,8 +71,8 @@ void	draw_ray_minimap(t_mcraft *mcraft, float angle, float scale)
 		mini_y = OFF_Y + (int)(ray_y * scale);
 		if (mini_x < 0 || mini_y < 0 || mini_x > WIN_W || mini_y > WIN_H)
 			break ;
-		if (mcraft->map->grid[(int)(ray_y / TILE_S)]
-			[(int)(ray_x / TILE_S)] == '1')
+		if (mcraft->map->grid[(int)(ray_y / TILE_S)][(int)(ray_x
+				/ TILE_S)] == '1')
 			break ;
 		draw_pixel(mcraft, mini_x, mini_y, RAY_COLOR);
 		ray_x += cos(angle) * STEP_SIZE;
@@ -111,5 +110,4 @@ void	minimap(t_mcraft *mcraft)
 	draw_map_loop(mcraft);
 	draw_player(mcraft);
 	move_player(mcraft);
-	//cast_rays(mcraft);
 }

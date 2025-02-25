@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
+/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:57:12 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/25 16:22:42 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/25 19:21:22 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ void	update_player_angle(t_mcraft *mcraft)
 {
 	mcraft->gamer->dir_x = cos(mcraft->gamer->angle);
 	mcraft->gamer->dir_y = sin(mcraft->gamer->angle);
-	mcraft->plane_x = -mcraft->gamer->dir_y * PLANE_DIST;
-	mcraft->plane_y = mcraft->gamer->dir_x * PLANE_DIST;
+	mcraft->plane_x = -mcraft->gamer->dir_y * mcraft->plane_dist;
+	mcraft->plane_y = mcraft->gamer->dir_x * mcraft->plane_dist;
 }
 
 int	render_img(t_mcraft *mcraft)

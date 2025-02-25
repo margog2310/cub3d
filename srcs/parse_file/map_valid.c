@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:34:52 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/25 17:22:06 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/25 19:11:47 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,8 @@ t_map	*pad_map(t_map *map)
 {
 	int	i;
 	int	len;
-	//int	max_len;
 
 	i = 0;
-	//max_len = map->cols;
 	while (i < map->rows)
 	{
 		len = ft_strlen(map->grid[i]) - 1;
@@ -64,23 +62,6 @@ t_map	*pad_map(t_map *map)
 	return (map);
 }
 
-bool	is_space_enclosed(t_map *map, int len_current, int i, int j)
-{
-	if (j > 0 && (map->grid[i][j - 1] != WALL && !chrsetcmp(map->grid[i][j - 1],
-				WHITESPACE)))
-		return (false);
-	if (j < len_current - 1 && (map->grid[i][j + 1] != WALL
-		&& !chrsetcmp(map->grid[i][j + 1], WHITESPACE)))
-		return (false);
-	if (i > 0 && (map->grid[i - 1][j] != WALL && !chrsetcmp(map->grid[i - 1][j],
-				WHITESPACE)))
-		return (false);
-	if (i < map->rows - 1 && (map->grid[i + 1][j] != WALL
-		&& !chrsetcmp(map->grid[i + 1][j], WHITESPACE)))
-		return (false);
-	return (true);
-}
-
 bool	check_top_and_bottom(t_map *map, char *line, int len, int i)
 {
 	int	j;
@@ -88,7 +69,7 @@ bool	check_top_and_bottom(t_map *map, char *line, int len, int i)
 	j = 0;
 	while (j < len)
 	{
-		if (chrsetcmp(line[j], WHITESPACE))
+		if (chrsetcmp(line[j], WS))
 		{
 			if (!is_space_enclosed(map, len, i, j))
 				return (false);
@@ -106,7 +87,7 @@ bool	check_middle(t_map *map, char *line, int len, int i)
 	int	end;
 
 	j = 0;
-	while (j < len && chrsetcmp(line[j], WHITESPACE))
+	while (j < len && chrsetcmp(line[j], WS))
 	{
 		if (!is_space_enclosed(map, len, i, j))
 			return (false);
@@ -115,7 +96,7 @@ bool	check_middle(t_map *map, char *line, int len, int i)
 	if (line[j] != WALL)
 		return (false);
 	end = len - 1;
-	while (end > j && chrsetcmp(line[end], WHITESPACE))
+	while (end > j && chrsetcmp(line[end], WS))
 	{
 		if (!is_space_enclosed(map, len, i, end))
 			return (false);

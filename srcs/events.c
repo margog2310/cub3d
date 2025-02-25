@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
+/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:27:47 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/25 16:36:36 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/25 19:21:55 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	keys(int keycode, t_mcraft *mcraft)
 	wads_keys(keycode, gamer);
 	arrow_keys(keycode, gamer);
 	move_player(mcraft);
-	mcraft->has_moved = true;
 	return (0);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
+/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:37:35 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/25 14:55:54 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/25 19:20:52 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ void	init_textures(t_mcraft *mcraft)
 	mcraft->txts->tx_s = malloc(sizeof(t_img));
 	mcraft->txts->tx_w = malloc(sizeof(t_img));
 	mcraft->txts->tx_e = malloc(sizeof(t_img));
-	if (!mcraft->txts->tx_n || !mcraft->txts->tx_s
-		|| !mcraft->txts->tx_e || !mcraft->txts->tx_w)
+	if (!mcraft->txts->tx_n || !mcraft->txts->tx_s || !mcraft->txts->tx_e
+		|| !mcraft->txts->tx_w)
 		exit_err("Memory allocation failed.");
 	ft_bzero(mcraft->txts->tx_n, sizeof(t_img));
 	ft_bzero(mcraft->txts->tx_s, sizeof(t_img));
@@ -79,5 +79,5 @@ void	init_win(t_mcraft *mcraft, char **av)
 	init_window(mcraft, WIN_W, WIN_H);
 	init_img(mcraft);
 	mcraft->camera_h = mcraft->h / 2;
-	mcraft->has_moved = false;
+	mcraft->plane_dist = tan((FOV / 2.0) * (PI / 180.0));
 }
