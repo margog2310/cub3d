@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 02:57:12 by ssottori          #+#    #+#             */
-/*   Updated: 2025/02/23 03:19:26 by ssottori         ###   ########.fr       */
+/*   Updated: 2025/02/25 14:59:45 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,9 +65,7 @@ int	render_img(t_mcraft *mcraft)
 {
 	ft_bzero(mcraft->img_addr, mcraft->h * mcraft->ll);
 	update_player_angle(mcraft);
-	// need to update texture coordinates based on player movement
 	dda(mcraft);
-	//win_bk(mcraft);
 	minimap(mcraft);
 	draw_crosshairs(mcraft, BLACK);
 	mlx_put_image_to_window(mcraft->mlx, mcraft->win, mcraft->img, 0, 0);
