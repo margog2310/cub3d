@@ -6,7 +6,7 @@
 /*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 19:20:47 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/21 23:04:10 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/25 17:45:42 by mganchev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,12 @@ bool	is_map_valid(t_mcraft *mcraft, t_map *map)
 {
 	if (!is_enclosed(map))
 	{
-		exit_err("Error: Map is not enclosed by walls.\n");
+		exit_err("Map is not enclosed by walls.\n");
 		return (false);
 	}
 	if (!symbols_valid(mcraft, map))
 	{
-		exit_err("Error: Invalid symbols in map.\n");
+		exit_err("Invalid symbols in map.\n");
 		return (false);
 	}
 	return (true);
