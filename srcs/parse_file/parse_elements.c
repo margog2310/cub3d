@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_elements.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mganchev <mganchev@student.42london.com    +#+  +:+       +#+        */
+/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/28 18:56:21 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/21 23:07:40 by mganchev         ###   ########.fr       */
+/*   Updated: 2025/02/25 14:22:03 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,14 +84,14 @@ int	create_textures(t_mcraft *mcraft, t_txts *txts)
 	if (!txts->tx_n->img || !txts->tx_s->img || !txts->tx_e->img
 		|| !txts->tx_w->img)
 		return (exit_err("Error with .xpm texture file."), 1);
-	txts->tx_n->data = mlx_get_data_addr(txts->tx_n->img, &txts->tx_n->bpp, &txts->tx_n->ll,
-			&txts->tx_n->end);
-	txts->tx_s->data = mlx_get_data_addr(txts->tx_s->img, &txts->tx_s->bpp, &txts->tx_s->ll,
-			&txts->tx_s->end);
-	txts->tx_e->data = mlx_get_data_addr(txts->tx_e->img, &txts->tx_e->bpp, &txts->tx_e->ll,
-			&txts->tx_e->end);
-	txts->tx_w->data = mlx_get_data_addr(txts->tx_w->img, &txts->tx_w->bpp, &txts->tx_w->ll,
-			&txts->tx_w->end);
+	txts->tx_n->data = mlx_get_data_addr(txts->tx_n->img, &txts->tx_n->bpp,
+			&txts->tx_n->ll, &txts->tx_n->end);
+	txts->tx_s->data = mlx_get_data_addr(txts->tx_s->img, &txts->tx_s->bpp,
+			&txts->tx_s->ll, &txts->tx_s->end);
+	txts->tx_e->data = mlx_get_data_addr(txts->tx_e->img, &txts->tx_e->bpp,
+			&txts->tx_e->ll, &txts->tx_e->end);
+	txts->tx_w->data = mlx_get_data_addr(txts->tx_w->img, &txts->tx_w->bpp,
+			&txts->tx_w->ll, &txts->tx_w->end);
 	if (!txts->tx_n->data || !txts->tx_s->data || !txts->tx_e->data
 		|| !txts->tx_w->data)
 		return (exit_err("Failure getting data address."), 1);

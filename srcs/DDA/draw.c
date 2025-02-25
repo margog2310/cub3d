@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: margo <margo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 21:18:57 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/24 06:23:33 by margo            ###   ########.fr       */
+/*   Updated: 2025/02/25 14:19:59 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,15 @@ void	texture_on_img(t_mcraft *mcraft, t_vector vector, t_img *tx_data)
 		vector.tex_x = 0;
 	if (vector.tex_x >= tx_data->w)
 		vector.tex_x = tx_data->w - 1;
-	vector.tex_y = (int)(((vector.y * 2 - mcraft->h + vector.h) * tx_data->h) / vector.h / 2);
+	vector.tex_y = (int)(((vector.y * 2 - mcraft->h + vector.h)
+				* tx_data->h) / vector.h / 2);
 	if (vector.tex_y < 0)
 		vector.tex_x = 0;
 	if (vector.tex_y >= tx_data->h)
 		vector.tex_y = tx_data->h - 1;
 	offset = (vector.tex_y * tx_data->w + vector.tex_x) * 4;
 	if (offset < 0 || offset >= tx_data->w * tx_data->h * 4)
-        return;
+		return ;
 	color = *(unsigned int *)(tx_data->data + offset);
 	draw_pixel(mcraft, vector.x, vector.y, color);
 }

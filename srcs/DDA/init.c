@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: margo <margo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 23:07:58 by mganchev          #+#    #+#             */
-/*   Updated: 2025/02/24 06:38:59 by margo            ###   ########.fr       */
+/*   Updated: 2025/02/25 14:17:36 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,14 @@ void	setup_ray(t_mcraft *mcraft, t_ray *ray, t_pos map_pos)
 	ray->curr_y = map_pos.y;
 	if (ray->side == 0)
 	{
-		ray->perp_wall_dist = (map_pos.x - mcraft->gamer->x + (1 - ray->step.x) / 2) / ray->ray_dir_x;
+		ray->perp_wall_dist = (map_pos.x - mcraft->gamer->x
+				+ (1 - ray->step.x) / 2) / ray->ray_dir_x;
 		ray->wall_x = mcraft->gamer->y + ray->perp_wall_dist * ray->ray_dir_y;
 	}
 	else
 	{
-		ray->perp_wall_dist = (map_pos.y - mcraft->gamer->y + (1 - ray->step.y) / 2) / ray->ray_dir_y;
+		ray->perp_wall_dist = (map_pos.y - mcraft->gamer->y
+				+ (1 - ray->step.y) / 2) / ray->ray_dir_y;
 		ray->wall_x = mcraft->gamer->x + ray->perp_wall_dist * ray->ray_dir_x;
 	}
 	if (ray->perp_wall_dist < 1e-6)
